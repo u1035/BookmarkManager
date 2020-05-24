@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using BookmarkManager.Models;
 using Microsoft.Win32;
@@ -102,6 +103,19 @@ namespace BookmarkManager.ViewModels
             NewDbCommand = new DelegateCommand(NewDb);
             OpenDbCommand = new DelegateCommand(OpenDb);
             SaveDbCommand = new DelegateCommand(SaveDb);
+
+            CheckCommandLineArgs();
+        }
+
+        private void CheckCommandLineArgs()
+        {
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length <= 1) return;
+
+            if (File.Exists(args[1]))
+            {
+                OpenBookmarkDb(args[1]);
+            }
         }
 
         private void NewDb()
@@ -124,12 +138,17 @@ namespace BookmarkManager.ViewModels
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                _currentFileName = openFileDialog.FileName;
-                CurrentBookmarkStorage = BookmarkStorage.LoadFromFile(_currentFileName);
-                if (CurrentBookmarkStorage.Categories.Count > 0)
-                {
-                    SelectedCategory = CurrentBookmarkStorage.Categories[0];
-                }
+                OpenBookmarkDb(openFileDialog.FileName);
+            }
+        }
+
+        private void OpenBookmarkDb(string fileName)
+        {
+            _currentFileName = fileName;
+            CurrentBookmarkStorage = BookmarkStorage.LoadFromFile(_currentFileName);
+            if (CurrentBookmarkStorage.Categories.Count > 0)
+            {
+                SelectedCategory = CurrentBookmarkStorage.Categories[0];
             }
         }
 

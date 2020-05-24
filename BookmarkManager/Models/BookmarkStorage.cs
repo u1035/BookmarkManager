@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows;
 using System.Xml.Serialization;
 using Prism.Mvvm;
 
@@ -27,7 +28,7 @@ namespace BookmarkManager.Models
             }
             catch (Exception e)
             {
-                
+                MessageBox.Show(e.Message, "File saving error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -45,6 +46,7 @@ namespace BookmarkManager.Models
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message, "File loading error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
         }
