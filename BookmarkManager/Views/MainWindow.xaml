@@ -95,7 +95,8 @@
             <DataGrid Grid.Row="1" Grid.Column="0" Margin="4 0 4 0" IsEnabled="{Binding CategorySelected}" ItemsSource="{Binding DisplayingBookmarks}" SelectedItem="{Binding SelectedBookmark}" 
                       AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding DateAdded}" Header="Date added"/>
+                    <DataGridTextColumn Binding="{Binding DateAdded}" Header="Date added" Width="Auto"/>
+                    <DataGridTextColumn Binding="{Binding PageTitle}" Header="Page title"/>
                     <DataGridTextColumn Binding="{Binding Url}" Header="URL"/>
                 </DataGrid.Columns>
             </DataGrid>

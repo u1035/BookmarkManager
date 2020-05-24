@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="Models\Bookmark.cs" />
     <Compile Include="Models\BookmarkStorage.cs" />
+    <Compile Include="Services\WebPageParser.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -130,5 +131,6 @@
     <Resource Include="Resources\openbrowser.png" />
     <Resource Include="Resources\tor.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

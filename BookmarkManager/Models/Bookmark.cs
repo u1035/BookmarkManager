@@ -13,11 +13,11 @@ namespace BookmarkManager.Models
             set => SetProperty(ref _url, value);
         }
 
-        private string _pageHeader;
-        public string PageHeader
+        private string _pageTitle;
+        public string PageTitle
         {
-            get => _pageHeader;
-            set => SetProperty(ref _pageHeader, value);
+            get => _pageTitle;
+            set => SetProperty(ref _pageTitle, value);
         }
 
         private DateTime _dateAdded;
@@ -41,5 +41,17 @@ namespace BookmarkManager.Models
             set => SetProperty(ref _category, value);
         }
 
+        public Bookmark()
+        {
+        }
+
+        public Bookmark(string url, string pageTitle, DateTime dateAdded, string notes, string category)
+        {
+            _url = url;
+            _pageTitle = pageTitle;
+            _dateAdded = dateAdded;
+            _notes = notes;
+            _category = category;
+        }
     }
 }

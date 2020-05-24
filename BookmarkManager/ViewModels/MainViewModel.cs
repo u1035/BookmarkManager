@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using BookmarkManager.Models;
+using BookmarkManager.Services;
 using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -133,7 +134,7 @@ namespace BookmarkManager.ViewModels
         {
             var openFileDialog = new OpenFileDialog()
             {
-                Filter = "Bookmarks DB file (*.bm)|*.bm",
+                Filter = "Bookmarks DB file (*.xml)|*.xml",
                 InitialDirectory = AppDomain.CurrentDomain.BaseDirectory
             };
             if (openFileDialog.ShowDialog() == true)
@@ -163,7 +164,7 @@ namespace BookmarkManager.ViewModels
             {
                 var saveFileDialog = new SaveFileDialog
                 {
-                    Filter = "Bookmarks DB file (*.bm)|*.bm",
+                    Filter = "Bookmarks DB file (*.xml)|*.xml",
                     InitialDirectory = AppDomain.CurrentDomain.BaseDirectory
                 };
                 if (header != "") saveFileDialog.Title = header;
@@ -184,12 +185,8 @@ namespace BookmarkManager.ViewModels
 
         private void AddLink()
         {
-            CurrentBookmarkStorage.Bookmarks.Add(new Bookmark()
-            {
-                Category = SelectedCategory,
-                DateAdded = DateTime.Now,
-                Url = UrlText
-            });
+            var title = WebPageParser.GetPageTitle(UrlText);
+            CurrentBookmarkStorage.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, "", SelectedCategory));
             RefreshCategory();
         }
 
