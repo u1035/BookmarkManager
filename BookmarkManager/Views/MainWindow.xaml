@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:BookmarkManager.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
     <Window.DataContext>
         <viewModels:MainViewModel />
     </Window.DataContext>
@@ -22,20 +22,16 @@
         </Grid.ColumnDefinitions>
 
         <!--Toolbar area begin-->
-        <ToolBar Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
-            <Separator />
-            <Button>
-                <Image Source="../Resources/newdb.png" Height="32" ToolTip="Create new bookmarks database" /></Button>
-            <Button>
-                <Image Source="../Resources/opendb.png" Height="32" ToolTip="Open existing bookmarks database" /></Button>
-            <Button>
-                <Image Source="../Resources/savedb.png" Height="32" ToolTip="Save bookmarks database"/></Button>
-            <Separator />
-            <Button>
-                <Image Source="../Resources/newrecord.png" Height="32" ToolTip="Add new bookmark"/></Button>
-            <Button>
-                <Image Source="../Resources/deleterecord.png" Height="32" ToolTip="Delete bookmark"/></Button>
-        </ToolBar>
+        <ToolBarTray Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Orientation="Horizontal">
+            <ToolBar>
+                <Button Command="{Binding NewDbCommand}">
+                    <Image Source="../Resources/newdb.png" Height="32" ToolTip="Create new bookmarks database" /></Button>
+                <Button Command="{Binding OpenDbCommand}">
+                    <Image Source="../Resources/opendb.png" Height="32" ToolTip="Open existing bookmarks database" /></Button>
+                <Button Command="{Binding SaveDbCommand}">
+                    <Image Source="../Resources/savedb.png" Height="32" ToolTip="Save bookmarks database"/></Button>
+            </ToolBar>
+        </ToolBarTray>
         <!--Toolbar area begin-->
 
         <!--Categories area begin-->
@@ -51,9 +47,9 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Margin="4">Categories:</TextBlock>
-            <ListBox Grid.Row="1" Margin="4 0 4 0"></ListBox>
-            <TextBox Grid.Row="2" Margin="4 0 4 0" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right">Category name</TextBox>
-            <Button Grid.Row="3" Margin="4 0 4 4" Height="40">
+            <ListBox Grid.Row="1" Margin="4 0 4 0" ItemsSource="{Binding CurrentBookmarkStorage.Categories}" IsEnabled="{Binding BookmarkStorageLoaded}" SelectedItem="{Binding SelectedCategory}"></ListBox>
+            <TextBox Grid.Row="2" Margin="4 0 4 0" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" IsEnabled="{Binding BookmarkStorageLoaded}" Text="{Binding CategoryText}"></TextBox>
+            <Button Grid.Row="3" Margin="4 0 4 4" Height="40" Command="{Binding AddCategoryCommand}" IsEnabled="{Binding BookmarkStorageLoaded}" >
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <Image Source="../Resources/addcat.png" Height="24" />
                     <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Text="Add category" />
@@ -74,12 +70,37 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Margin="4">Bookmarks:</TextBlock>
-            <ListBox Grid.Row="1" Margin="4 0 4 0"></ListBox>
-            <TextBox Grid.Row="2" Margin="4 0 4 0" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right">Paste URL here</TextBox>
-            <Button Grid.Row="3" Margin="4 0 4 4" Height="40">
+            <ToolBarTray Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+                <ToolBar>
+                    <Button>
+                        <Image Source="../Resources/newrecord.png" Height="32" ToolTip="Add new bookmark" />
+                    </Button>
+                    <Button>
+                        <Image Source="../Resources/deleterecord.png" Height="32" ToolTip="Delete bookmark"/>
+                    </Button>
+                    <Separator />
+                    <Button>
+                        <Image Source="../Resources/openbrowser.png" Height="32" ToolTip="Open in default browser"/>
+                    </Button>
+                    <Button>
+                        <Image Source="../Resources/tor.png" Height="32" ToolTip="Open in TOR browser"/>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="4">Bookmarks:</TextBlock>
+            <DataGrid Grid.Row="1" Grid.Column="0" Margin="4 0 4 0" IsEnabled="{Binding CategorySelected}" ItemsSource="{Binding DisplayingBookmarks}" SelectedItem="{Binding SelectedBookmark}" 
+                      AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding DateAdded}" Header="Date added"/>
+                    <DataGridTextColumn Binding="{Binding Url}" Header="URL"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBox Grid.Row="2" Grid.Column="0" Margin="4 0 4 0" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" IsEnabled="{Binding CategorySelected}" Text="{Binding UrlText}"></TextBox>
+            <Button Grid.Row="3" Grid.Column="0" Margin="4 0 4 4" Height="40" IsEnabled="{Binding CategorySelected}" Command="{Binding AddLinkCommand}">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <Image Source="../Resources/addlink.png" Height="24" />
                     <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Text="Add link" />

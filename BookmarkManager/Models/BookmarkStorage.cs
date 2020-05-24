@@ -9,7 +9,11 @@ namespace BookmarkManager.Models
     [Serializable]
     public class BookmarkStorage : BindableBase
     {
-        public ObservableCollection<Bookmark> Bookmarks { get; set; }
+        public ObservableCollection<Bookmark> Bookmarks { get; set; } = new ObservableCollection<Bookmark>();
+
+        public ObservableCollection<string> Categories { get; set; } = new ObservableCollection<string>();
+
+
 
         public void SaveStorage(string fileName)
         {

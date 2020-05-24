@@ -126,5 +126,9 @@
   <ItemGroup>
     <Resource Include="Resources\addcat.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\openbrowser.png" />
+    <Resource Include="Resources\tor.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
