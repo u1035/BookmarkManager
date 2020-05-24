@@ -85,6 +85,12 @@ namespace BookmarkManager.ViewModels
         }
 
         private string _currentFileName;
+        public string CurrentFileName
+        {
+            get => _currentFileName;
+            set => SetProperty(ref _currentFileName, value);
+        }
+
         private bool _bookmarkStorageModified;
 
         public ObservableCollection<Bookmark> DisplayingBookmarks { get; set; } = new ObservableCollection<Bookmark>();
@@ -94,7 +100,6 @@ namespace BookmarkManager.ViewModels
         public DelegateCommand NewDbCommand { get; }
         public DelegateCommand OpenDbCommand { get; }
         public DelegateCommand SaveDbCommand { get; }
-
 
 
         public MainViewModel()

@@ -14,6 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -39,6 +40,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -109,5 +111,30 @@
             </Button>
         </Grid>
         <!--Bookmarks area end-->
+
+        <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <StackPanel Orientation="Horizontal ">
+                        <TextBlock>Current file:</TextBlock>
+                        <TextBlock Margin="4 0 0 0" Text="{Binding CurrentFileName}"></TextBlock>
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator />
+                <StatusBarItem>
+                    <StackPanel Orientation="Horizontal ">
+                        <TextBlock>Total categories:</TextBlock>
+                        <TextBlock Margin="4 0 0 0" Text="{Binding CurrentBookmarkStorage.Categories.Count}"></TextBlock>
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator />
+                <StatusBarItem>
+                    <StackPanel Orientation="Horizontal ">
+                        <TextBlock>Total bookmarks:</TextBlock>
+                        <TextBlock Margin="4 0 0 0" Text="{Binding CurrentBookmarkStorage.Bookmarks.Count}"></TextBlock>
+                    </StackPanel>
+                </StatusBarItem>
+            </StatusBar>
+        </DockPanel>
     </Grid>
 </Window>
