@@ -6,3 +6,26 @@ I often making experiments with Windows, sometimes install other OS, change brow
 (Under lazy slow development)
 
 Feel free to fork, contact me and join developing!
+
+
+**To Do list**
+
+- [ ] Page preview image or favicon
+- [ ] Drag'n'Drop support
+- [ ] Icon in system tray
+- [ ] Nice view for bookmark item (ListBox of them?)
+- [ ] Config page or window
+- [ ] Help/About window
+- [ ] Menu bar?
+- [ ] Status bar with some info - file path, bookmarks/categories count?
+- [ ] Configurable path to TOR browser
+- [ ] Open last used database
+- [ ] List of last used databases in "File" menu
+- [x] Open file specified in command line parameters
+- [ ] Default action button / Enter in textbox handling - i need minimal number of actions to add bookmark
+- [ ] Portability test
+- [ ] Asyncronous web page details receiving - not to slow down main app thread
+- [ ] Pretty UI, maybe themes, maybe dark theme
+- [ ] Button "Open all bookmarks" in category
+- [ ] Saving window position and size
+- [ ] "Start with OS", "Start minimized" options
