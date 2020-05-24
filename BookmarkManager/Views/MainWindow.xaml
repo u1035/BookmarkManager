@@ -80,15 +80,19 @@
                     <Button>
                         <Image Source="../Resources/newrecord.png" Height="32" ToolTip="Add new bookmark" />
                     </Button>
-                    <Button>
+                    <Button Command="{Binding DeleteBookmarkCommand}">
                         <Image Source="../Resources/deleterecord.png" Height="32" ToolTip="Delete bookmark"/>
                     </Button>
                     <Separator />
-                    <Button>
+                    <Button Command="{Binding OpenInDefaultBrowserCommand}">
                         <Image Source="../Resources/openbrowser.png" Height="32" ToolTip="Open in default browser"/>
                     </Button>
                     <Button>
                         <Image Source="../Resources/tor.png" Height="32" ToolTip="Open in TOR browser"/>
+                    </Button>
+                    <Separator />
+                    <Button Command="{Binding OpenAllCommand}">
+                        <Image Source="../Resources/openall.png" Height="32" ToolTip="Open all links of this category in default browser"/>
                     </Button>
                 </ToolBar>
             </ToolBarTray>

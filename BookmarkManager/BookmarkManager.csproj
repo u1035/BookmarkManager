@@ -131,6 +131,8 @@
     <Resource Include="Resources\openbrowser.png" />
     <Resource Include="Resources\tor.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\openall.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

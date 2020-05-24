@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -8,13 +9,22 @@ namespace BookmarkManager.Services
     {
         public static string GetPageTitle(string url)
         {
-            var webClient = new WebClient();
-            webClient.Encoding = Encoding.UTF8;
-            var html = webClient.DownloadString(url);
+            var title = "";
+            try
+            {
+                var webClient = new WebClient();
+                webClient.Encoding = Encoding.UTF8;
+                var html = webClient.DownloadString(url);
 
-            var title = Regex.Match(html, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>",
-                RegexOptions.IgnoreCase).Groups["Title"].Value;
+                title = Regex.Match(html, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>",
+                    RegexOptions.IgnoreCase).Groups["Title"].Value;
 
+                
+            }
+            catch (Exception e)
+            {
+                return title;
+            }
             return title;
         }
     }

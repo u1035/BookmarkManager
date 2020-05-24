@@ -100,6 +100,9 @@ namespace BookmarkManager.ViewModels
         public DelegateCommand NewDbCommand { get; }
         public DelegateCommand OpenDbCommand { get; }
         public DelegateCommand SaveDbCommand { get; }
+        public DelegateCommand OpenInDefaultBrowserCommand { get; }
+        public DelegateCommand OpenAllCommand { get; }
+        public DelegateCommand DeleteBookmarkCommand { get; }
 
 
         public MainViewModel()
@@ -109,8 +112,35 @@ namespace BookmarkManager.ViewModels
             NewDbCommand = new DelegateCommand(NewDb);
             OpenDbCommand = new DelegateCommand(OpenDb);
             SaveDbCommand = new DelegateCommand(SaveDb);
+            OpenInDefaultBrowserCommand = new DelegateCommand(OpenInDefaultBrowser);
+            OpenAllCommand = new DelegateCommand(OpenAll);
+            DeleteBookmarkCommand= new DelegateCommand(DeleteBookmark);
 
             CheckCommandLineArgs();
+        }
+
+        private void OpenAll()
+        {
+            if (SelectedCategory == null) return;
+            foreach (var bookmark in DisplayingBookmarks)
+            {
+                System.Diagnostics.Process.Start(bookmark.Url);
+            }
+        }
+
+        private void DeleteBookmark()
+        {
+            if (SelectedBookmark == null) return;
+            CurrentBookmarkStorage.Bookmarks.Remove(SelectedBookmark);
+
+            RefreshCategory();
+            SaveCurrentBookmarkStorage();
+        }
+
+        private void OpenInDefaultBrowser()
+        {
+            if (SelectedBookmark == null) return;
+            System.Diagnostics.Process.Start(SelectedBookmark.Url);
         }
 
         private void CheckCommandLineArgs()
@@ -193,11 +223,13 @@ namespace BookmarkManager.ViewModels
             var title = WebPageParser.GetPageTitle(UrlText);
             CurrentBookmarkStorage.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, "", SelectedCategory));
             RefreshCategory();
+            SaveCurrentBookmarkStorage();
         }
 
         private void AddCategory()
         {
             CurrentBookmarkStorage.Categories.Add(CategoryText);
+            SaveCurrentBookmarkStorage();
         }
 
         private void RefreshCategory()
