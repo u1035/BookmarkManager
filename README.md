@@ -20,7 +20,7 @@ Feel free to fork, contact me and join developing!
 - [ ] Config page or window
 - [ ] Help/About window
 - [ ] Menu bar?
-- [ ] Status bar with some info - file path, bookmarks/categories count?
+- [x] Status bar with some info - file path, bookmarks/categories count?
 - [ ] Configurable path to TOR browser
 - [ ] Open last used database
 - [ ] List of last used databases in "File" menu
@@ -33,3 +33,4 @@ Feel free to fork, contact me and join developing!
 - [ ] Saving window position and size
 - [ ] "Start with OS", "Start minimized" options
 - [ ] Localization support
+- [ ] Showing main window by hotkey
