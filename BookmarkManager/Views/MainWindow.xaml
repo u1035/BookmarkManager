@@ -5,7 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:BookmarkManager.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="BookmarkStorage"
+        WindowState="{Binding Config.MainWindowState, Mode=TwoWay}"
+        Top="{Binding Config.MainWindowTop, Mode=TwoWay}"
+        Left="{Binding Config.MainWindowLeft, Mode=TwoWay}"
+        Width="{Binding Config.MainWindowWidth, Mode=TwoWay}"
+        Height="{Binding Config.MainWindowHeight, Mode=TwoWay}"
+        Closing="MainWindow_OnClosing">
     <Window.DataContext>
         <viewModels:MainViewModel />
     </Window.DataContext>

@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="Models\Bookmark.cs" />
     <Compile Include="Models\BookmarkStorage.cs" />
+    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Services\WebPageParser.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

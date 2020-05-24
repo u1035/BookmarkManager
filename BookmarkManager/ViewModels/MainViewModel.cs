@@ -94,6 +94,7 @@ namespace BookmarkManager.ViewModels
         private bool _bookmarkStorageModified;
 
         public ObservableCollection<Bookmark> DisplayingBookmarks { get; set; } = new ObservableCollection<Bookmark>();
+        public Configuration Config { get; set; }
 
         public DelegateCommand AddCategoryCommand { get; }
         public DelegateCommand AddLinkCommand { get; }
@@ -115,6 +116,8 @@ namespace BookmarkManager.ViewModels
             OpenInDefaultBrowserCommand = new DelegateCommand(OpenInDefaultBrowser);
             OpenAllCommand = new DelegateCommand(OpenAll);
             DeleteBookmarkCommand= new DelegateCommand(DeleteBookmark);
+
+            Config = Configuration.LoadFromFile();
 
             CheckCommandLineArgs();
         }

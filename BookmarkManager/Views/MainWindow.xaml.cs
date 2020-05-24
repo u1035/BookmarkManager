@@ -1,4 +1,7 @@
-﻿namespace BookmarkManager.Views
+﻿using System.ComponentModel;
+using BookmarkManager.ViewModels;
+
+namespace BookmarkManager.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -8,6 +11,11 @@
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            ((MainViewModel)DataContext).Config.SaveConfig();
         }
     }
 }
