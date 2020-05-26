@@ -36,3 +36,4 @@ Feel free to fork, contact me and join developing!
 - [ ] Showing main window by hotkey
 - [ ] Editing and deleting categories
 - [ ] Editing bookmarks
+- [x] Current filename in main window title
