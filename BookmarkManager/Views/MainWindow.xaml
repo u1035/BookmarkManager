@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:BookmarkManager.ViewModels"
         mc:Ignorable="d"
-        Title="BookmarkStorage"
+        Title="{Binding MainWindowTitle}"
         WindowState="{Binding Config.MainWindowState, Mode=TwoWay}"
         Top="{Binding Config.MainWindowTop, Mode=TwoWay}"
         Left="{Binding Config.MainWindowLeft, Mode=TwoWay}"

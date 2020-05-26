@@ -11,6 +11,9 @@ namespace BookmarkManager.ViewModels
 {
     public class MainViewModel : NotificationObject
     {
+        private const string WindowTitleBase = "BookmarkManager";
+
+
         private bool _bookmarkStorageLoaded;
         public bool BookmarkStorageLoaded
         {
@@ -38,6 +41,13 @@ namespace BookmarkManager.ViewModels
         {
             get => _urlText;
             set => SetProperty(ref _urlText, value);
+        }
+
+        private string _mainWindowTitle;
+        public string MainWindowTitle
+        {
+            get => _mainWindowTitle;
+            set => SetProperty(ref _mainWindowTitle, value);
         }
 
         private string _selectedCategory;
@@ -87,7 +97,11 @@ namespace BookmarkManager.ViewModels
         public string CurrentFileName
         {
             get => _currentFileName;
-            set => SetProperty(ref _currentFileName, value);
+            set
+            {
+                SetProperty(ref _currentFileName, value);
+                MainWindowTitle = WindowTitleBase + " - " + _currentFileName;
+            }
         }
 
         private bool _bookmarkStorageModified;
@@ -160,7 +174,7 @@ namespace BookmarkManager.ViewModels
         {
             //todo: check unsaved changes
 
-            _currentFileName = "";
+            CurrentFileName = "";
             CurrentBookmarkStorage = new BookmarkStorage();
             _bookmarkStorageModified = true;
 
@@ -182,8 +196,8 @@ namespace BookmarkManager.ViewModels
 
         private void OpenBookmarkDb(string fileName)
         {
-            _currentFileName = fileName;
-            CurrentBookmarkStorage = BookmarkStorage.LoadFromFile(_currentFileName);
+            CurrentFileName = fileName;
+            CurrentBookmarkStorage = BookmarkStorage.LoadFromFile(CurrentFileName);
             if (CurrentBookmarkStorage.Categories.Count > 0)
             {
                 SelectedCategory = CurrentBookmarkStorage.Categories[0];
@@ -197,7 +211,7 @@ namespace BookmarkManager.ViewModels
 
         private void SaveCurrentBookmarkStorage(string header = "")
         {
-            if (string.IsNullOrEmpty(_currentFileName))
+            if (string.IsNullOrEmpty(CurrentFileName))
             {
                 var saveFileDialog = new SaveFileDialog
                 {
@@ -208,14 +222,14 @@ namespace BookmarkManager.ViewModels
 
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    _currentFileName = saveFileDialog.FileName;
-                    CurrentBookmarkStorage.SaveStorage(_currentFileName);
+                    CurrentFileName = saveFileDialog.FileName;
+                    CurrentBookmarkStorage.SaveStorage(CurrentFileName);
                     _bookmarkStorageModified = false;
                 }
             }
             else
             {
-                CurrentBookmarkStorage.SaveStorage(_currentFileName);
+                CurrentBookmarkStorage.SaveStorage(CurrentFileName);
                 _bookmarkStorageModified = false;
             }
         }
