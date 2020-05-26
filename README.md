@@ -30,7 +30,7 @@ Feel free to fork, contact me and join developing!
 - [ ] Asyncronous web page details receiving - not to slow down main app thread
 - [ ] Pretty UI, maybe themes, maybe dark theme
 - [x] Button "Open all bookmarks" in category
-- [ ] Saving window position and size
+- [x] Saving window position and size
 - [ ] "Start with OS", "Start minimized" options
 - [ ] Localization support
 - [ ] Showing main window by hotkey
