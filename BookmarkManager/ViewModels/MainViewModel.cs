@@ -3,14 +3,13 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using BookmarkManager.Models;
+using BookmarkManager.MVVM;
 using BookmarkManager.Services;
 using Microsoft.Win32;
-using Prism.Commands;
-using Prism.Mvvm;
 
 namespace BookmarkManager.ViewModels
 {
-    public class MainViewModel : BindableBase
+    public class MainViewModel : NotificationObject
     {
         private bool _bookmarkStorageLoaded;
         public bool BookmarkStorageLoaded
@@ -96,26 +95,26 @@ namespace BookmarkManager.ViewModels
         public ObservableCollection<Bookmark> DisplayingBookmarks { get; set; } = new ObservableCollection<Bookmark>();
         public Configuration Config { get; set; }
 
-        public DelegateCommand AddCategoryCommand { get; }
-        public DelegateCommand AddLinkCommand { get; }
-        public DelegateCommand NewDbCommand { get; }
-        public DelegateCommand OpenDbCommand { get; }
-        public DelegateCommand SaveDbCommand { get; }
-        public DelegateCommand OpenInDefaultBrowserCommand { get; }
-        public DelegateCommand OpenAllCommand { get; }
-        public DelegateCommand DeleteBookmarkCommand { get; }
+        public Command AddCategoryCommand { get; }
+        public Command AddLinkCommand { get; }
+        public Command NewDbCommand { get; }
+        public Command OpenDbCommand { get; }
+        public Command SaveDbCommand { get; }
+        public Command OpenInDefaultBrowserCommand { get; }
+        public Command OpenAllCommand { get; }
+        public Command DeleteBookmarkCommand { get; }
 
 
         public MainViewModel()
         {
-            AddCategoryCommand = new DelegateCommand(AddCategory);
-            AddLinkCommand = new DelegateCommand(AddLink);
-            NewDbCommand = new DelegateCommand(NewDb);
-            OpenDbCommand = new DelegateCommand(OpenDb);
-            SaveDbCommand = new DelegateCommand(SaveDb);
-            OpenInDefaultBrowserCommand = new DelegateCommand(OpenInDefaultBrowser);
-            OpenAllCommand = new DelegateCommand(OpenAll);
-            DeleteBookmarkCommand= new DelegateCommand(DeleteBookmark);
+            AddCategoryCommand = new Command(AddCategory);
+            AddLinkCommand = new Command(AddLink);
+            NewDbCommand = new Command(NewDb);
+            OpenDbCommand = new Command(OpenDb);
+            SaveDbCommand = new Command(SaveDb);
+            OpenInDefaultBrowserCommand = new Command(OpenInDefaultBrowser);
+            OpenAllCommand = new Command(OpenAll);
+            DeleteBookmarkCommand= new Command(DeleteBookmark);
 
             Config = Configuration.LoadFromFile();
 

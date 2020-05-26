@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Xml.Serialization;
-using Prism.Mvvm;
+using BookmarkManager.MVVM;
 
 namespace BookmarkManager.Models
 {
     [Serializable]
-    public class BookmarkStorage : BindableBase
+    public class BookmarkStorage : NotificationObject
     {
         public ObservableCollection<Bookmark> Bookmarks { get; set; } = new ObservableCollection<Bookmark>();
 

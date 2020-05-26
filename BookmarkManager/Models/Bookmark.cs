@@ -1,10 +1,10 @@
 ﻿using System;
-using Prism.Mvvm;
+using BookmarkManager.MVVM;
 
 namespace BookmarkManager.Models
 {
     [Serializable]
-    public class Bookmark : BindableBase
+    public class Bookmark : NotificationObject
     {
         private string _url;
         public string Url
