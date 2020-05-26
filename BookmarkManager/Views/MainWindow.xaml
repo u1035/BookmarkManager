@@ -15,8 +15,10 @@
     <Window.DataContext>
         <viewModels:MainViewModel />
     </Window.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
             <RowDefinition />
@@ -28,8 +30,32 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
+        <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="New" Command="{Binding NewDbCommand}"></MenuItem>
+                <MenuItem Header="Open" Command="{Binding OpenDbCommand}"></MenuItem>
+                <MenuItem Header="Save" Command="{Binding SaveDbCommand}"></MenuItem>
+                <Separator />
+                <MenuItem Header="Settings" Command="{Binding OpenSettingsWindowCommand}"></MenuItem>
+                <Separator />
+                <MenuItem Header="Exit" Command="{Binding }"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Category">
+                <MenuItem Header="Delete" Command="{Binding }"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Bookmark">
+                <MenuItem Header="Delete" Command="{Binding DeleteBookmarkCommand}"></MenuItem>
+                <MenuItem Header="Open in browser" Command="{Binding OpenInDefaultBrowserCommand}"></MenuItem>
+                <MenuItem Header="Open all in browser" Command="{Binding OpenAllCommand}"></MenuItem>
+                <MenuItem Header="Open in TOR" Command="{Binding }"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="?">
+                <MenuItem Header="About" Command="{Binding }"></MenuItem>
+            </MenuItem>
+        </Menu>
+
         <!--Toolbar area begin-->
-        <ToolBarTray Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Orientation="Horizontal">
+        <ToolBarTray Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Orientation="Horizontal">
             <ToolBar>
                 <Button Command="{Binding NewDbCommand}">
                     <Image Source="../Resources/newdb.png" Height="32" ToolTip="Create new bookmarks database" /></Button>
@@ -42,7 +68,7 @@
         <!--Toolbar area begin-->
 
         <!--Categories area begin-->
-        <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" >
+        <Grid Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -66,10 +92,11 @@
         </Grid>
         <!--Categories area end-->
 
-        <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridSplitter>
+        <GridSplitter Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center" ></GridSplitter>
+        <Label Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Content="⁞" Foreground="DimGray"  VerticalAlignment="Center" FontSize="18" IsHitTestVisible="False"/>
 
         <!--Bookmarks area begin-->
-        <Grid Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" >
+        <Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -122,7 +149,7 @@
         </Grid>
         <!--Bookmarks area end-->
 
-        <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+        <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
             <StatusBar DockPanel.Dock="Bottom">
                 <StatusBarItem>
                     <StackPanel Orientation="Horizontal ">

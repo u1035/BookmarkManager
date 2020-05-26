@@ -5,6 +5,7 @@ using System.Linq;
 using BookmarkManager.Models;
 using BookmarkManager.MVVM;
 using BookmarkManager.Services;
+using BookmarkManager.Views;
 using Microsoft.Win32;
 
 namespace BookmarkManager.ViewModels
@@ -117,6 +118,7 @@ namespace BookmarkManager.ViewModels
         public Command OpenInDefaultBrowserCommand { get; }
         public Command OpenAllCommand { get; }
         public Command DeleteBookmarkCommand { get; }
+        public Command OpenSettingsWindowCommand { get; }
 
 
         public MainViewModel()
@@ -129,10 +131,17 @@ namespace BookmarkManager.ViewModels
             OpenInDefaultBrowserCommand = new Command(OpenInDefaultBrowser);
             OpenAllCommand = new Command(OpenAll);
             DeleteBookmarkCommand= new Command(DeleteBookmark);
+            OpenSettingsWindowCommand = new Command(OpenSettingsWindow);
 
             Config = Configuration.LoadFromFile();
 
             CheckCommandLineArgs();
+        }
+
+        private void OpenSettingsWindow()
+        {
+            var settingsWindow = new SettingsView();
+            settingsWindow.ShowDialog();
         }
 
         private void OpenAll()
