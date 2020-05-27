@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using BookmarkManager.Models;
 using BookmarkManager.MVVM;
 using BookmarkManager.Services;
@@ -135,6 +136,9 @@ namespace BookmarkManager.ViewModels
 
             Config = Configuration.LoadFromFile();
 
+            if (Config.StartMinimized)
+                Config.MainWindowState = WindowState.Minimized;
+
             CheckCommandLineArgs();
         }
 
@@ -249,12 +253,16 @@ namespace BookmarkManager.ViewModels
             CurrentBookmarkStorage.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, "", SelectedCategory));
             RefreshCategory();
             SaveCurrentBookmarkStorage();
+
+            UrlText = "";
         }
 
         private void AddCategory()
         {
             CurrentBookmarkStorage.Categories.Add(CategoryText);
             SaveCurrentBookmarkStorage();
+
+            CategoryText = "";
         }
 
         private void RefreshCategory()

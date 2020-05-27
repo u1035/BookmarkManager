@@ -4,15 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookmarkManager.Views"
+        xmlns:models="clr-namespace:BookmarkManager.Models"
         mc:Ignorable="d" WindowStyle="ToolWindow" ResizeMode="NoResize"
         SizeToContent="WidthAndHeight" 
         Title="BookmarkManager settings" Height="450" Width="800">
     <Grid>
         <StackPanel Orientation="Vertical">
 
-            <CheckBox Margin="4">Start with Windows</CheckBox>
+            <CheckBox Margin="4" IsChecked="{Binding RunOnWidowsStart}">Start with Windows</CheckBox>
 
-            <CheckBox Margin="4">Open last used file</CheckBox>
+            <CheckBox Margin="4" IsChecked="{Binding OpenLastUsedFile}">Open last used file</CheckBox>
+
+            <CheckBox Margin="4" IsChecked="{Binding StartMinimized}">Start minimized</CheckBox>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -20,14 +23,14 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Margin="4" >TOR browser path:</TextBlock>
-                <TextBox Grid.Column="1" Margin="4" MinWidth="400"></TextBox>
-                <Button Grid.Column="1" Margin="4" HorizontalAlignment="Right" Width="30">...</Button>
+                <TextBlock Grid.Column="0" Margin="4">TOR browser path:</TextBlock>
+                <TextBox Grid.Column="1" Margin="4" MinWidth="400" Text="{Binding TorBrowserPath}"></TextBox>
+                <Button Grid.Column="1" Margin="4" HorizontalAlignment="Right" Width="30" Command="{Binding }">...</Button>
             </Grid>
 
             <Button Margin="4" Width="200" HorizontalAlignment="Right">Clear last used files list</Button>
 
-            <StackPanel Margin="4" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Margin="4" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="4" MinWidth="80">Save</Button>
                 <Button Margin="4" MinWidth="80">Cancel</Button>
             </StackPanel>
