@@ -15,7 +15,7 @@ Feel free to fork, contact me and join developing!
 
 - [ ] Page preview image or favicon
 - [ ] Drag'n'Drop support
-- [ ] Icon in system tray
+- [x] Icon in system tray
 - [ ] Nice view for bookmark item (ListBox of them?)
 - [x] Config page or window
 - [ ] Help/About window
