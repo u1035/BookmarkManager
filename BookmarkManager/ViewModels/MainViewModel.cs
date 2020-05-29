@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 using BookmarkManager.Models;
 using BookmarkManager.MVVM;
@@ -122,6 +124,9 @@ namespace BookmarkManager.ViewModels
         public Command OpenAllCommand { get; }
         public Command DeleteBookmarkCommand { get; }
         public Command OpenSettingsWindowCommand { get; }
+        public Command ShowMainWindowCommand { get; }
+        public Command AddBookmarkFromClipboardCommand { get; }
+        public Command ExitCommand { get; }
 
 
         public MainViewModel()
@@ -136,6 +141,9 @@ namespace BookmarkManager.ViewModels
             OpenAllCommand = new Command(OpenAll);
             DeleteBookmarkCommand= new Command(DeleteBookmark);
             OpenSettingsWindowCommand = new Command(OpenSettingsWindow);
+            ShowMainWindowCommand = new Command(ShowMainWindow);
+            AddBookmarkFromClipboardCommand = new Command(AddBookmarkFromClipboard);
+            ExitCommand = new Command(Exit);
 
             Config = Configuration.LoadFromFile();
             if (string.IsNullOrEmpty(Config.TorBrowserPath))
@@ -145,6 +153,39 @@ namespace BookmarkManager.ViewModels
                 Config.MainWindowState = WindowState.Minimized;
 
             CheckCommandLineArgs();
+        }
+
+        private void ShowMainWindow()
+        {
+            if (Application.Current.MainWindow?.WindowState == WindowState.Minimized)
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+
+            Application.Current.MainWindow?.Activate();
+        }
+
+        private void AddBookmarkFromClipboard()
+        {
+            if (Clipboard.ContainsText())
+            {
+                var text = Clipboard.GetText();
+                if (CheckUrlValid(text))
+                {
+                    UrlText = Clipboard.GetText();
+                    AddLink();
+                }
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static bool CheckUrlValid(string source)
+        {
+            return Uri.TryCreate(source, UriKind.Absolute, out Uri uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+        }
+
+        private void Exit()
+        {
+            //SaveCurrentBookmarkStorage();
+            Application.Current.Shutdown();
         }
 
         private void TryFindTorBrowser()
@@ -175,7 +216,7 @@ namespace BookmarkManager.ViewModels
             if (SelectedCategory == null) return;
             foreach (var bookmark in DisplayingBookmarks)
             {
-                System.Diagnostics.Process.Start(bookmark.Url);
+                Process.Start(bookmark.Url);
             }
         }
 
@@ -191,7 +232,7 @@ namespace BookmarkManager.ViewModels
         private void OpenInDefaultBrowser()
         {
             if (SelectedBookmark == null) return;
-            System.Diagnostics.Process.Start(SelectedBookmark.Url);
+            Process.Start(SelectedBookmark.Url);
         }
 
         private void OpenInTorBrowser()
@@ -209,10 +250,10 @@ namespace BookmarkManager.ViewModels
                     FileName = Config.TorBrowserPath, 
                     Arguments = SelectedBookmark.Url, 
                     UseShellExecute = true, 
-                    WorkingDirectory = Path.GetDirectoryName(Config.TorBrowserPath)
+                    WorkingDirectory = Path.GetDirectoryName(Config.TorBrowserPath) ?? ""
                 };
 
-                System.Diagnostics.Process.Start(startInfo);
+                Process.Start(startInfo);
             }
             catch (Exception e)
             {
@@ -270,7 +311,7 @@ namespace BookmarkManager.ViewModels
             SaveCurrentBookmarkStorage();
         }
 
-        private void SaveCurrentBookmarkStorage(string header = "")
+        public void SaveCurrentBookmarkStorage(string header = "")
         {
             if (string.IsNullOrEmpty(CurrentFileName))
             {
@@ -297,7 +338,8 @@ namespace BookmarkManager.ViewModels
 
         private void AddLink()
         {
-            var title = WebPageParser.GetPageTitle(UrlText);
+            var rawTitle = WebPageParser.GetPageTitle(UrlText);
+            var title = Regex.Replace(rawTitle, @"\r\n?|\n", "");
             CurrentBookmarkStorage.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, "", SelectedCategory));
             RefreshCategory();
             SaveCurrentBookmarkStorage();
@@ -319,7 +361,7 @@ namespace BookmarkManager.ViewModels
             {
                 //todo: find more elegant way
                 DisplayingBookmarks = new ObservableCollection<Bookmark>(CurrentBookmarkStorage.Bookmarks.Where(b => b.Category == _selectedCategory));
-                RaisePropertyChanged("DisplayingBookmarks");
+                RaisePropertyChanged(nameof(DisplayingBookmarks));
                 CategorySelected = true;
             }
             else

@@ -15,6 +15,7 @@ namespace BookmarkManager.Views
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
+            ((MainViewModel)DataContext).SaveCurrentBookmarkStorage();
             ((MainViewModel)DataContext).Config.SaveConfig();
         }
     }

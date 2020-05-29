@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:BookmarkManager.ViewModels"
-        mc:Ignorable="d"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        mc:Ignorable="d" Icon="../Resources/appicon.png"
         Title="{Binding MainWindowTitle}"
         WindowState="{Binding Config.MainWindowState, Mode=TwoWay}"
         Top="{Binding Config.MainWindowTop, Mode=TwoWay}"
@@ -13,6 +14,16 @@
         Height="{Binding Config.MainWindowHeight, Mode=TwoWay}"
         ShowInTaskbar="{Binding Config.ShowInTaskbar}"
         Closing="MainWindow_OnClosing">
+    <Window.Resources>
+        
+        <ContextMenu x:Key="TrayMenu">
+            <MenuItem Header="Open main window" FontWeight="Bold" Command="{Binding ShowMainWindowCommand}"></MenuItem>
+            <MenuItem Header="Add bookmark from clipboard" Command="{Binding AddBookmarkFromClipboardCommand}"></MenuItem>
+            <Separator />
+            <MenuItem Header="Exit" Command="{Binding ExitCommand}"></MenuItem>
+        </ContextMenu>
+
+    </Window.Resources>
     <Window.DataContext>
         <viewModels:MainViewModel />
     </Window.DataContext>
@@ -31,6 +42,13 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
+        <tb:TaskbarIcon Visibility="Visible"
+                        IconSource="../Resources/appicon.ico"
+                        ContextMenu="{StaticResource TrayMenu}"
+                        MenuActivation="RightClick"
+                        DoubleClickCommand="{Binding ShowMainWindowCommand}"
+        />
+
         <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
             <MenuItem Header="File">
                 <MenuItem Header="New" Command="{Binding NewDbCommand}"></MenuItem>
@@ -39,7 +57,7 @@
                 <Separator />
                 <MenuItem Header="Settings" Command="{Binding OpenSettingsWindowCommand}"></MenuItem>
                 <Separator />
-                <MenuItem Header="Exit" Command="{Binding }"></MenuItem>
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="Category">
                 <MenuItem Header="Delete" Command="{Binding }"></MenuItem>
@@ -64,6 +82,11 @@
                     <Image Source="../Resources/opendb.png" Height="32" ToolTip="Open existing bookmarks database" /></Button>
                 <Button Command="{Binding SaveDbCommand}">
                     <Image Source="../Resources/savedb.png" Height="32" ToolTip="Save bookmarks database"/></Button>
+
+                <Separator />
+                <Button Command="{Binding ExitCommand}">
+                    <Image Source="../Resources/appexit.png" Height="32" ToolTip="Exit"/>
+                </Button>
             </ToolBar>
         </ToolBarTray>
         <!--Toolbar area begin-->
@@ -111,9 +134,6 @@
 
             <ToolBarTray Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
                 <ToolBar>
-                    <Button>
-                        <Image Source="../Resources/newrecord.png" Height="32" ToolTip="Add new bookmark" />
-                    </Button>
                     <Button Command="{Binding DeleteBookmarkCommand}">
                         <Image Source="../Resources/deleterecord.png" Height="32" ToolTip="Delete bookmark"/>
                     </Button>
