@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -45,7 +46,7 @@ namespace BookmarkManager.ViewModels
             set => SetProperty(ref _urlText, value);
         }
 
-        private string _mainWindowTitle;
+        private string _mainWindowTitle = "BookmarkManager";
         public string MainWindowTitle
         {
             get => _mainWindowTitle;
@@ -117,6 +118,7 @@ namespace BookmarkManager.ViewModels
         public Command OpenDbCommand { get; }
         public Command SaveDbCommand { get; }
         public Command OpenInDefaultBrowserCommand { get; }
+        public Command OpenInTorBrowserCommand { get; }
         public Command OpenAllCommand { get; }
         public Command DeleteBookmarkCommand { get; }
         public Command OpenSettingsWindowCommand { get; }
@@ -130,11 +132,14 @@ namespace BookmarkManager.ViewModels
             OpenDbCommand = new Command(OpenDb);
             SaveDbCommand = new Command(SaveDb);
             OpenInDefaultBrowserCommand = new Command(OpenInDefaultBrowser);
+            OpenInTorBrowserCommand = new Command(OpenInTorBrowser);
             OpenAllCommand = new Command(OpenAll);
             DeleteBookmarkCommand= new Command(DeleteBookmark);
             OpenSettingsWindowCommand = new Command(OpenSettingsWindow);
 
             Config = Configuration.LoadFromFile();
+            if (string.IsNullOrEmpty(Config.TorBrowserPath))
+                TryFindTorBrowser();
 
             if (Config.StartMinimized)
                 Config.MainWindowState = WindowState.Minimized;
@@ -142,10 +147,27 @@ namespace BookmarkManager.ViewModels
             CheckCommandLineArgs();
         }
 
+        private void TryFindTorBrowser()
+        {
+            const string torSubPath = "\\Tor Browser\\Browser\\firefox.exe";
+            var desktopFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var torPath = desktopFolder + torSubPath;
+            if (File.Exists(torPath))
+            {
+                Config.TorBrowserPath = torPath;
+                Config.SaveConfig();
+            }
+        }
+
         private void OpenSettingsWindow()
         {
             var settingsWindow = new SettingsView();
-            settingsWindow.ShowDialog();
+            settingsWindow.DataContext = Config;
+            var result = settingsWindow.ShowDialog();
+            if (result != null && result == true)
+            {
+                Config.SaveConfig();
+            }
         }
 
         private void OpenAll()
@@ -170,6 +192,32 @@ namespace BookmarkManager.ViewModels
         {
             if (SelectedBookmark == null) return;
             System.Diagnostics.Process.Start(SelectedBookmark.Url);
+        }
+
+        private void OpenInTorBrowser()
+        {
+            if (SelectedBookmark == null) return;
+            if (!File.Exists(Config.TorBrowserPath))
+            {
+                MessageBox.Show($"Please set path to Tor Browser in File -> Settings", "Tor Browser not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+            try
+            {
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = Config.TorBrowserPath, 
+                    Arguments = SelectedBookmark.Url, 
+                    UseShellExecute = true, 
+                    WorkingDirectory = Path.GetDirectoryName(Config.TorBrowserPath)
+                };
+
+                System.Diagnostics.Process.Start(startInfo);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Error opening link in Tor Browser - {e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void CheckCommandLineArgs()

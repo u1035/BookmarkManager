@@ -15,6 +15,7 @@ namespace BookmarkManager.Models
         public string TorBrowserPath { get; set; } = "";
         public List<string> LastOpenedFiles { get; set; } = new List<string>();
         public bool RunOnWidowsStart { get; set; }
+        public bool ShowInTaskbar { get; set; } = true;
         public bool StartMinimized { get; set; } = true;
         public bool OpenLastUsedFile { get; set; }
 

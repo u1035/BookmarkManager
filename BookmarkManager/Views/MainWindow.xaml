@@ -11,6 +11,7 @@
         Left="{Binding Config.MainWindowLeft, Mode=TwoWay}"
         Width="{Binding Config.MainWindowWidth, Mode=TwoWay}"
         Height="{Binding Config.MainWindowHeight, Mode=TwoWay}"
+        ShowInTaskbar="{Binding Config.ShowInTaskbar}"
         Closing="MainWindow_OnClosing">
     <Window.DataContext>
         <viewModels:MainViewModel />
@@ -47,7 +48,7 @@
                 <MenuItem Header="Delete" Command="{Binding DeleteBookmarkCommand}"></MenuItem>
                 <MenuItem Header="Open in browser" Command="{Binding OpenInDefaultBrowserCommand}"></MenuItem>
                 <MenuItem Header="Open all in browser" Command="{Binding OpenAllCommand}"></MenuItem>
-                <MenuItem Header="Open in TOR" Command="{Binding }"></MenuItem>
+                <MenuItem Header="Open in TOR" Command="{Binding OpenInTorBrowserCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="?">
                 <MenuItem Header="About" Command="{Binding }"></MenuItem>
@@ -120,7 +121,7 @@
                     <Button Command="{Binding OpenInDefaultBrowserCommand}">
                         <Image Source="../Resources/openbrowser.png" Height="32" ToolTip="Open in default browser"/>
                     </Button>
-                    <Button>
+                    <Button Command="{Binding OpenInTorBrowserCommand}">
                         <Image Source="../Resources/tor.png" Height="32" ToolTip="Open in TOR browser"/>
                     </Button>
                     <Separator />
