@@ -17,11 +17,11 @@ Feel free to fork, contact me and join developing!
 - [ ] Drag'n'Drop support
 - [ ] Icon in system tray
 - [ ] Nice view for bookmark item (ListBox of them?)
-- [ ] Config page or window
+- [x] Config page or window
 - [ ] Help/About window
-- [ ] Menu bar?
+- [x] Menu bar?
 - [x] Status bar with some info - file path, bookmarks/categories count?
-- [ ] Configurable path to TOR browser
+- [x] Configurable path to TOR browser
 - [ ] Open last used database
 - [ ] List of last used databases in "File" menu
 - [x] Open file specified in command line parameters
@@ -31,7 +31,7 @@ Feel free to fork, contact me and join developing!
 - [ ] Pretty UI, maybe themes, maybe dark theme
 - [x] Button "Open all bookmarks" in category
 - [x] Saving window position and size
-- [ ] "Start with OS", "Start minimized" options
+- [x] "Start with OS", "Start minimized" options
 - [ ] Localization support
 - [ ] Showing main window by hotkey
 - [ ] Editing and deleting categories
