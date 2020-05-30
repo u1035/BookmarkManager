@@ -39,4 +39,4 @@ Feel free to fork, contact me and join developing!
 - [x] Current filename in main window title
 - [ ] Close to tray
 - [ ] Fix Start minimized
-- [ ] Context menus on categories and bookmarks
+- [x] Context menus on categories and bookmarks
