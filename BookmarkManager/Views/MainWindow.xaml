@@ -85,6 +85,36 @@
             </Grid>
         </DataTemplate>
 
+
+        <Style x:Key="GridSplitterVerticalGripStyle" TargetType="{x:Type GridSplitter}">
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Cursor" Value="SizeWE" />
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridSplitter}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                Width="{TemplateBinding Width}">
+                            <Border Height="50" Width="4" VerticalAlignment="Center"
+                                    HorizontalAlignment="Center" BorderThickness="1 0"
+                                    Background="White" BorderBrush="Black">
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="VerticalGridSplitter" TargetType="{x:Type GridSplitter}"
+               BasedOn="{StaticResource GridSplitterVerticalGripStyle}">
+            <Setter Property="Width" Value="3" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
     </Window.Resources>
     <Window.DataContext>
         <viewModels:MainViewModel />
@@ -111,7 +141,7 @@
                         DoubleClickCommand="{Binding ShowMainWindowCommand}"
         />
 
-        <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+        <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="Transparent">
             <MenuItem Header="File">
                 <MenuItem Header="New" Command="{Binding NewDbCommand}">
                     <MenuItem.Icon>
@@ -180,8 +210,8 @@
         </Menu>
 
         <!--Toolbar area begin-->
-        <ToolBarTray Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Orientation="Horizontal">
-            <ToolBar>
+        <ToolBarTray Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Orientation="Horizontal" Background="Transparent" >
+            <ToolBar ToolBarTray.IsLocked="True" Background="Transparent" Loaded="Toolbar_OnLoaded">
                 <Button Command="{Binding NewDbCommand}">
                     <Image Source="../Resources/newdb.png" Height="32" ToolTip="Create new bookmarks database" /></Button>
                 <Button Command="{Binding OpenDbCommand}">
@@ -216,14 +246,14 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Margin="4">Categories:</TextBlock>
-            <ListBox Grid.Row="1" Margin="4 0 4 0" 
+            <ListBox Grid.Row="1" Margin="4 0 4 0" Background="Transparent"
                      ItemsSource="{Binding CurrentBookmarkStorage.Categories}" 
                      IsEnabled="{Binding BookmarkStorageLoaded}" 
                      SelectedItem="{Binding SelectedCategory}" 
                      ItemTemplate="{StaticResource CategoryTemplate}" 
                      ContextMenu="{StaticResource CategoriesContextMenu}"/>
 
-            <TextBox Grid.Row="2" Margin="4 0 4 0" FontSize="14" Height="25" 
+            <TextBox Grid.Row="2" Margin="4 0 4 0" FontSize="14" Height="25"
                      VerticalContentAlignment="Center" 
                      HorizontalAlignment="Stretch" 
                      HorizontalContentAlignment="Right"
@@ -244,8 +274,9 @@
         </Grid>
         <!--Categories area end-->
 
-        <GridSplitter Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center" ></GridSplitter>
-        <Label Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Content="⁞" Foreground="DimGray"  VerticalAlignment="Center" FontSize="18" IsHitTestVisible="False"/>
+        <!--<GridSplitter Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center" ></GridSplitter>
+        <Label Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Content="⁞" Foreground="DimGray"  VerticalAlignment="Center" FontSize="18" IsHitTestVisible="False"/>-->
+        <GridSplitter Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Style="{StaticResource VerticalGridSplitter}"></GridSplitter>
 
         <!--Bookmarks area begin-->
         <Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" >
@@ -260,8 +291,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <ToolBarTray Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
-                <ToolBar>
+            <ToolBarTray Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Background="Transparent">
+                <ToolBar ToolBarTray.IsLocked="True" Background="Transparent" Loaded="Toolbar_OnLoaded">
                     <Button Command="{Binding DeleteBookmarkCommand}">
                         <Image Source="../Resources/deleterecord.png" Height="32" ToolTip="Delete bookmark"/>
                     </Button>
@@ -280,7 +311,7 @@
             </ToolBarTray>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Margin="4">Bookmarks:</TextBlock>
-            <ListBox Grid.Row="1" Grid.Column="0" Margin="4 0 4 0"
+            <ListBox Grid.Row="1" Grid.Column="0" Margin="4 0 4 0" Background="Transparent"
                      IsEnabled="{Binding CategorySelected}" 
                      ItemsSource="{Binding DisplayingBookmarks}" 
                      SelectedItem="{Binding SelectedBookmark}"
@@ -310,22 +341,22 @@
         <!--Bookmarks area end-->
 
         <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
-            <StatusBar DockPanel.Dock="Bottom">
-                <StatusBarItem>
+            <StatusBar DockPanel.Dock="Bottom" Background="Transparent">
+                <StatusBarItem Background="Transparent">
                     <StackPanel Orientation="Horizontal ">
                         <TextBlock>Current file:</TextBlock>
                         <TextBlock Margin="4 0 0 0" Text="{Binding CurrentFileName}"></TextBlock>
                     </StackPanel>
                 </StatusBarItem>
                 <Separator />
-                <StatusBarItem>
+                <StatusBarItem Background="Transparent">
                     <StackPanel Orientation="Horizontal ">
                         <TextBlock>Total categories:</TextBlock>
                         <TextBlock Margin="4 0 0 0" Text="{Binding CurrentBookmarkStorage.Categories.Count}"></TextBlock>
                     </StackPanel>
                 </StatusBarItem>
                 <Separator />
-                <StatusBarItem>
+                <StatusBarItem Background="Transparent">
                     <StackPanel Orientation="Horizontal ">
                         <TextBlock>Total bookmarks:</TextBlock>
                         <TextBlock Margin="4 0 0 0" Text="{Binding CurrentBookmarkStorage.Bookmarks.Count}"></TextBlock>

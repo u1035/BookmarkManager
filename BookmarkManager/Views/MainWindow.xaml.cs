@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -29,6 +30,16 @@ namespace BookmarkManager.Views
                 if (listbox.SelectedItem != null)
                     if (this.DataContext is MainViewModel mainVm)
                         mainVm.OpenInDefaultBrowser();
+        }
+
+        private void Toolbar_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            //Hiding overflow button at the end of toolbar
+            var toolBar = sender as ToolBar;
+            if (toolBar?.Template.FindName("OverflowGrid", toolBar) is FrameworkElement overflowGrid)
+            {
+                overflowGrid.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
