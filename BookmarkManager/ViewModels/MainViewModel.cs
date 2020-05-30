@@ -17,9 +17,27 @@ namespace BookmarkManager.ViewModels
     public class MainViewModel : NotificationObject
     {
         private const string WindowTitleBase = "BookmarkManager";
-        private bool _bookmarkStorageModified;
 
         #region Public properties
+
+        private bool _hasUnsavedChanges;
+        private bool HasUnsavedChanges
+        {
+            get => _hasUnsavedChanges;
+            set
+            {
+                SetProperty(ref _hasUnsavedChanges, value);
+                if (_hasUnsavedChanges)
+                {
+                    MainWindowTitle = "* " + MainWindowTitle;
+                }
+                else
+                {
+                    if (MainWindowTitle.StartsWith("* "))
+                        MainWindowTitle = MainWindowTitle.Remove(0, 2);
+                }
+            }
+        }
 
         private bool _bookmarkStorageLoaded;
         public bool BookmarkStorageLoaded
@@ -107,7 +125,9 @@ namespace BookmarkManager.ViewModels
             set
             {
                 SetProperty(ref _currentFileName, value);
-                MainWindowTitle = WindowTitleBase + " - " + _currentFileName;
+                MainWindowTitle = (!string.IsNullOrEmpty(_currentFileName)) ? 
+                                WindowTitleBase + " - " + _currentFileName : 
+                                WindowTitleBase;
             }
         }
 
@@ -237,7 +257,7 @@ namespace BookmarkManager.ViewModels
 
             CurrentFileName = "";
             CurrentBookmarkStorage = new BookmarkStorage();
-            _bookmarkStorageModified = true;
+            HasUnsavedChanges = true;
 
             SaveCurrentBookmarkStorage("Choose filename for new database");
         }
@@ -257,11 +277,18 @@ namespace BookmarkManager.ViewModels
 
         private void OpenBookmarkDb(string fileName)
         {
-            CurrentFileName = fileName;
-            CurrentBookmarkStorage = BookmarkStorage.LoadFromFile(CurrentFileName);
+            CurrentBookmarkStorage = BookmarkStorage.LoadFromFile(fileName);
+            if (CurrentBookmarkStorage == null)
+            {
+                CurrentFileName = "";
+                return;
+            }
+
             if (CurrentBookmarkStorage.Categories.Count > 0)
             {
+                CurrentFileName = fileName;
                 SelectedCategory = CurrentBookmarkStorage.Categories[0];
+                HasUnsavedChanges = false;
             }
         }
 
@@ -272,6 +299,8 @@ namespace BookmarkManager.ViewModels
 
         public void SaveCurrentBookmarkStorage(string header = "")
         {
+            if (!HasUnsavedChanges) return;
+
             if (string.IsNullOrEmpty(CurrentFileName))
             {
                 var saveFileDialog = new SaveFileDialog
@@ -284,19 +313,19 @@ namespace BookmarkManager.ViewModels
                 if (saveFileDialog.ShowDialog() == true)
                 {
                     CurrentFileName = saveFileDialog.FileName;
-                    CurrentBookmarkStorage.SaveStorage(CurrentFileName);
-                    _bookmarkStorageModified = false;
+                    CurrentBookmarkStorage?.SaveStorage(CurrentFileName);
+                    HasUnsavedChanges = false;
                 }
             }
             else
             {
-                CurrentBookmarkStorage.SaveStorage(CurrentFileName);
-                _bookmarkStorageModified = false;
+                CurrentBookmarkStorage?.SaveStorage(CurrentFileName);
+                HasUnsavedChanges = false;
             }
         }
 
         #endregion
-        
+
         #region Working with bookmarks
 
         private void AddLink()
@@ -306,6 +335,7 @@ namespace BookmarkManager.ViewModels
             var rawTitle = WebPageParser.GetPageTitle(UrlText);
             var title = Regex.Replace(rawTitle, @"\r\n?|\n", "");
             CurrentBookmarkStorage.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, "", SelectedCategory));
+            HasUnsavedChanges = true;
             RefreshCategory();
             SaveCurrentBookmarkStorage();
 
@@ -344,6 +374,7 @@ namespace BookmarkManager.ViewModels
         {
             if (SelectedBookmark == null) return;
             CurrentBookmarkStorage.Bookmarks.Remove(SelectedBookmark);
+            HasUnsavedChanges = true;
 
             RefreshCategory();
             SaveCurrentBookmarkStorage();
@@ -390,6 +421,7 @@ namespace BookmarkManager.ViewModels
             if (string.IsNullOrWhiteSpace(CategoryText)) return;
 
             CurrentBookmarkStorage.Categories.Add(CategoryText);
+            HasUnsavedChanges = true;
             SaveCurrentBookmarkStorage();
 
             CategoryText = "";
@@ -420,6 +452,7 @@ namespace BookmarkManager.ViewModels
                     CurrentBookmarkStorage.Bookmarks.Remove(bookmark);
             }
             CurrentBookmarkStorage.Categories.Remove(SelectedCategory);
+            HasUnsavedChanges = true;
 
             RefreshCategory();
             SaveCurrentBookmarkStorage();
