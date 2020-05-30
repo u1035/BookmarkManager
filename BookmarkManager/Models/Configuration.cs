@@ -18,6 +18,7 @@ namespace BookmarkManager.Models
         public bool ShowInTaskbar { get; set; } = true;
         public bool StartMinimized { get; set; } = true;
         public bool OpenLastUsedFile { get; set; }
+        public bool CloseToTray { get; set; } = true;
 
         public WindowState MainWindowState { get; set; } = WindowState.Normal;
         public int MainWindowTop { get; set; } = 10;

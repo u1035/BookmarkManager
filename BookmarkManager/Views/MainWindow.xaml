@@ -69,7 +69,7 @@
                 <MenuItem Header="Open in TOR" Command="{Binding OpenInTorBrowserCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="?">
-                <MenuItem Header="About" Command="{Binding }"></MenuItem>
+                <MenuItem Header="About" Command="{Binding OpenAboutWindowCommand}"></MenuItem>
             </MenuItem>
         </Menu>
 

@@ -11,12 +11,10 @@
         <StackPanel Orientation="Vertical">
 
             <CheckBox Margin="4" IsChecked="{Binding RunOnWidowsStart, Mode=TwoWay}">Start with Windows</CheckBox>
-
             <CheckBox Margin="4" IsChecked="{Binding OpenLastUsedFile, Mode=TwoWay}">Open last used file</CheckBox>
-
             <CheckBox Margin="4" IsChecked="{Binding StartMinimized, Mode=TwoWay}">Start minimized</CheckBox>
-
             <CheckBox Margin="4" IsChecked="{Binding ShowInTaskbar, Mode=TwoWay}">Show in taskbar</CheckBox>
+            <CheckBox Margin="4" IsChecked="{Binding CloseToTray, Mode=TwoWay}">Close to tray</CheckBox>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -24,7 +22,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Margin="4">TOR browser path:</TextBlock>
+                <TextBlock Grid.Column="0" Margin="4">Tor Browser path:</TextBlock>
                 <TextBox x:Name="TorPathTextBox" Grid.Column="1" Margin="4" MinWidth="400" Text="{Binding TorBrowserPath, Mode=TwoWay}"></TextBox>
                 <Button Grid.Column="1" Margin="4" HorizontalAlignment="Right" Width="30" Click="TorBrowse_OnClick">...</Button>
             </Grid>

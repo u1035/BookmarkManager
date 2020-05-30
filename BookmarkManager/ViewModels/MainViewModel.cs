@@ -127,6 +127,7 @@ namespace BookmarkManager.ViewModels
         public Command ShowMainWindowCommand { get; }
         public Command AddBookmarkFromClipboardCommand { get; }
         public Command ExitCommand { get; }
+        public Command OpenAboutWindowCommand { get; }
 
 
         public MainViewModel()
@@ -144,6 +145,7 @@ namespace BookmarkManager.ViewModels
             ShowMainWindowCommand = new Command(ShowMainWindow);
             AddBookmarkFromClipboardCommand = new Command(AddBookmarkFromClipboard);
             ExitCommand = new Command(Exit);
+            OpenAboutWindowCommand = new Command(OpenAboutWindow);
 
             Config = Configuration.LoadFromFile();
             if (string.IsNullOrEmpty(Config.TorBrowserPath))
@@ -200,13 +202,19 @@ namespace BookmarkManager.ViewModels
             }
         }
 
+        private void OpenAboutWindow()
+        {
+            var aboutWindow = new AboutView();
+            aboutWindow.ShowDialog();
+        }
+
         private void OpenSettingsWindow()
         {
-            var settingsWindow = new SettingsView();
-            settingsWindow.DataContext = Config;
+            var settingsWindow = new SettingsView {DataContext = Config};
             var result = settingsWindow.ShowDialog();
             if (result != null && result == true)
             {
+                SystemStartup.SetAutorunState(Config.RunOnWidowsStart);
                 Config.SaveConfig();
             }
         }
@@ -240,7 +248,7 @@ namespace BookmarkManager.ViewModels
             if (SelectedBookmark == null) return;
             if (!File.Exists(Config.TorBrowserPath))
             {
-                MessageBox.Show($"Please set path to Tor Browser in File -> Settings", "Tor Browser not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Please set path to Tor Browser in File -> Settings", "Tor Browser not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
             try
