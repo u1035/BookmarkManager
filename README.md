@@ -37,3 +37,6 @@ Feel free to fork, contact me and join developing!
 - [ ] Editing and deleting categories
 - [ ] Editing bookmarks
 - [x] Current filename in main window title
+- [ ] Close to tray
+- [ ] Fix Start minimized
+- [ ] Context menus on categories and bookmarks
