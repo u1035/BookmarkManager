@@ -12,13 +12,15 @@ namespace BookmarkManager.Services
             var title = "";
             try
             {
+                var request = WebRequest.Create(url);
+                var response = request.GetResponse();
+
                 var webClient = new WebClient();
-                webClient.Encoding = Encoding.UTF8;
+                webClient.Headers.Add(HttpRequestHeader.ContentType, response.ContentType);
                 var html = webClient.DownloadString(url);
 
                 title = Regex.Match(html, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>",
                     RegexOptions.IgnoreCase).Groups["Title"].Value;
-
                 
             }
             catch (Exception e)
