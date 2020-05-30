@@ -16,9 +16,9 @@ Feel free to fork, contact me and join developing!
 - [ ] Page preview image or favicon
 - [ ] Drag'n'Drop support
 - [x] Icon in system tray
-- [ ] Nice view for bookmark item (ListBox of them?)
+- [x] Nice view for bookmark item (First approach)
 - [x] Config page or window
-- [ ] Help/About window
+- [x] Help/About window
 - [x] Menu bar?
 - [x] Status bar with some info - file path, bookmarks/categories count?
 - [x] Configurable path to TOR browser
@@ -37,3 +37,6 @@ Feel free to fork, contact me and join developing!
 - [ ] Editing and deleting categories
 - [ ] Editing bookmarks
 - [x] Current filename in main window title
+- [ ] Close to tray
+- [ ] Fix Start minimized
+- [ ] Context menus on categories and bookmarks
