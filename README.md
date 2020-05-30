@@ -22,10 +22,10 @@ Feel free to fork, contact me and join developing!
 - [x] Menu bar?
 - [x] Status bar with some info - file path, bookmarks/categories count?
 - [x] Configurable path to TOR browser
-- [ ] Open last used database
+- [x] Open last used database
 - [ ] List of last used databases in "File" menu
 - [x] Open file specified in command line parameters
-- [ ] Default action button / Enter in textbox handling - i need minimal number of actions to add bookmark
+- [x] Enter in textboxes handling for faster adding
 - [ ] Portability test
 - [ ] Asyncronous web page details receiving - not to slow down main app thread
 - [ ] Pretty UI, maybe themes, maybe dark theme
