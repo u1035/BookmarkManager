@@ -24,6 +24,37 @@
             <MenuItem Header="Exit" Command="{Binding ExitCommand}"></MenuItem>
         </ContextMenu>
 
+        <ContextMenu x:Key="CategoriesContextMenu">
+            <MenuItem Header="Delete" Command="{Binding DeleteCategoryCommand}">
+                <MenuItem.Icon>
+                    <Image Source="../Resources/deleterecord.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+
+        <ContextMenu x:Key="BookmarksContextMenu">
+            <MenuItem Header="Delete" Command="{Binding DeleteBookmarkCommand}">
+                <MenuItem.Icon>
+                    <Image Source="../Resources/deleterecord.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Open in browser" Command="{Binding OpenInDefaultBrowserCommand}">
+                <MenuItem.Icon>
+                    <Image Source="../Resources/openbrowser.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Open all in browser" Command="{Binding OpenAllCommand}">
+                <MenuItem.Icon>
+                    <Image Source="../Resources/openall.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Open in TOR" Command="{Binding OpenInTorBrowserCommand}">
+                <MenuItem.Icon>
+                    <Image Source="../Resources/tor.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+
         <DataTemplate x:Key="CategoryTemplate">
             <StackPanel Margin="5" Orientation="Horizontal">
                 <Image Source="../Resources/folder.png"></Image>
@@ -189,7 +220,8 @@
                      ItemsSource="{Binding CurrentBookmarkStorage.Categories}" 
                      IsEnabled="{Binding BookmarkStorageLoaded}" 
                      SelectedItem="{Binding SelectedCategory}" 
-                     ItemTemplate="{StaticResource CategoryTemplate}" />
+                     ItemTemplate="{StaticResource CategoryTemplate}" 
+                     ContextMenu="{StaticResource CategoriesContextMenu}"/>
 
             <TextBox Grid.Row="2" Margin="4 0 4 0" FontSize="14" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" IsEnabled="{Binding BookmarkStorageLoaded}" Text="{Binding CategoryText}"></TextBox>
             <Button Grid.Row="3" Margin="4 0 4 4" Height="40" Command="{Binding AddCategoryCommand}" IsEnabled="{Binding BookmarkStorageLoaded}" >
@@ -243,7 +275,8 @@
                      SelectedItem="{Binding SelectedBookmark}"
                      ItemTemplate="{StaticResource BookmarkItemTemplate}"
                      MouseDoubleClick="BookmarksList_OnMouseDoubleClick"
-                     ToolTip="Double-click on bookmark or open it in default browser"></ListBox>
+                     ToolTip="Double-click on bookmark or open it in default browser"
+                     ContextMenu="{StaticResource BookmarksContextMenu}" />
 
             <TextBox Grid.Row="2" Grid.Column="0" Margin="4 0 4 0" FontSize="14" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" IsEnabled="{Binding CategorySelected}" Text="{Binding UrlText}"></TextBox>
             <Button Grid.Row="3" Grid.Column="0" Margin="4 0 4 4" Height="40" IsEnabled="{Binding CategorySelected}" Command="{Binding AddLinkCommand}">
