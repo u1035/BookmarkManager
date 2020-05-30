@@ -183,6 +183,10 @@ namespace BookmarkManager.ViewModels
             if (Config.StartMinimized)
                 Config.MainWindowState = WindowState.Minimized;
 
+            if (Config.OpenLastUsedFile)
+                if (File.Exists(Config.LastOpenedFile))
+                    OpenBookmarkDb(Config.LastOpenedFile);
+
             CheckCommandLineArgs();
         }
 
@@ -287,6 +291,7 @@ namespace BookmarkManager.ViewModels
             if (CurrentBookmarkStorage.Categories.Count > 0)
             {
                 CurrentFileName = fileName;
+                Config.LastOpenedFile = fileName;
                 SelectedCategory = CurrentBookmarkStorage.Categories[0];
                 HasUnsavedChanges = false;
             }
@@ -328,7 +333,7 @@ namespace BookmarkManager.ViewModels
 
         #region Working with bookmarks
 
-        private void AddLink()
+        internal void AddLink()
         {
             if (string.IsNullOrWhiteSpace(UrlText)) return;
 
