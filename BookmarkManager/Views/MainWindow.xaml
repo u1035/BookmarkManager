@@ -51,25 +51,69 @@
 
         <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
             <MenuItem Header="File">
-                <MenuItem Header="New" Command="{Binding NewDbCommand}"></MenuItem>
-                <MenuItem Header="Open" Command="{Binding OpenDbCommand}"></MenuItem>
-                <MenuItem Header="Save" Command="{Binding SaveDbCommand}"></MenuItem>
+                <MenuItem Header="New" Command="{Binding NewDbCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/newdb.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Open" Command="{Binding OpenDbCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/opendb.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save" Command="{Binding SaveDbCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/savedb.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
-                <MenuItem Header="Settings" Command="{Binding OpenSettingsWindowCommand}"></MenuItem>
+                <MenuItem Header="Settings" Command="{Binding OpenSettingsWindowCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/settings.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
-                <MenuItem Header="Exit" Command="{Binding ExitCommand}"></MenuItem>
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/appexit.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Category">
-                <MenuItem Header="Delete" Command="{Binding }"></MenuItem>
+                <MenuItem Header="Delete" Command="{Binding DeleteCategoryCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/deleterecord.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Bookmark">
-                <MenuItem Header="Delete" Command="{Binding DeleteBookmarkCommand}"></MenuItem>
-                <MenuItem Header="Open in browser" Command="{Binding OpenInDefaultBrowserCommand}"></MenuItem>
-                <MenuItem Header="Open all in browser" Command="{Binding OpenAllCommand}"></MenuItem>
-                <MenuItem Header="Open in TOR" Command="{Binding OpenInTorBrowserCommand}"></MenuItem>
+                <MenuItem Header="Delete" Command="{Binding DeleteBookmarkCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/deleterecord.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Open in browser" Command="{Binding OpenInDefaultBrowserCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/openbrowser.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Open all in browser" Command="{Binding OpenAllCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/openall.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Open in TOR" Command="{Binding OpenInTorBrowserCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/tor.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="?">
-                <MenuItem Header="About" Command="{Binding OpenAboutWindowCommand}"></MenuItem>
+                <MenuItem Header="About" Command="{Binding OpenAboutWindowCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/about.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
 
@@ -82,8 +126,13 @@
                     <Image Source="../Resources/opendb.png" Height="32" ToolTip="Open existing bookmarks database" /></Button>
                 <Button Command="{Binding SaveDbCommand}">
                     <Image Source="../Resources/savedb.png" Height="32" ToolTip="Save bookmarks database"/></Button>
-
                 <Separator />
+
+                <Button Command="{Binding OpenSettingsWindowCommand}">
+                    <Image Source="../Resources/settings.png" Height="32" ToolTip="Settings"/>
+                </Button>
+                <Separator />
+
                 <Button Command="{Binding ExitCommand}">
                     <Image Source="../Resources/appexit.png" Height="32" ToolTip="Exit"/>
                 </Button>

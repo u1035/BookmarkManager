@@ -17,7 +17,9 @@ namespace BookmarkManager.ViewModels
     public class MainViewModel : NotificationObject
     {
         private const string WindowTitleBase = "BookmarkManager";
+        private bool _bookmarkStorageModified;
 
+        #region Public properties
 
         private bool _bookmarkStorageLoaded;
         public bool BookmarkStorageLoaded
@@ -109,10 +111,12 @@ namespace BookmarkManager.ViewModels
             }
         }
 
-        private bool _bookmarkStorageModified;
-
         public ObservableCollection<Bookmark> DisplayingBookmarks { get; set; } = new ObservableCollection<Bookmark>();
         public Configuration Config { get; set; }
+
+        #endregion
+
+        #region Commands
 
         public Command AddCategoryCommand { get; }
         public Command AddLinkCommand { get; }
@@ -128,7 +132,11 @@ namespace BookmarkManager.ViewModels
         public Command AddBookmarkFromClipboardCommand { get; }
         public Command ExitCommand { get; }
         public Command OpenAboutWindowCommand { get; }
+        public Command DeleteCategoryCommand { get; }
 
+        #endregion
+
+        #region Constructor
 
         public MainViewModel()
         {
@@ -140,12 +148,13 @@ namespace BookmarkManager.ViewModels
             OpenInDefaultBrowserCommand = new Command(OpenInDefaultBrowser);
             OpenInTorBrowserCommand = new Command(OpenInTorBrowser);
             OpenAllCommand = new Command(OpenAll);
-            DeleteBookmarkCommand= new Command(DeleteBookmark);
+            DeleteBookmarkCommand = new Command(DeleteBookmark);
             OpenSettingsWindowCommand = new Command(OpenSettingsWindow);
             ShowMainWindowCommand = new Command(ShowMainWindow);
             AddBookmarkFromClipboardCommand = new Command(AddBookmarkFromClipboard);
             ExitCommand = new Command(Exit);
             OpenAboutWindowCommand = new Command(OpenAboutWindow);
+            DeleteCategoryCommand = new Command(DeleteCategory);
 
             Config = Configuration.LoadFromFile();
             if (string.IsNullOrEmpty(Config.TorBrowserPath))
@@ -157,37 +166,19 @@ namespace BookmarkManager.ViewModels
             CheckCommandLineArgs();
         }
 
-        private void ShowMainWindow()
-        {
-            if (Application.Current.MainWindow?.WindowState == WindowState.Minimized)
-                Application.Current.MainWindow.WindowState = WindowState.Normal;
+        #endregion
 
-            Application.Current.MainWindow?.Activate();
-        }
+        #region Private methods
 
-        private void AddBookmarkFromClipboard()
+        private void CheckCommandLineArgs()
         {
-            if (Clipboard.ContainsText())
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length <= 1) return;
+
+            if (File.Exists(args[1]))
             {
-                var text = Clipboard.GetText();
-                if (CheckUrlValid(text))
-                {
-                    UrlText = Clipboard.GetText();
-                    AddLink();
-                }
+                OpenBookmarkDb(args[1]);
             }
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static bool CheckUrlValid(string source)
-        {
-            return Uri.TryCreate(source, UriKind.Absolute, out Uri uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
-        }
-
-        private void Exit()
-        {
-            //SaveCurrentBookmarkStorage();
-            Application.Current.Shutdown();
         }
 
         private void TryFindTorBrowser()
@@ -202,6 +193,23 @@ namespace BookmarkManager.ViewModels
             }
         }
 
+        #endregion
+
+        #region Opening windows commands
+
+        private void ShowMainWindow()
+        {
+            if (Application.Current.MainWindow?.WindowState == WindowState.Minimized)
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+
+            Application.Current.MainWindow?.Activate();
+        }
+
+        private void Exit()
+        {
+            Application.Current.Shutdown();
+        }
+
         private void OpenAboutWindow()
         {
             var aboutWindow = new AboutView();
@@ -210,7 +218,7 @@ namespace BookmarkManager.ViewModels
 
         private void OpenSettingsWindow()
         {
-            var settingsWindow = new SettingsView {DataContext = Config};
+            var settingsWindow = new SettingsView { DataContext = Config };
             var result = settingsWindow.ShowDialog();
             if (result != null && result == true)
             {
@@ -219,66 +227,9 @@ namespace BookmarkManager.ViewModels
             }
         }
 
-        private void OpenAll()
-        {
-            if (SelectedCategory == null) return;
-            foreach (var bookmark in DisplayingBookmarks)
-            {
-                Process.Start(bookmark.Url);
-            }
-        }
+        #endregion
 
-        private void DeleteBookmark()
-        {
-            if (SelectedBookmark == null) return;
-            CurrentBookmarkStorage.Bookmarks.Remove(SelectedBookmark);
-
-            RefreshCategory();
-            SaveCurrentBookmarkStorage();
-        }
-
-        private void OpenInDefaultBrowser()
-        {
-            if (SelectedBookmark == null) return;
-            Process.Start(SelectedBookmark.Url);
-        }
-
-        private void OpenInTorBrowser()
-        {
-            if (SelectedBookmark == null) return;
-            if (!File.Exists(Config.TorBrowserPath))
-            {
-                MessageBox.Show("Please set path to Tor Browser in File -> Settings", "Tor Browser not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-
-            try
-            {
-                var startInfo = new ProcessStartInfo
-                {
-                    FileName = Config.TorBrowserPath, 
-                    Arguments = SelectedBookmark.Url, 
-                    UseShellExecute = true, 
-                    WorkingDirectory = Path.GetDirectoryName(Config.TorBrowserPath) ?? ""
-                };
-
-                Process.Start(startInfo);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Error opening link in Tor Browser - {e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void CheckCommandLineArgs()
-        {
-            var args = Environment.GetCommandLineArgs();
-            if (args.Length <= 1) return;
-
-            if (File.Exists(args[1]))
-            {
-                OpenBookmarkDb(args[1]);
-            }
-        }
+        #region Saving/loading
 
         private void NewDb()
         {
@@ -344,8 +295,14 @@ namespace BookmarkManager.ViewModels
             }
         }
 
+        #endregion
+        
+        #region Working with bookmarks
+
         private void AddLink()
         {
+            if (string.IsNullOrWhiteSpace(UrlText)) return;
+
             var rawTitle = WebPageParser.GetPageTitle(UrlText);
             var title = Regex.Replace(rawTitle, @"\r\n?|\n", "");
             CurrentBookmarkStorage.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, "", SelectedCategory));
@@ -355,8 +312,83 @@ namespace BookmarkManager.ViewModels
             UrlText = "";
         }
 
+        private void AddBookmarkFromClipboard()
+        {
+            if (Clipboard.ContainsText())
+            {
+                var text = Clipboard.GetText();
+                if (CheckUrlValid(text))
+                {
+                    UrlText = Clipboard.GetText();
+                    AddLink();
+                }
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static bool CheckUrlValid(string source)
+        {
+            return Uri.TryCreate(source, UriKind.Absolute, out Uri uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+        }
+
+        private void OpenAll()
+        {
+            if (SelectedCategory == null) return;
+            foreach (var bookmark in DisplayingBookmarks)
+            {
+                Process.Start(bookmark.Url);
+            }
+        }
+
+        private void DeleteBookmark()
+        {
+            if (SelectedBookmark == null) return;
+            CurrentBookmarkStorage.Bookmarks.Remove(SelectedBookmark);
+
+            RefreshCategory();
+            SaveCurrentBookmarkStorage();
+        }
+
+        private void OpenInDefaultBrowser()
+        {
+            if (SelectedBookmark == null) return;
+            Process.Start(SelectedBookmark.Url);
+        }
+
+        private void OpenInTorBrowser()
+        {
+            if (SelectedBookmark == null) return;
+            if (!File.Exists(Config.TorBrowserPath))
+            {
+                MessageBox.Show("Please set path to Tor Browser in File -> Settings", "Tor Browser not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+            try
+            {
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = Config.TorBrowserPath,
+                    Arguments = SelectedBookmark.Url,
+                    UseShellExecute = true,
+                    WorkingDirectory = Path.GetDirectoryName(Config.TorBrowserPath) ?? ""
+                };
+
+                Process.Start(startInfo);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Error opening link in Tor Browser - {e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        #endregion
+
+        #region Working with categories
+
         private void AddCategory()
         {
+            if (string.IsNullOrWhiteSpace(CategoryText)) return;
+
             CurrentBookmarkStorage.Categories.Add(CategoryText);
             SaveCurrentBookmarkStorage();
 
@@ -377,5 +409,22 @@ namespace BookmarkManager.ViewModels
                 CategorySelected = false;
             }
         }
+
+        private void DeleteCategory()
+        {
+            if (SelectedCategory == null) return;
+
+            foreach (var bookmark in CurrentBookmarkStorage.Bookmarks.ToArray())
+            {
+                if (bookmark.Category == SelectedCategory)
+                    CurrentBookmarkStorage.Bookmarks.Remove(bookmark);
+            }
+            CurrentBookmarkStorage.Categories.Remove(SelectedCategory);
+
+            RefreshCategory();
+            SaveCurrentBookmarkStorage();
+        }
+
+        #endregion
     }
 }

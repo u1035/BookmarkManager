@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Navigation;
 
 namespace BookmarkManager.Views
@@ -11,6 +12,8 @@ namespace BookmarkManager.Views
         public AboutView()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Owner = Application.Current.MainWindow;
         }
 
         private void Website_RequestNavigate(object sender, RequestNavigateEventArgs e)
