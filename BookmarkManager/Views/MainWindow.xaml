@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:BookmarkManager.ViewModels"
         xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:models="clr-namespace:BookmarkManager.Models"
         mc:Ignorable="d" Icon="../Resources/appicon.png"
         Title="{Binding MainWindowTitle}"
         WindowState="{Binding Config.MainWindowState, Mode=TwoWay}"
@@ -22,6 +23,36 @@
             <Separator />
             <MenuItem Header="Exit" Command="{Binding ExitCommand}"></MenuItem>
         </ContextMenu>
+
+        <DataTemplate x:Key="CategoryTemplate">
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <Image Source="../Resources/folder.png"></Image>
+                <TextBlock FontSize="14" FontWeight="Medium" Margin="5" Text="{Binding}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BookmarkItemTemplate" DataType="models:Bookmark">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0" Source="../Resources/newrecord.png"></Image>
+
+                <!--Vertical separator-->
+                <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Fill="DarkGray" Width="1"/>
+
+                <StackPanel Grid.Column="2" Margin="5">
+                    <TextBlock Margin="4 0 0 0" FontSize="14" FontWeight="Medium" Text="{Binding PageTitle}"></TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Resources/addlink.png" Height="16"></Image>
+                        <TextBlock Margin="4" Foreground="Blue" Text="{Binding Url}"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
 
     </Window.Resources>
     <Window.DataContext>
@@ -154,12 +185,17 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Margin="4">Categories:</TextBlock>
-            <ListBox Grid.Row="1" Margin="4 0 4 0" ItemsSource="{Binding CurrentBookmarkStorage.Categories}" IsEnabled="{Binding BookmarkStorageLoaded}" SelectedItem="{Binding SelectedCategory}"></ListBox>
-            <TextBox Grid.Row="2" Margin="4 0 4 0" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" IsEnabled="{Binding BookmarkStorageLoaded}" Text="{Binding CategoryText}"></TextBox>
+            <ListBox Grid.Row="1" Margin="4 0 4 0" 
+                     ItemsSource="{Binding CurrentBookmarkStorage.Categories}" 
+                     IsEnabled="{Binding BookmarkStorageLoaded}" 
+                     SelectedItem="{Binding SelectedCategory}" 
+                     ItemTemplate="{StaticResource CategoryTemplate}" />
+
+            <TextBox Grid.Row="2" Margin="4 0 4 0" FontSize="14" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" IsEnabled="{Binding BookmarkStorageLoaded}" Text="{Binding CategoryText}"></TextBox>
             <Button Grid.Row="3" Margin="4 0 4 4" Height="40" Command="{Binding AddCategoryCommand}" IsEnabled="{Binding BookmarkStorageLoaded}" >
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <Image Source="../Resources/addcat.png" Height="24" />
-                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Text="Add category" />
+                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="14" Text="Add category" />
                 </StackPanel>
             </Button>
         </Grid>
@@ -201,19 +237,19 @@
             </ToolBarTray>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Margin="4">Bookmarks:</TextBlock>
-            <DataGrid Grid.Row="1" Grid.Column="0" Margin="4 0 4 0" IsEnabled="{Binding CategorySelected}" ItemsSource="{Binding DisplayingBookmarks}" SelectedItem="{Binding SelectedBookmark}" 
-                      AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding DateAdded}" Header="Date added" Width="Auto"/>
-                    <DataGridTextColumn Binding="{Binding PageTitle}" Header="Page title"/>
-                    <DataGridTextColumn Binding="{Binding Url}" Header="URL"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <TextBox Grid.Row="2" Grid.Column="0" Margin="4 0 4 0" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" IsEnabled="{Binding CategorySelected}" Text="{Binding UrlText}"></TextBox>
+            <ListBox Grid.Row="1" Grid.Column="0" Margin="4 0 4 0"
+                     IsEnabled="{Binding CategorySelected}" 
+                     ItemsSource="{Binding DisplayingBookmarks}" 
+                     SelectedItem="{Binding SelectedBookmark}"
+                     ItemTemplate="{StaticResource BookmarkItemTemplate}"
+                     MouseDoubleClick="BookmarksList_OnMouseDoubleClick"
+                     ToolTip="Double-click on bookmark or open it in default browser"></ListBox>
+
+            <TextBox Grid.Row="2" Grid.Column="0" Margin="4 0 4 0" FontSize="14" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" IsEnabled="{Binding CategorySelected}" Text="{Binding UrlText}"></TextBox>
             <Button Grid.Row="3" Grid.Column="0" Margin="4 0 4 4" Height="40" IsEnabled="{Binding CategorySelected}" Command="{Binding AddLinkCommand}">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <Image Source="../Resources/addlink.png" Height="24" />
-                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Text="Add link" />
+                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="14" Text="Add link" />
                 </StackPanel>
             </Button>
         </Grid>

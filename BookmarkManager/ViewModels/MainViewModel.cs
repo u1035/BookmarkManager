@@ -380,7 +380,7 @@ namespace BookmarkManager.ViewModels
             SaveCurrentBookmarkStorage();
         }
 
-        private void OpenInDefaultBrowser()
+        internal void OpenInDefaultBrowser()
         {
             if (SelectedBookmark == null) return;
             Process.Start(SelectedBookmark.Url);
