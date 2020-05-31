@@ -61,12 +61,192 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string AboutMenuItem {
+            get {
+                return ResourceManager.GetString("AboutMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add category.
+        /// </summary>
+        public static string AddCategoryButton {
+            get {
+                return ResourceManager.GetString("AddCategoryButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add link.
+        /// </summary>
+        public static string AddLinkButton {
+            get {
+                return ResourceManager.GetString("AddLinkButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmark.
+        /// </summary>
+        public static string BookmarkMenu {
+            get {
+                return ResourceManager.GetString("BookmarkMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open all in browser.
+        /// </summary>
+        public static string BookmarkOpenAllMenuItem {
+            get {
+                return ResourceManager.GetString("BookmarkOpenAllMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in browser.
+        /// </summary>
+        public static string BookmarkOpenMenuItem {
+            get {
+                return ResourceManager.GetString("BookmarkOpenMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in Tor Browser.
+        /// </summary>
+        public static string BookmarkOpenTorMenuItem {
+            get {
+                return ResourceManager.GetString("BookmarkOpenTorMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmarks:.
+        /// </summary>
+        public static string BookmarksLabel {
+            get {
+                return ResourceManager.GetString("BookmarksLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories:.
+        /// </summary>
+        public static string CategoriesLabel {
+            get {
+                return ResourceManager.GetString("CategoriesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string CategoryDeleteMenuItem {
+            get {
+                return ResourceManager.GetString("CategoryDeleteMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string CategoryMenu {
+            get {
+                return ResourceManager.GetString("CategoryMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string ContextCategoryDelete {
+            get {
+                return ResourceManager.GetString("ContextCategoryDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current file:.
+        /// </summary>
+        public static string CurrentFileStatusBar {
+            get {
+                return ResourceManager.GetString("CurrentFileStatusBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteBookmarkMenuItem {
+            get {
+                return ResourceManager.GetString("DeleteBookmarkMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap deleterecord {
             get {
                 object obj = ResourceManager.GetObject("deleterecord", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string FileExitMenuItem {
+            get {
+                return ResourceManager.GetString("FileExitMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string FileMenuItem {
+            get {
+                return ResourceManager.GetString("FileMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string FileNewMenuItem {
+            get {
+                return ResourceManager.GetString("FileNewMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string FileOpenMenuItem {
+            get {
+                return ResourceManager.GetString("FileOpenMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string FileSaveMenuItem {
+            get {
+                return ResourceManager.GetString("FileSaveMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string FileSettingsMenuItem {
+            get {
+                return ResourceManager.GetString("FileSettingsMenuItem", resourceCulture);
             }
         }
         
@@ -107,6 +287,51 @@ namespace BookmarkManager.Properties {
             get {
                 object obj = ResourceManager.GetObject("savedb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total bookmarks:.
+        /// </summary>
+        public static string TotalBookmarksStatusBar {
+            get {
+                return ResourceManager.GetString("TotalBookmarksStatusBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total categories:.
+        /// </summary>
+        public static string TotalCategoriesStatusBar {
+            get {
+                return ResourceManager.GetString("TotalCategoriesStatusBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add bookmark from clipboard.
+        /// </summary>
+        public static string TrayMenuBookmarkFromClipboard {
+            get {
+                return ResourceManager.GetString("TrayMenuBookmarkFromClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string TrayMenuExit {
+            get {
+                return ResourceManager.GetString("TrayMenuExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open main window.
+        /// </summary>
+        public static string TrayMenuOpenMainWindow {
+            get {
+                return ResourceManager.GetString("TrayMenuOpenMainWindow", resourceCulture);
             }
         }
     }

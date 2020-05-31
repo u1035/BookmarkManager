@@ -6,6 +6,7 @@
         xmlns:viewModels="clr-namespace:BookmarkManager.ViewModels"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:models="clr-namespace:BookmarkManager.Models"
+        xmlns:res="clr-namespace:BookmarkManager.Properties"
         mc:Ignorable="d" Icon="../Resources/appicon.png"
         Title="{Binding MainWindowTitle}"
         WindowState="{Binding Config.MainWindowState, Mode=TwoWay}"
@@ -18,14 +19,14 @@
     <Window.Resources>
         
         <ContextMenu x:Key="TrayMenu">
-            <MenuItem Header="Open main window" FontWeight="Bold" Command="{Binding ShowMainWindowCommand}"></MenuItem>
-            <MenuItem Header="Add bookmark from clipboard" Command="{Binding AddBookmarkFromClipboardCommand}"></MenuItem>
+            <MenuItem Header="{x:Static res:Resources.TrayMenuOpenMainWindow}" FontWeight="Bold" Command="{Binding ShowMainWindowCommand}"></MenuItem>
+            <MenuItem Header="{x:Static res:Resources.TrayMenuBookmarkFromClipboard}" Command="{Binding AddBookmarkFromClipboardCommand}"></MenuItem>
             <Separator />
-            <MenuItem Header="Exit" Command="{Binding ExitCommand}"></MenuItem>
+            <MenuItem Header="{x:Static res:Resources.TrayMenuExit}" Command="{Binding ExitCommand}"></MenuItem>
         </ContextMenu>
 
         <ContextMenu x:Key="CategoriesContextMenu">
-            <MenuItem Header="Delete" Command="{Binding DeleteCategoryCommand}">
+            <MenuItem Header="{x:Static res:Resources.CategoryDeleteMenuItem}" Command="{Binding DeleteCategoryCommand}">
                 <MenuItem.Icon>
                     <Image Source="../Resources/deleterecord.png"></Image>
                 </MenuItem.Icon>
@@ -33,22 +34,22 @@
         </ContextMenu>
 
         <ContextMenu x:Key="BookmarksContextMenu">
-            <MenuItem Header="Delete" Command="{Binding DeleteBookmarkCommand}">
+            <MenuItem Header="{x:Static res:Resources.DeleteBookmarkMenuItem}" Command="{Binding DeleteBookmarkCommand}">
                 <MenuItem.Icon>
                     <Image Source="../Resources/deleterecord.png"></Image>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open in browser" Command="{Binding OpenInDefaultBrowserCommand}">
+            <MenuItem Header="{x:Static res:Resources.BookmarkOpenMenuItem}" Command="{Binding OpenInDefaultBrowserCommand}">
                 <MenuItem.Icon>
                     <Image Source="../Resources/openbrowser.png"></Image>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open all in browser" Command="{Binding OpenAllCommand}">
+            <MenuItem Header="{x:Static res:Resources.BookmarkOpenAllMenuItem}" Command="{Binding OpenAllCommand}">
                 <MenuItem.Icon>
                     <Image Source="../Resources/openall.png"></Image>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open in TOR" Command="{Binding OpenInTorBrowserCommand}">
+            <MenuItem Header="{x:Static res:Resources.BookmarkOpenTorMenuItem}" Command="{Binding OpenInTorBrowserCommand}">
                 <MenuItem.Icon>
                     <Image Source="../Resources/tor.png"></Image>
                 </MenuItem.Icon>
@@ -142,66 +143,66 @@
         />
 
         <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="Transparent">
-            <MenuItem Header="File">
-                <MenuItem Header="New" Command="{Binding NewDbCommand}">
+            <MenuItem Header="{x:Static res:Resources.FileMenuItem}">
+                <MenuItem Header="{x:Static res:Resources.FileNewMenuItem}" Command="{Binding NewDbCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/newdb.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Open" Command="{Binding OpenDbCommand}">
+                <MenuItem Header="{x:Static res:Resources.FileOpenMenuItem}" Command="{Binding OpenDbCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/opendb.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Save" Command="{Binding SaveDbCommand}">
+                <MenuItem Header="{x:Static res:Resources.FileSaveMenuItem}" Command="{Binding SaveDbCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/savedb.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="Settings" Command="{Binding OpenSettingsWindowCommand}">
+                <MenuItem Header="{x:Static res:Resources.FileSettingsMenuItem}" Command="{Binding OpenSettingsWindowCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/settings.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="Exit" Command="{Binding ExitCommand}">
+                <MenuItem Header="{x:Static res:Resources.FileExitMenuItem}" Command="{Binding ExitCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/appexit.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Category">
-                <MenuItem Header="Delete" Command="{Binding DeleteCategoryCommand}">
+            <MenuItem Header="{x:Static res:Resources.CategoryMenu}">
+                <MenuItem Header="{x:Static res:Resources.CategoryDeleteMenuItem}" Command="{Binding DeleteCategoryCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/deleterecord.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Bookmark">
-                <MenuItem Header="Delete" Command="{Binding DeleteBookmarkCommand}">
+            <MenuItem Header="{x:Static res:Resources.BookmarkMenu}">
+                <MenuItem Header="{x:Static res:Resources.DeleteBookmarkMenuItem}" Command="{Binding DeleteBookmarkCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/deleterecord.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Open in browser" Command="{Binding OpenInDefaultBrowserCommand}">
+                <MenuItem Header="{x:Static res:Resources.BookmarkOpenMenuItem}" Command="{Binding OpenInDefaultBrowserCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/openbrowser.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Open all in browser" Command="{Binding OpenAllCommand}">
+                <MenuItem Header="{x:Static res:Resources.BookmarkOpenAllMenuItem}" Command="{Binding OpenAllCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/openall.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Open in TOR" Command="{Binding OpenInTorBrowserCommand}">
+                <MenuItem Header="{x:Static res:Resources.BookmarkOpenTorMenuItem}" Command="{Binding OpenInTorBrowserCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/tor.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="?">
-                <MenuItem Header="About" Command="{Binding OpenAboutWindowCommand}">
+                <MenuItem Header="{x:Static res:Resources.AboutMenuItem}" Command="{Binding OpenAboutWindowCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/about.png"></Image>
                     </MenuItem.Icon>
@@ -245,7 +246,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Margin="4">Categories:</TextBlock>
+            <TextBlock Grid.Row="0" Margin="4" Text="{x:Static res:Resources.CategoriesLabel}"></TextBlock>
             <ListBox Grid.Row="1" Margin="4 0 4 0" Background="Transparent"
                      ItemsSource="{Binding CurrentBookmarkStorage.Categories}" 
                      IsEnabled="{Binding BookmarkStorageLoaded}" 
@@ -268,7 +269,7 @@
             <Button Grid.Row="3" Margin="4 0 4 4" Height="40" Command="{Binding AddCategoryCommand}" IsEnabled="{Binding BookmarkStorageLoaded}" >
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <Image Source="../Resources/addcat.png" Height="24" />
-                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="14" Text="Add category" />
+                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="14" Text="{x:Static res:Resources.AddCategoryButton}" />
                 </StackPanel>
             </Button>
         </Grid>
@@ -310,7 +311,7 @@
                 </ToolBar>
             </ToolBarTray>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="4">Bookmarks:</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="4" Text="{x:Static res:Resources.BookmarksLabel}"></TextBlock>
             <ListBox Grid.Row="1" Grid.Column="0" Margin="4 0 4 0" Background="Transparent"
                      IsEnabled="{Binding CategorySelected}" 
                      ItemsSource="{Binding DisplayingBookmarks}" 
@@ -334,7 +335,7 @@
             <Button Grid.Row="3" Grid.Column="0" Margin="4 0 4 4" Height="40" IsEnabled="{Binding CategorySelected}" Command="{Binding AddLinkCommand}">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <Image Source="../Resources/addlink.png" Height="24" />
-                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="14" Text="Add link" />
+                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="14" Text="{x:Static res:Resources.AddLinkButton}" />
                 </StackPanel>
             </Button>
         </Grid>
@@ -344,21 +345,21 @@
             <StatusBar DockPanel.Dock="Bottom" Background="Transparent">
                 <StatusBarItem Background="Transparent">
                     <StackPanel Orientation="Horizontal ">
-                        <TextBlock>Current file:</TextBlock>
+                        <TextBlock Text="{x:Static res:Resources.CurrentFileStatusBar}"/>
                         <TextBlock Margin="4 0 0 0" Text="{Binding CurrentFileName}"></TextBlock>
                     </StackPanel>
                 </StatusBarItem>
                 <Separator />
                 <StatusBarItem Background="Transparent">
                     <StackPanel Orientation="Horizontal ">
-                        <TextBlock>Total categories:</TextBlock>
+                        <TextBlock Text="{x:Static res:Resources.TotalCategoriesStatusBar}"/>
                         <TextBlock Margin="4 0 0 0" Text="{Binding CurrentBookmarkStorage.Categories.Count}"></TextBlock>
                     </StackPanel>
                 </StatusBarItem>
                 <Separator />
                 <StatusBarItem Background="Transparent">
                     <StackPanel Orientation="Horizontal ">
-                        <TextBlock>Total bookmarks:</TextBlock>
+                        <TextBlock Text="{x:Static res:Resources.TotalBookmarksStatusBar}"/>
                         <TextBlock Margin="4 0 0 0" Text="{Binding CurrentBookmarkStorage.Bookmarks.Count}"></TextBlock>
                     </StackPanel>
                 </StatusBarItem>
