@@ -40,3 +40,5 @@ Feel free to fork, contact me and join developing!
 - [ ] Close to tray
 - [ ] Fix Start minimized
 - [x] Context menus on categories and bookmarks
+- [ ] Save last selected category
+- [ ] When category deleted - focus on previous (/next), if exists
