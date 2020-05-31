@@ -28,7 +28,7 @@ namespace BookmarkManager.Models
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "File saving error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(e.Message, Properties.Resources.FileSavingError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -46,7 +46,7 @@ namespace BookmarkManager.Models
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "File loading error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(e.Message, Properties.Resources.FileLoadingError, MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
         }

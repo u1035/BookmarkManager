@@ -61,11 +61,29 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author:.
+        /// </summary>
+        public static string AboutAuthor {
+            get {
+                return ResourceManager.GetString("AboutAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string AboutMenuItem {
             get {
                 return ResourceManager.GetString("AboutMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project website:.
+        /// </summary>
+        public static string AboutWebsite {
+            get {
+                return ResourceManager.GetString("AboutWebsite", resourceCulture);
             }
         }
         
@@ -160,6 +178,24 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Config loading error.
+        /// </summary>
+        public static string ConfigLoadingError {
+            get {
+                return ResourceManager.GetString("ConfigLoadingError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Config saving error.
+        /// </summary>
+        public static string ConfigSavingError {
+            get {
+                return ResourceManager.GetString("ConfigSavingError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string ContextCategoryDelete {
@@ -197,11 +233,38 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error opening link in Tor Browser.
+        /// </summary>
+        public static string ErrorOpeningInTor {
+            get {
+                return ResourceManager.GetString("ErrorOpeningInTor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string FileExitMenuItem {
             get {
                 return ResourceManager.GetString("FileExitMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File loading error.
+        /// </summary>
+        public static string FileLoadingError {
+            get {
+                return ResourceManager.GetString("FileLoadingError", resourceCulture);
             }
         }
         
@@ -242,6 +305,15 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File saving error.
+        /// </summary>
+        public static string FileSavingError {
+            get {
+                return ResourceManager.GetString("FileSavingError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string FileSettingsMenuItem {
@@ -257,6 +329,15 @@ namespace BookmarkManager.Properties {
             get {
                 object obj = ResourceManager.GetObject("newdb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose filename for new database.
+        /// </summary>
+        public static string NewDbFilenameSelection {
+            get {
+                return ResourceManager.GetString("NewDbFilenameSelection", resourceCulture);
             }
         }
         
@@ -287,6 +368,24 @@ namespace BookmarkManager.Properties {
             get {
                 object obj = ResourceManager.GetObject("savedb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please set path to Tor Browser in File -&gt; Settings.
+        /// </summary>
+        public static string SetPathToTorMessage {
+            get {
+                return ResourceManager.GetString("SetPathToTorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tor Browser not found.
+        /// </summary>
+        public static string TorNotFound {
+            get {
+                return ResourceManager.GetString("TorNotFound", resourceCulture);
             }
         }
         

@@ -40,7 +40,7 @@ namespace BookmarkManager.Models
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Config saving error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(e.Message, Properties.Resources.ConfigSavingError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -58,7 +58,7 @@ namespace BookmarkManager.Models
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Config loading error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(e.Message, Properties.Resources.ConfigLoadingError, MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
         }

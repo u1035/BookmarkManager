@@ -264,7 +264,7 @@ namespace BookmarkManager.ViewModels
             CurrentBookmarkStorage = new BookmarkStorage();
             HasUnsavedChanges = true;
 
-            SaveCurrentBookmarkStorage("Choose filename for new database");
+            SaveCurrentBookmarkStorage(Properties.Resources.NewDbFilenameSelection);
         }
 
         private void OpenDb()
@@ -400,7 +400,7 @@ namespace BookmarkManager.ViewModels
             if (SelectedBookmark == null) return;
             if (!File.Exists(Config.TorBrowserPath))
             {
-                MessageBox.Show("Please set path to Tor Browser in File -> Settings", "Tor Browser not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(Properties.Resources.SetPathToTorMessage, Properties.Resources.TorNotFound, MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
             try
@@ -417,7 +417,7 @@ namespace BookmarkManager.ViewModels
             }
             catch (Exception e)
             {
-                MessageBox.Show($"Error opening link in Tor Browser - {e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{Properties.Resources.ErrorOpeningInTor} - {e.Message}", Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

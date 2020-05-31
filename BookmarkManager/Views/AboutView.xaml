@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:BookmarkManager.ViewModels"
+        xmlns:res="clr-namespace:BookmarkManager.Properties"
         mc:Ignorable="d"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         Title="About" Height="170" Width="400">
@@ -35,13 +36,13 @@
 
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="4">Author:</TextBlock>
+                <TextBlock Margin="4" Text="{x:Static res:Resources.AboutAuthor}"/>
                 <TextBlock Margin="4">
                         <Hyperlink NavigateUri="https://github.com/u1035" RequestNavigate="Website_RequestNavigate">u1035</Hyperlink>
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="4">Project website:</TextBlock>
+                <TextBlock Margin="4" Text="{x:Static res:Resources.AboutWebsite}"/>
                 <TextBlock Margin="4">
                     <Hyperlink NavigateUri="https://github.com/u1035/BookmarkManager" RequestNavigate="Website_RequestNavigate">https://github.com/u1035/BookmarkManager</Hyperlink>
                 </TextBlock>

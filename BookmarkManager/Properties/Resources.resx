@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Author:</value>
+  </data>
   <data name="AboutMenuItem" xml:space="preserve">
     <value>About</value>
+  </data>
+  <data name="AboutWebsite" xml:space="preserve">
+    <value>Project website:</value>
   </data>
   <data name="AddCategoryButton" xml:space="preserve">
     <value>Add category</value>
@@ -150,6 +156,12 @@
   <data name="CategoryMenu" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="ConfigLoadingError" xml:space="preserve">
+    <value>Config loading error</value>
+  </data>
+  <data name="ConfigSavingError" xml:space="preserve">
+    <value>Config saving error</value>
+  </data>
   <data name="ContextCategoryDelete" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -163,8 +175,17 @@
   <data name="deleterecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deleterecord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorOpeningInTor" xml:space="preserve">
+    <value>Error opening link in Tor Browser</value>
+  </data>
   <data name="FileExitMenuItem" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="FileLoadingError" xml:space="preserve">
+    <value>File loading error</value>
   </data>
   <data name="FileMenuItem" xml:space="preserve">
     <value>File</value>
@@ -178,11 +199,17 @@
   <data name="FileSaveMenuItem" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="FileSavingError" xml:space="preserve">
+    <value>File saving error</value>
+  </data>
   <data name="FileSettingsMenuItem" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="newdb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\newdb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NewDbFilenameSelection" xml:space="preserve">
+    <value>Choose filename for new database</value>
   </data>
   <data name="newrecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\newrecord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -192,6 +219,12 @@
   </data>
   <data name="savedb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\savedb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SetPathToTorMessage" xml:space="preserve">
+    <value>Please set path to Tor Browser in File -&gt; Settings</value>
+  </data>
+  <data name="TorNotFound" xml:space="preserve">
+    <value>Tor Browser not found</value>
   </data>
   <data name="TotalBookmarksStatusBar" xml:space="preserve">
     <value>Total bookmarks:</value>
