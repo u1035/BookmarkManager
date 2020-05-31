@@ -156,6 +156,12 @@
   <data name="CategoryMenu" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="CategoryRemovalText" xml:space="preserve">
+    <value>Deleting category will delete all bookmarks in this category. Are you sure want to delete them?</value>
+  </data>
+  <data name="CategoryRemovalTitle" xml:space="preserve">
+    <value>Category removal</value>
+  </data>
   <data name="ConfigLoadingError" xml:space="preserve">
     <value>Config loading error</value>
   </data>

@@ -455,6 +455,9 @@ namespace BookmarkManager.ViewModels
         {
             if (SelectedCategory == null) return;
 
+            var confirm = MessageBox.Show(Properties.Resources.CategoryRemovalText, Properties.Resources.CategoryRemovalTitle, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            if (confirm != MessageBoxResult.Yes) return;
+
             foreach (var bookmark in CurrentBookmarkStorage.Bookmarks.ToArray())
             {
                 if (bookmark.Category == SelectedCategory)

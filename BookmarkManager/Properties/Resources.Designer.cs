@@ -178,6 +178,24 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deleting category will delete all bookmarks in this category. Are you sure want to delete them?.
+        /// </summary>
+        public static string CategoryRemovalText {
+            get {
+                return ResourceManager.GetString("CategoryRemovalText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category removal.
+        /// </summary>
+        public static string CategoryRemovalTitle {
+            get {
+                return ResourceManager.GetString("CategoryRemovalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Config loading error.
         /// </summary>
         public static string ConfigLoadingError {
