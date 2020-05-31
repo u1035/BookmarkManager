@@ -21,7 +21,7 @@ namespace BookmarkManager.ViewModels
         #region Public properties
 
         private bool _hasUnsavedChanges;
-        private bool HasUnsavedChanges
+        internal bool HasUnsavedChanges
         {
             get => _hasUnsavedChanges;
             set
@@ -29,7 +29,8 @@ namespace BookmarkManager.ViewModels
                 SetProperty(ref _hasUnsavedChanges, value);
                 if (_hasUnsavedChanges)
                 {
-                    MainWindowTitle = "* " + MainWindowTitle;
+                    if (!MainWindowTitle.StartsWith("* "))
+                        MainWindowTitle = "* " + MainWindowTitle;
                 }
                 else
                 {
@@ -333,12 +334,15 @@ namespace BookmarkManager.ViewModels
 
         #region Working with bookmarks
 
-        internal void AddLink()
+        private void AddLink()
         {
             if (string.IsNullOrWhiteSpace(UrlText)) return;
 
             var rawTitle = WebPageParser.GetPageTitle(UrlText);
-            var title = Regex.Replace(rawTitle, @"\r\n?|\n", "");
+
+            //Temporary behavior if we couldn't get website title - using it's url
+            var title = (rawTitle == "") ? UrlText : Regex.Replace(rawTitle, @"\r\n?|\n", "");
+
             CurrentBookmarkStorage.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, "", SelectedCategory));
             HasUnsavedChanges = true;
             RefreshCategory();
@@ -461,6 +465,24 @@ namespace BookmarkManager.ViewModels
 
             RefreshCategory();
             SaveCurrentBookmarkStorage();
+        }
+
+        private void RenameCategory(string oldName, string newName)
+        {
+            var oldIndex = CurrentBookmarkStorage.Categories.IndexOf(oldName);
+            if (oldIndex != -1)
+            {
+                CurrentBookmarkStorage.Categories.Remove(oldName);
+                CurrentBookmarkStorage.Categories.Insert(oldIndex, newName);
+            }
+
+            foreach (var bookmark in CurrentBookmarkStorage.Bookmarks)
+            {
+                if (bookmark.Category == oldName)
+                    bookmark.Category = newName;
+            }
+
+            HasUnsavedChanges = true;
         }
 
         #endregion

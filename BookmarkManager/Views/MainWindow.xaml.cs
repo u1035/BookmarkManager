@@ -41,5 +41,11 @@ namespace BookmarkManager.Views
                 overflowGrid.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void AnyItemTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.DataContext is MainViewModel mainVm)
+                mainVm.HasUnsavedChanges = true;
+        }
     }
 }

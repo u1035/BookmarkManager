@@ -58,7 +58,7 @@
         <DataTemplate x:Key="CategoryTemplate">
             <StackPanel Margin="5" Orientation="Horizontal">
                 <Image Source="../Resources/folder.png"></Image>
-                <TextBlock FontSize="14" FontWeight="Medium" Margin="5" Text="{Binding}"></TextBlock>
+                <TextBlock FontSize="14" FontWeight="Medium" Margin="5" Text="{Binding Path=.}"></TextBlock>
             </StackPanel>
         </DataTemplate>
 
@@ -76,7 +76,7 @@
                 <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Fill="DarkGray" Width="1"/>
 
                 <StackPanel Grid.Column="2" Margin="5">
-                    <TextBlock Margin="4 0 0 0" FontSize="14" FontWeight="Medium" Text="{Binding PageTitle}" ></TextBlock>
+                    <TextBox Margin="4 0 0 0" FontSize="14" Background="Transparent" FontWeight="Medium" Text="{Binding PageTitle, UpdateSourceTrigger=PropertyChanged}" TextChanged="AnyItemTextBox_OnTextChanged" BorderThickness="0"></TextBox>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Resources/addlink.png" Height="16"></Image>
                         <TextBlock Margin="4" Foreground="Blue" Text="{Binding Url}"></TextBlock>
