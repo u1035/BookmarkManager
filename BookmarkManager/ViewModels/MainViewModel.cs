@@ -305,7 +305,7 @@ namespace BookmarkManager.ViewModels
 
         public void SaveCurrentBookmarkStorage(string header = "")
         {
-            if (!HasUnsavedChanges) return;
+            //if (!HasUnsavedChanges) return;
 
             if (string.IsNullOrEmpty(CurrentFileName))
             {

@@ -14,6 +14,7 @@ namespace BookmarkManager.Models
 
         public ObservableCollection<string> Categories { get; set; } = new ObservableCollection<string>();
 
+        public int SelectedCategoryIndex { get; set; }
 
 
         public void SaveStorage(string fileName)

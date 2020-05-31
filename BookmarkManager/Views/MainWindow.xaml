@@ -251,6 +251,7 @@
                      ItemsSource="{Binding CurrentBookmarkStorage.Categories}" 
                      IsEnabled="{Binding BookmarkStorageLoaded}" 
                      SelectedItem="{Binding SelectedCategory}" 
+                     SelectedIndex="{Binding CurrentBookmarkStorage.SelectedCategoryIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      ItemTemplate="{StaticResource CategoryTemplate}" 
                      ContextMenu="{StaticResource CategoriesContextMenu}"/>
 
