@@ -23,7 +23,7 @@ Feel free to fork, contact me and join developing!
 - [x] Status bar with some info - file path, bookmarks/categories count?
 - [x] Configurable path to TOR browser
 - [x] Open last used database
-- [ ] List of last used databases in "File" menu
+- [x] List of last used databases in "File" menu
 - [x] Open file specified in command line parameters
 - [x] Enter in textboxes handling for faster adding
 - [ ] Portability test
@@ -40,5 +40,5 @@ Feel free to fork, contact me and join developing!
 - [ ] Close to tray
 - [ ] Fix Start minimized
 - [x] Context menus on categories and bookmarks
-- [ ] Save last selected category
+- [x] Save last selected category
 - [ ] When category deleted - focus on previous (/next), if exists
