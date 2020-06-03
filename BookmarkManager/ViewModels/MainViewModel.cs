@@ -143,6 +143,7 @@ namespace BookmarkManager.ViewModels
         public Command AddLinkCommand { get; }
         public Command NewDbCommand { get; }
         public Command OpenDbCommand { get; }
+        public Command<string> OpenRecentDbCommand { get; }
         public Command SaveDbCommand { get; }
         public Command OpenInDefaultBrowserCommand { get; }
         public Command OpenInTorBrowserCommand { get; }
@@ -165,6 +166,7 @@ namespace BookmarkManager.ViewModels
             AddLinkCommand = new Command(AddLink);
             NewDbCommand = new Command(NewDb);
             OpenDbCommand = new Command(OpenDb);
+            OpenRecentDbCommand = new Command<string>(OpenRecentDb);
             SaveDbCommand = new Command(SaveDb);
             OpenInDefaultBrowserCommand = new Command(OpenInDefaultBrowser);
             OpenInTorBrowserCommand = new Command(OpenInTorBrowser);
@@ -280,6 +282,12 @@ namespace BookmarkManager.ViewModels
             }
         }
 
+        private void OpenRecentDb(string path)
+        {
+            if (File.Exists(path))
+                OpenBookmarkDb(path);
+        }
+
         private void OpenBookmarkDb(string fileName)
         {
             CurrentBookmarkStorage = BookmarkStorage.LoadFromFile(fileName);
@@ -293,6 +301,9 @@ namespace BookmarkManager.ViewModels
             {
                 CurrentFileName = fileName;
                 Config.LastOpenedFile = fileName;
+
+                Config.AddRecentFile(fileName);
+                
                 SelectedCategory = CurrentBookmarkStorage.Categories[0];
                 HasUnsavedChanges = false;
             }

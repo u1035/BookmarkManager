@@ -17,7 +17,7 @@
         ShowInTaskbar="{Binding Config.ShowInTaskbar}"
         Closing="MainWindow_OnClosing">
     <Window.Resources>
-        
+
         <ContextMenu x:Key="TrayMenu">
             <MenuItem Header="{x:Static res:Resources.TrayMenuOpenMainWindow}" FontWeight="Bold" Command="{Binding ShowMainWindowCommand}"></MenuItem>
             <MenuItem Header="{x:Static res:Resources.TrayMenuBookmarkFromClipboard}" Command="{Binding AddBookmarkFromClipboardCommand}"></MenuItem>
@@ -166,6 +166,29 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
+                <MenuItem Header="{x:Static res:Resources.FileRecentMenuItem}" ItemsSource="{Binding Config.LastOpenedFiles}">
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Icon">
+                                <Setter.Value>
+                                    <Image Source="../Resources/recentmenu.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </MenuItem.Style>
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=DataContext.OpenRecentDbCommand}"/>
+                            <Setter Property="CommandParameter" Value="{Binding}"/>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+                <Separator />
                 <MenuItem Header="{x:Static res:Resources.FileExitMenuItem}" Command="{Binding ExitCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/appexit.png"></Image>
@@ -214,11 +237,14 @@
         <ToolBarTray Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Orientation="Horizontal" Background="Transparent" >
             <ToolBar ToolBarTray.IsLocked="True" Background="Transparent" Loaded="Toolbar_OnLoaded">
                 <Button Command="{Binding NewDbCommand}">
-                    <Image Source="../Resources/newdb.png" Height="32" ToolTip="Create new bookmarks database" /></Button>
+                    <Image Source="../Resources/newdb.png" Height="32" ToolTip="Create new bookmarks database" />
+                </Button>
                 <Button Command="{Binding OpenDbCommand}">
-                    <Image Source="../Resources/opendb.png" Height="32" ToolTip="Open existing bookmarks database" /></Button>
+                    <Image Source="../Resources/opendb.png" Height="32" ToolTip="Open existing bookmarks database" />
+                </Button>
                 <Button Command="{Binding SaveDbCommand}">
-                    <Image Source="../Resources/savedb.png" Height="32" ToolTip="Save bookmarks database"/></Button>
+                    <Image Source="../Resources/savedb.png" Height="32" ToolTip="Save bookmarks database"/>
+                </Button>
                 <Separator />
 
                 <Button Command="{Binding OpenSettingsWindowCommand}">

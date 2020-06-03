@@ -1,19 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Xml.Serialization;
+using BookmarkManager.MVVM;
 
 namespace BookmarkManager.Models
 {
     [Serializable]
-    public class Configuration
+    public class Configuration : NotificationObject
     {
         private const string ConfigFileName = "config.xml";
 
         public string LastOpenedFile { get; set; } = "";
         public string TorBrowserPath { get; set; } = "";
-        public List<string> LastOpenedFiles { get; set; } = new List<string>();
+        public ObservableCollection<string> LastOpenedFiles { get; set; } = new ObservableCollection<string>();
         public bool RunOnWidowsStart { get; set; }
         public bool ShowInTaskbar { get; set; } = true;
         public bool StartMinimized { get; set; } = true;
@@ -25,7 +27,19 @@ namespace BookmarkManager.Models
         public int MainWindowLeft { get; set; } = 10;
         public int MainWindowHeight { get; set; } = 600;
         public int MainWindowWidth { get; set; } = 1000;
-        
+
+        [XmlIgnore]
+        public Command ClearRecentFilesCommand { get; }
+
+        public Configuration()
+        {
+            ClearRecentFilesCommand = new Command(ClearRecentFiles);
+        }
+
+        private void ClearRecentFiles()
+        {
+            LastOpenedFiles?.Clear();
+        }
 
 
         public void SaveConfig()
@@ -60,6 +74,19 @@ namespace BookmarkManager.Models
             {
                 MessageBox.Show(e.Message, Properties.Resources.ConfigLoadingError, MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
+            }
+        }
+
+        public void AddRecentFile(string fileName)
+        {
+            if (LastOpenedFiles.Contains(fileName))
+                LastOpenedFiles.Remove(fileName);
+
+            LastOpenedFiles.Insert(0, fileName);
+
+            while (LastOpenedFiles.Count > 5)
+            {
+                LastOpenedFiles.Remove(LastOpenedFiles.Last());
             }
         }
     }

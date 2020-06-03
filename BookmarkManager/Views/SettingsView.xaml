@@ -27,7 +27,7 @@
                 <Button Grid.Column="1" Margin="4" HorizontalAlignment="Right" Width="30" Click="TorBrowse_OnClick">...</Button>
             </Grid>
 
-            <Button Margin="4" Width="200" HorizontalAlignment="Right">Clear last used files list</Button>
+            <Button Margin="4" Width="200" HorizontalAlignment="Right" Command="{Binding ClearRecentFilesCommand}">Clear last used files list</Button>
 
             <StackPanel Margin="4" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="4" MinWidth="80" Click="SaveButton_OnClick">Save</Button>

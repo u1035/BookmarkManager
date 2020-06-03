@@ -202,6 +202,9 @@
   <data name="FileOpenMenuItem" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="FileRecentMenuItem" xml:space="preserve">
+    <value>Recent files</value>
+  </data>
   <data name="FileSaveMenuItem" xml:space="preserve">
     <value>Save</value>
   </data>

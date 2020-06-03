@@ -314,6 +314,15 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recent files.
+        /// </summary>
+        public static string FileRecentMenuItem {
+            get {
+                return ResourceManager.GetString("FileRecentMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string FileSaveMenuItem {
