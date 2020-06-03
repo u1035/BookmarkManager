@@ -4,7 +4,7 @@ Standalone desktop application to store browser bookmarks
 Screenshot of current developing state:
 ![Main window screenshot](screenshot.png)
 
-I often making experiments with Windows, sometimes install other OS, change browsers (and use different kind of broswers, like TOR) and I don't like browser extensions and online services for managing bookmarks. So I want to create application for saving my bookmarks in it, and opening links from it. It should have settings and bookmarks database file in application folder and be portable. Maybe it should be able to make backups. Maybe it should (in future) be cross-platform, and work both on Windows and Linux.
+I often making experiments with Windows, sometimes install other OS, change browsers (and use different kind of browsers, like TOR) and I don't like browser extensions and online services for managing bookmarks. So I want to create application for saving my bookmarks in it, and opening links from it. It should have settings and bookmarks database file in application folder and be portable. Maybe it should be able to make backups. Maybe it should (in future) be cross-platform, and work both on Windows and Linux.
 
 (Under lazy slow development)
 
