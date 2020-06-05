@@ -3,18 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:res="clr-namespace:BookmarkManager.Properties"
         xmlns:models="clr-namespace:BookmarkManager.Models"
         mc:Ignorable="d" WindowStyle="ToolWindow" ResizeMode="NoResize"
         SizeToContent="WidthAndHeight" ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
-        Title="BookmarkManager settings" Height="450" Width="800" d:DataContext="{d:DesignInstance models:Configuration}">
+        Title="{x:Static res:Resources.SettingsWindowTitle}" Height="450" Width="800" d:DataContext="{d:DesignInstance models:Configuration}">
     <Grid>
         <StackPanel Orientation="Vertical">
 
-            <CheckBox Margin="4" IsChecked="{Binding RunOnWidowsStart, Mode=TwoWay}">Start with Windows</CheckBox>
-            <CheckBox Margin="4" IsChecked="{Binding OpenLastUsedFile, Mode=TwoWay}">Open last used file</CheckBox>
-            <CheckBox Margin="4" IsChecked="{Binding StartMinimized, Mode=TwoWay}">Start minimized</CheckBox>
-            <CheckBox Margin="4" IsChecked="{Binding ShowInTaskbar, Mode=TwoWay}">Show in taskbar</CheckBox>
-            <CheckBox Margin="4" IsChecked="{Binding CloseToTray, Mode=TwoWay}">Close to tray</CheckBox>
+            <CheckBox Margin="4" IsChecked="{Binding RunOnWidowsStart, Mode=TwoWay}" Content="{x:Static res:Resources.SettingsStartWithWindows}"/>
+            <CheckBox Margin="4" IsChecked="{Binding OpenLastUsedFile, Mode=TwoWay}" Content="{x:Static res:Resources.SettingsOpenLastFile}" />
+            <CheckBox Margin="4" IsChecked="{Binding StartMinimized, Mode=TwoWay}" Content="{x:Static res:Resources.SettingsStartMinimized}"/>
+            <CheckBox Margin="4" IsChecked="{Binding ShowInTaskbar, Mode=TwoWay}" Content="{x:Static res:Resources.SettingsShowInTaskbar}"/>
+            <CheckBox Margin="4" IsChecked="{Binding CloseToTray, Mode=TwoWay}" Content="{x:Static res:Resources.SettingsCloseToTray}"/>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -22,16 +23,16 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Margin="4">Tor Browser path:</TextBlock>
+                <TextBlock Grid.Column="0" Margin="4" Text="{x:Static res:Resources.SettingTorPath}"/>
                 <TextBox x:Name="TorPathTextBox" Grid.Column="1" Margin="4" MinWidth="400" Text="{Binding TorBrowserPath, Mode=TwoWay}"></TextBox>
                 <Button Grid.Column="1" Margin="4" HorizontalAlignment="Right" Width="30" Click="TorBrowse_OnClick">...</Button>
             </Grid>
 
-            <Button Margin="4" Width="200" HorizontalAlignment="Right" Command="{Binding ClearRecentFilesCommand}">Clear last used files list</Button>
+            <Button Margin="4" Width="200" HorizontalAlignment="Right" Command="{Binding ClearRecentFilesCommand}" Content="{x:Static res:Resources.SettingsClearRecentList}"/>
 
             <StackPanel Margin="4" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Margin="4" MinWidth="80" Click="SaveButton_OnClick">Save</Button>
-                <Button Margin="4" MinWidth="80" Click="CancelButton_OnClick">Cancel</Button>
+                <Button Margin="4" MinWidth="80" Click="SaveButton_OnClick" Content="{x:Static res:Resources.SettingsSaveButton}"/>
+                <Button Margin="4" MinWidth="80" Click="CancelButton_OnClick" IsCancel="True" Content="{x:Static res:Resources.SettingsCancelButton}"/>
             </StackPanel>
 
         </StackPanel>

@@ -408,6 +408,96 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SettingsCancelButton {
+            get {
+                return ResourceManager.GetString("SettingsCancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear last used files list.
+        /// </summary>
+        public static string SettingsClearRecentList {
+            get {
+                return ResourceManager.GetString("SettingsClearRecentList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close to tray.
+        /// </summary>
+        public static string SettingsCloseToTray {
+            get {
+                return ResourceManager.GetString("SettingsCloseToTray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open last used file.
+        /// </summary>
+        public static string SettingsOpenLastFile {
+            get {
+                return ResourceManager.GetString("SettingsOpenLastFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SettingsSaveButton {
+            get {
+                return ResourceManager.GetString("SettingsSaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show in taskbar.
+        /// </summary>
+        public static string SettingsShowInTaskbar {
+            get {
+                return ResourceManager.GetString("SettingsShowInTaskbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start minimized.
+        /// </summary>
+        public static string SettingsStartMinimized {
+            get {
+                return ResourceManager.GetString("SettingsStartMinimized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start with Windows.
+        /// </summary>
+        public static string SettingsStartWithWindows {
+            get {
+                return ResourceManager.GetString("SettingsStartWithWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BookmarkManager settings.
+        /// </summary>
+        public static string SettingsWindowTitle {
+            get {
+                return ResourceManager.GetString("SettingsWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tor Browser path:.
+        /// </summary>
+        public static string SettingTorPath {
+            get {
+                return ResourceManager.GetString("SettingTorPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tor Browser not found.
         /// </summary>
         public static string TorNotFound {

@@ -232,6 +232,36 @@
   <data name="SetPathToTorMessage" xml:space="preserve">
     <value>Please set path to Tor Browser in File -&gt; Settings</value>
   </data>
+  <data name="SettingsCancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SettingsClearRecentList" xml:space="preserve">
+    <value>Clear last used files list</value>
+  </data>
+  <data name="SettingsCloseToTray" xml:space="preserve">
+    <value>Close to tray</value>
+  </data>
+  <data name="SettingsOpenLastFile" xml:space="preserve">
+    <value>Open last used file</value>
+  </data>
+  <data name="SettingsSaveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SettingsShowInTaskbar" xml:space="preserve">
+    <value>Show in taskbar</value>
+  </data>
+  <data name="SettingsStartMinimized" xml:space="preserve">
+    <value>Start minimized</value>
+  </data>
+  <data name="SettingsStartWithWindows" xml:space="preserve">
+    <value>Start with Windows</value>
+  </data>
+  <data name="SettingsWindowTitle" xml:space="preserve">
+    <value>BookmarkManager settings</value>
+  </data>
+  <data name="SettingTorPath" xml:space="preserve">
+    <value>Tor Browser path:</value>
+  </data>
   <data name="TorNotFound" xml:space="preserve">
     <value>Tor Browser not found</value>
   </data>
