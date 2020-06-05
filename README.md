@@ -36,8 +36,8 @@ I often making experiments with Windows, sometimes install other OS, change brow
 - [ ] Pretty UI, maybe themes, maybe dark theme
 - [ ] Localization support
 - [ ] Showing main window by hotkey
-- [ ] Close to tray
-- [ ] Fix Start Minimized bug
+- [x] Close to tray
+- [x] Fix Start Minimized bug
 - [ ] When category deleted - focus on previous (/next), if exists
 - [ ] Categories tree instead of list
 - [ ] Backup feature
