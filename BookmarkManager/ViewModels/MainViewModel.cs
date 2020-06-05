@@ -20,8 +20,23 @@ namespace BookmarkManager.ViewModels
 
         #region Public properties
 
+        private Visibility _mainWindowVisibility = Visibility.Visible;
+        public Visibility MainWindowVisibility
+        {
+            get => _mainWindowVisibility;
+            set => SetProperty(ref _mainWindowVisibility, value);
+        }
+
+        private bool _exitProgram;
+
+        public bool ExitProgram
+        {
+            get => _exitProgram;
+            set => SetProperty(ref _exitProgram, value);
+        }
+
         private bool _hasUnsavedChanges;
-        internal bool HasUnsavedChanges
+        public bool HasUnsavedChanges
         {
             get => _hasUnsavedChanges;
             set
@@ -184,7 +199,10 @@ namespace BookmarkManager.ViewModels
                 TryFindTorBrowser();
 
             if (Config.StartMinimized)
-                Config.MainWindowState = WindowState.Minimized;
+            {
+                MainWindowVisibility = Visibility.Hidden;
+                //Config.MainWindowState = WindowState.Minimized;
+            }
 
             if (Config.OpenLastUsedFile)
                 if (File.Exists(Config.LastOpenedFile))
@@ -229,11 +247,15 @@ namespace BookmarkManager.ViewModels
             if (Application.Current.MainWindow?.WindowState == WindowState.Minimized)
                 Application.Current.MainWindow.WindowState = WindowState.Normal;
 
+            if (MainWindowVisibility == Visibility.Hidden)
+                MainWindowVisibility = Visibility.Visible;
+
             Application.Current.MainWindow?.Activate();
         }
 
         private void Exit()
         {
+            ExitProgram = true;
             Application.Current.Shutdown();
         }
 
