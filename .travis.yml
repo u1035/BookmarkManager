@@ -1,7 +1,6 @@
 language: csharp
 solution: BookmarkManager.sln
 os: windows
-language: csharp
 mono: none
 
 env:
