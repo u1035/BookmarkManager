@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -91,15 +89,15 @@ namespace BookmarkManager.ViewModels
             set => SetProperty(ref _mainWindowTitle, value);
         }
 
-        private string _selectedCategory;
-        public string SelectedCategory
+        private BookmarkCategory _selectedCategory;
+        public BookmarkCategory SelectedCategory
         {
             get => _selectedCategory;
             set
             {
                 if (SetProperty(ref _selectedCategory, value))
                 {
-                    RefreshCategory();
+                    CategorySelected = (_selectedCategory != null);
                 }
             }
         }
@@ -108,16 +106,7 @@ namespace BookmarkManager.ViewModels
         public Bookmark SelectedBookmark
         {
             get => _selectedBookmark;
-            set
-            {
-                if (SetProperty(ref _selectedBookmark, value))
-                {
-                    if (value != null)
-                    {
-
-                    }
-                }
-            }
+            set => SetProperty(ref _selectedBookmark, value);
         }
 
         private BookmarkStorage _currentBookmarkStorage;
@@ -128,8 +117,7 @@ namespace BookmarkManager.ViewModels
             {
                 if (SetProperty(ref _currentBookmarkStorage, value))
                 {
-                    BookmarkStorageLoaded = (value != null);
-                    DisplayingBookmarks.Clear();
+                    BookmarkStorageLoaded = (_currentBookmarkStorage != null);
                 }
             }
         }
@@ -147,7 +135,6 @@ namespace BookmarkManager.ViewModels
             }
         }
 
-        public ObservableCollection<Bookmark> DisplayingBookmarks { get; set; } = new ObservableCollection<Bookmark>();
         public Configuration Config { get; set; }
 
         #endregion
@@ -201,7 +188,6 @@ namespace BookmarkManager.ViewModels
             if (Config.StartMinimized)
             {
                 MainWindowVisibility = Visibility.Hidden;
-                //Config.MainWindowState = WindowState.Minimized;
             }
 
             if (Config.OpenLastUsedFile)
@@ -376,9 +362,8 @@ namespace BookmarkManager.ViewModels
             //Temporary behavior if we couldn't get website title - using it's url
             var title = (rawTitle == "") ? UrlText : Regex.Replace(rawTitle, @"\r\n?|\n", "");
 
-            CurrentBookmarkStorage.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, "", SelectedCategory));
+            SelectedCategory.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, ""));
             HasUnsavedChanges = true;
-            RefreshCategory();
             SaveCurrentBookmarkStorage();
 
             UrlText = "";
@@ -406,7 +391,7 @@ namespace BookmarkManager.ViewModels
         private void OpenAll()
         {
             if (SelectedCategory == null) return;
-            foreach (var bookmark in DisplayingBookmarks)
+            foreach (var bookmark in SelectedCategory.Bookmarks)
             {
                 Process.Start(bookmark.Url);
             }
@@ -415,10 +400,9 @@ namespace BookmarkManager.ViewModels
         private void DeleteBookmark()
         {
             if (SelectedBookmark == null) return;
-            CurrentBookmarkStorage.Bookmarks.Remove(SelectedBookmark);
+            SelectedCategory.Bookmarks.Remove(SelectedBookmark);
             HasUnsavedChanges = true;
 
-            RefreshCategory();
             SaveCurrentBookmarkStorage();
         }
 
@@ -462,26 +446,11 @@ namespace BookmarkManager.ViewModels
         {
             if (string.IsNullOrWhiteSpace(CategoryText)) return;
 
-            CurrentBookmarkStorage.Categories.Add(CategoryText);
+            CurrentBookmarkStorage.Categories.Add(new BookmarkCategory(CategoryText, DateTime.Now));
             HasUnsavedChanges = true;
             SaveCurrentBookmarkStorage();
 
             CategoryText = "";
-        }
-
-        private void RefreshCategory()
-        {
-            if (_selectedCategory != null)
-            {
-                //todo: find more elegant way
-                DisplayingBookmarks = new ObservableCollection<Bookmark>(CurrentBookmarkStorage.Bookmarks.Where(b => b.Category == _selectedCategory));
-                RaisePropertyChanged(nameof(DisplayingBookmarks));
-                CategorySelected = true;
-            }
-            else
-            {
-                CategorySelected = false;
-            }
         }
 
         private void DeleteCategory()
@@ -491,35 +460,29 @@ namespace BookmarkManager.ViewModels
             var confirm = MessageBox.Show(Properties.Resources.CategoryRemovalText, Properties.Resources.CategoryRemovalTitle, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             if (confirm != MessageBoxResult.Yes) return;
 
-            foreach (var bookmark in CurrentBookmarkStorage.Bookmarks.ToArray())
-            {
-                if (bookmark.Category == SelectedCategory)
-                    CurrentBookmarkStorage.Bookmarks.Remove(bookmark);
-            }
             CurrentBookmarkStorage.Categories.Remove(SelectedCategory);
             HasUnsavedChanges = true;
 
-            RefreshCategory();
             SaveCurrentBookmarkStorage();
         }
 
-        private void RenameCategory(string oldName, string newName)
-        {
-            var oldIndex = CurrentBookmarkStorage.Categories.IndexOf(oldName);
-            if (oldIndex != -1)
-            {
-                CurrentBookmarkStorage.Categories.Remove(oldName);
-                CurrentBookmarkStorage.Categories.Insert(oldIndex, newName);
-            }
+        //private void RenameCategory(string oldName, string newName)
+        //{
+        //    var oldIndex = CurrentBookmarkStorage.Categories.IndexOf(oldName);
+        //    if (oldIndex != -1)
+        //    {
+        //        CurrentBookmarkStorage.Categories.Remove(oldName);
+        //        CurrentBookmarkStorage.Categories.Insert(oldIndex, newName);
+        //    }
 
-            foreach (var bookmark in CurrentBookmarkStorage.Bookmarks)
-            {
-                if (bookmark.Category == oldName)
-                    bookmark.Category = newName;
-            }
+        //    foreach (var bookmark in CurrentBookmarkStorage.Bookmarks)
+        //    {
+        //        if (bookmark.Category == oldName)
+        //            bookmark.Category = newName;
+        //    }
 
-            HasUnsavedChanges = true;
-        }
+        //    HasUnsavedChanges = true;
+        //}
 
         #endregion
     }

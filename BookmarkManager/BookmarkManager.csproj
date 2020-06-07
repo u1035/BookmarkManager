@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\BookmarkCategory.cs" />
     <Compile Include="Services\SystemStartup.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">

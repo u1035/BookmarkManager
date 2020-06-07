@@ -10,11 +10,11 @@ namespace BookmarkManager.Models
     [Serializable]
     public class BookmarkStorage : NotificationObject
     {
-        public ObservableCollection<Bookmark> Bookmarks { get; set; } = new ObservableCollection<Bookmark>();
-
-        public ObservableCollection<string> Categories { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<BookmarkCategory> Categories { get; set; } = new ObservableCollection<BookmarkCategory>();
 
         public int SelectedCategoryIndex { get; set; }
+        
+
 
 
         public void SaveStorage(string fileName)

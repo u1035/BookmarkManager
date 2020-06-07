@@ -34,24 +34,16 @@ namespace BookmarkManager.Models
             set => SetProperty(ref _notes, value);
         }
 
-        private string _category;
-        public string Category
-        {
-            get => _category;
-            set => SetProperty(ref _category, value);
-        }
-
         public Bookmark()
         {
         }
 
-        public Bookmark(string url, string pageTitle, DateTime dateAdded, string notes, string category)
+        public Bookmark(string url, string pageTitle, DateTime dateAdded, string notes)
         {
             _url = url;
             _pageTitle = pageTitle;
             _dateAdded = dateAdded;
             _notes = notes;
-            _category = category;
         }
     }
 }

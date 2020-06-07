@@ -57,10 +57,10 @@
             </MenuItem>
         </ContextMenu>
 
-        <DataTemplate x:Key="CategoryTemplate">
+        <DataTemplate x:Key="CategoryTemplate" DataType="models:BookmarkCategory">
             <StackPanel Margin="5" Orientation="Horizontal">
                 <Image Source="../Resources/folder.png"></Image>
-                <TextBlock FontSize="14" FontWeight="Medium" Margin="5" Text="{Binding Path=.}"></TextBlock>
+                <TextBlock FontSize="14" FontWeight="Medium" Margin="5" Text="{Binding Path=DisplayName}"></TextBlock>
             </StackPanel>
         </DataTemplate>
 
@@ -342,7 +342,7 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Margin="4" Text="{x:Static res:Resources.BookmarksLabel}"></TextBlock>
             <ListBox Grid.Row="1" Grid.Column="0" Margin="4 0 4 0" Background="Transparent"
                      IsEnabled="{Binding CategorySelected}" 
-                     ItemsSource="{Binding DisplayingBookmarks}" 
+                     ItemsSource="{Binding SelectedCategory.Bookmarks}" 
                      SelectedItem="{Binding SelectedBookmark}"
                      ItemTemplate="{StaticResource BookmarkItemTemplate}"
                      MouseDoubleClick="BookmarksList_OnMouseDoubleClick"
@@ -388,7 +388,7 @@
                 <StatusBarItem Background="Transparent">
                     <StackPanel Orientation="Horizontal ">
                         <TextBlock Text="{x:Static res:Resources.TotalBookmarksStatusBar}"/>
-                        <TextBlock Margin="4 0 0 0" Text="{Binding CurrentBookmarkStorage.Bookmarks.Count}"></TextBlock>
+                        <!--<TextBlock Margin="4 0 0 0" Text="{Binding CurrentBookmarkStorage.Bookmarks.Count}"></TextBlock>-->
                     </StackPanel>
                 </StatusBarItem>
             </StatusBar>
