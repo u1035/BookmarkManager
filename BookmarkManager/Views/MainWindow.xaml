@@ -388,7 +388,7 @@
                 <StatusBarItem Background="Transparent">
                     <StackPanel Orientation="Horizontal ">
                         <TextBlock Text="{x:Static res:Resources.TotalBookmarksStatusBar}"/>
-                        <!--<TextBlock Margin="4 0 0 0" Text="{Binding CurrentBookmarkStorage.Bookmarks.Count}"></TextBlock>-->
+                        <TextBlock Margin="4 0 0 0" Text="{Binding TotalBookmarksCount}"></TextBlock>
                     </StackPanel>
                 </StatusBarItem>
             </StatusBar>

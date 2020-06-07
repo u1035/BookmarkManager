@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
@@ -13,9 +14,27 @@ namespace BookmarkManager.Models
         public ObservableCollection<BookmarkCategory> Categories { get; set; } = new ObservableCollection<BookmarkCategory>();
 
         public int SelectedCategoryIndex { get; set; }
-        
 
 
+        public int GetTotalBookmarksCount()
+        {
+            return GetNodeRecordsCount(Categories);
+        }
+
+        private int GetNodeRecordsCount(IEnumerable<BookmarkCategory> categories)
+        {
+            var result = 0;
+            foreach (var category in categories)
+            {
+                result += category.Bookmarks.Count;
+                result += GetNodeRecordsCount(category.ChildNodes);
+            }
+
+            return result;
+        }
+
+
+        #region Saving/Loading
 
         public void SaveStorage(string fileName)
         {
@@ -42,7 +61,7 @@ namespace BookmarkManager.Models
                 var formatter = new XmlSerializer(typeof(BookmarkStorage));
                 using (var fs = new FileStream(fileName, FileMode.Open))
                 {
-                    return ((BookmarkStorage) formatter.Deserialize(fs));
+                    return ((BookmarkStorage)formatter.Deserialize(fs));
                 }
             }
             catch (Exception e)
@@ -51,5 +70,9 @@ namespace BookmarkManager.Models
                 return null;
             }
         }
+
+        #endregion
+
+
     }
 }

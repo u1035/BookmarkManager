@@ -30,7 +30,7 @@ namespace BookmarkManager.ViewModels
         public bool ExitProgram
         {
             get => _exitProgram;
-            set => SetProperty(ref _exitProgram, value);
+            private set => SetProperty(ref _exitProgram, value);
         }
 
         private bool _hasUnsavedChanges;
@@ -120,6 +120,13 @@ namespace BookmarkManager.ViewModels
                     BookmarkStorageLoaded = (_currentBookmarkStorage != null);
                 }
             }
+        }
+
+        private int _totalBookmarksCount;
+        public int TotalBookmarksCount
+        {
+            get => _totalBookmarksCount;
+            set => SetProperty(ref _totalBookmarksCount, value);
         }
 
         private string _currentFileName;
@@ -311,7 +318,7 @@ namespace BookmarkManager.ViewModels
                 Config.LastOpenedFile = fileName;
 
                 Config.AddRecentFile(fileName);
-                
+                TotalBookmarksCount = CurrentBookmarkStorage.GetTotalBookmarksCount();
                 SelectedCategory = CurrentBookmarkStorage.Categories[0];
                 HasUnsavedChanges = false;
             }

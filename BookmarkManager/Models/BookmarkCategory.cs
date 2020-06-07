@@ -29,8 +29,8 @@ namespace BookmarkManager.Models
             set => SetProperty(ref _timeCreated, value);
         }
 
-        public ObservableCollection<Bookmark> Bookmarks { get; set; }
-        public ObservableCollection<BookmarkCategory> ChildNodes { get; set; }
+        public ObservableCollection<Bookmark> Bookmarks { get; set; } = new ObservableCollection<Bookmark>();
+        public ObservableCollection<BookmarkCategory> ChildNodes { get; set; } = new ObservableCollection<BookmarkCategory>();
 
 
         public BookmarkCategory()
