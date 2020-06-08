@@ -165,6 +165,8 @@ namespace BookmarkManager.ViewModels
         public Command OpenAboutWindowCommand { get; }
         public Command DeleteCategoryCommand { get; }
 
+        public Command EditCategoryCommand { get; }
+
         #endregion
 
         #region Constructor
@@ -187,6 +189,7 @@ namespace BookmarkManager.ViewModels
             ExitCommand = new Command(Exit);
             OpenAboutWindowCommand = new Command(OpenAboutWindow);
             DeleteCategoryCommand = new Command(DeleteCategory);
+            EditCategoryCommand = new Command(EditCategory);
 
             Config = Configuration.LoadFromFile();
             if (string.IsNullOrEmpty(Config.TorBrowserPath))
@@ -473,23 +476,17 @@ namespace BookmarkManager.ViewModels
             SaveCurrentBookmarkStorage();
         }
 
-        //private void RenameCategory(string oldName, string newName)
-        //{
-        //    var oldIndex = CurrentBookmarkStorage.Categories.IndexOf(oldName);
-        //    if (oldIndex != -1)
-        //    {
-        //        CurrentBookmarkStorage.Categories.Remove(oldName);
-        //        CurrentBookmarkStorage.Categories.Insert(oldIndex, newName);
-        //    }
+        private void EditCategory()
+        {
+            if (SelectedCategory == null) return;
 
-        //    foreach (var bookmark in CurrentBookmarkStorage.Bookmarks)
-        //    {
-        //        if (bookmark.Category == oldName)
-        //            bookmark.Category = newName;
-        //    }
-
-        //    HasUnsavedChanges = true;
-        //}
+            var categoryEditor = new CategoryEditorView() { DataContext = SelectedCategory };
+            var result = categoryEditor.ShowDialog();
+            if (result != null && result == true)
+            {
+                SaveCurrentBookmarkStorage();
+            }
+        }
 
         #endregion
     }

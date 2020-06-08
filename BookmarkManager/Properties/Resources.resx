@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="about" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\about.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AboutAuthor" xml:space="preserve">
     <value>Author:</value>
   </data>
@@ -126,11 +130,23 @@
   <data name="AboutWebsite" xml:space="preserve">
     <value>Project website:</value>
   </data>
+  <data name="addcat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addcat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AddCategoryButton" xml:space="preserve">
     <value>Add category</value>
   </data>
+  <data name="addlink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addlink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AddLinkButton" xml:space="preserve">
     <value>Add link</value>
+  </data>
+  <data name="appexit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\appexit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="appicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\appicon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BookmarkMenu" xml:space="preserve">
     <value>Bookmark</value>
@@ -152,6 +168,27 @@
   </data>
   <data name="CategoryDeleteMenuItem" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="CategoryEditCancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CategoryEditMenuItem" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="CategoryEditSaveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="CategoryEditWindowCategoryName" xml:space="preserve">
+    <value>Category name:</value>
+  </data>
+  <data name="CategoryEditWindowCategoryNotes" xml:space="preserve">
+    <value>Category notes:</value>
+  </data>
+  <data name="CategoryEditWindowTitle" xml:space="preserve">
+    <value>Category editing</value>
+  </data>
+  <data name="CategoryEmptyMessageBox" xml:space="preserve">
+    <value>Category name should not be empty!</value>
   </data>
   <data name="CategoryMenu" xml:space="preserve">
     <value>Category</value>
@@ -179,6 +216,12 @@
   </data>
   <data name="deleterecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deleterecord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EmptyFieldError" xml:space="preserve">
+    <value>Value should not be empty or whitespace</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -213,6 +256,9 @@
   <data name="FileSettingsMenuItem" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="newdb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\newdb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -222,14 +268,26 @@
   <data name="newrecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\newrecord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="openall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\openall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="openbrowser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\openbrowser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="opendb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\opendb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="recentmenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\recentmenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="savedb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\savedb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SetPathToTorMessage" xml:space="preserve">
     <value>Please set path to Tor Browser in File -&gt; Settings</value>
+  </data>
+  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SettingsCancelButton" xml:space="preserve">
     <value>Cancel</value>
@@ -260,6 +318,9 @@
   </data>
   <data name="SettingTorPath" xml:space="preserve">
     <value>Tor Browser path:</value>
+  </data>
+  <data name="tor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TorNotFound" xml:space="preserve">
     <value>Tor Browser not found</value>

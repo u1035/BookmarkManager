@@ -61,6 +61,16 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap about {
+            get {
+                object obj = ResourceManager.GetObject("about", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author:.
         /// </summary>
         public static string AboutAuthor {
@@ -88,6 +98,16 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap addcat {
+            get {
+                object obj = ResourceManager.GetObject("addcat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add category.
         /// </summary>
         public static string AddCategoryButton {
@@ -97,11 +117,41 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap addlink {
+            get {
+                object obj = ResourceManager.GetObject("addlink", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add link.
         /// </summary>
         public static string AddLinkButton {
             get {
                 return ResourceManager.GetString("AddLinkButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap appexit {
+            get {
+                object obj = ResourceManager.GetObject("appexit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap appicon {
+            get {
+                object obj = ResourceManager.GetObject("appicon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -165,6 +215,69 @@ namespace BookmarkManager.Properties {
         public static string CategoryDeleteMenuItem {
             get {
                 return ResourceManager.GetString("CategoryDeleteMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CategoryEditCancelButton {
+            get {
+                return ResourceManager.GetString("CategoryEditCancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string CategoryEditMenuItem {
+            get {
+                return ResourceManager.GetString("CategoryEditMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string CategoryEditSaveButton {
+            get {
+                return ResourceManager.GetString("CategoryEditSaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category name:.
+        /// </summary>
+        public static string CategoryEditWindowCategoryName {
+            get {
+                return ResourceManager.GetString("CategoryEditWindowCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category notes:.
+        /// </summary>
+        public static string CategoryEditWindowCategoryNotes {
+            get {
+                return ResourceManager.GetString("CategoryEditWindowCategoryNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category editing.
+        /// </summary>
+        public static string CategoryEditWindowTitle {
+            get {
+                return ResourceManager.GetString("CategoryEditWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category name should not be empty!.
+        /// </summary>
+        public static string CategoryEmptyMessageBox {
+            get {
+                return ResourceManager.GetString("CategoryEmptyMessageBox", resourceCulture);
             }
         }
         
@@ -247,6 +360,25 @@ namespace BookmarkManager.Properties {
             get {
                 object obj = ResourceManager.GetObject("deleterecord", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap edit {
+            get {
+                object obj = ResourceManager.GetObject("edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value should not be empty or whitespace.
+        /// </summary>
+        public static string EmptyFieldError {
+            get {
+                return ResourceManager.GetString("EmptyFieldError", resourceCulture);
             }
         }
         
@@ -352,6 +484,16 @@ namespace BookmarkManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap folder {
+            get {
+                object obj = ResourceManager.GetObject("folder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap newdb {
             get {
                 object obj = ResourceManager.GetObject("newdb", resourceCulture);
@@ -381,9 +523,39 @@ namespace BookmarkManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap openall {
+            get {
+                object obj = ResourceManager.GetObject("openall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap openbrowser {
+            get {
+                object obj = ResourceManager.GetObject("openbrowser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap opendb {
             get {
                 object obj = ResourceManager.GetObject("opendb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap recentmenu {
+            get {
+                object obj = ResourceManager.GetObject("recentmenu", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -404,6 +576,16 @@ namespace BookmarkManager.Properties {
         public static string SetPathToTorMessage {
             get {
                 return ResourceManager.GetString("SetPathToTorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap settings {
+            get {
+                object obj = ResourceManager.GetObject("settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -494,6 +676,16 @@ namespace BookmarkManager.Properties {
         public static string SettingTorPath {
             get {
                 return ResourceManager.GetString("SettingTorPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap tor {
+            get {
+                object obj = ResourceManager.GetObject("tor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

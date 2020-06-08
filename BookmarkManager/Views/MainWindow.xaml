@@ -27,6 +27,11 @@
         </ContextMenu>
 
         <ContextMenu x:Key="CategoriesContextMenu">
+            <MenuItem Header="{x:Static res:Resources.CategoryEditMenuItem}" Command="{Binding EditCategoryCommand}">
+                <MenuItem.Icon>
+                    <Image Source="../Resources/edit.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem Header="{x:Static res:Resources.CategoryDeleteMenuItem}" Command="{Binding DeleteCategoryCommand}">
                 <MenuItem.Icon>
                     <Image Source="../Resources/deleterecord.png"></Image>
@@ -59,8 +64,8 @@
 
         <DataTemplate x:Key="CategoryTemplate" DataType="models:BookmarkCategory">
             <StackPanel Margin="5" Orientation="Horizontal">
-                <Image Source="../Resources/folder.png"></Image>
-                <TextBlock FontSize="14" FontWeight="Medium" Margin="5" Text="{Binding Path=DisplayName}"></TextBlock>
+                <Image Source="../Resources/folder.png" ToolTip="{Binding Notes}"/>
+                <TextBlock FontSize="14" FontWeight="Medium" Margin="5" Text="{Binding Path=DisplayName}" ToolTip="{Binding Notes}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -197,6 +202,11 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{x:Static res:Resources.CategoryMenu}">
+                <MenuItem Header="{x:Static res:Resources.CategoryEditMenuItem}" Command="{Binding EditCategoryCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/edit.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="{x:Static res:Resources.CategoryDeleteMenuItem}" Command="{Binding DeleteCategoryCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/deleterecord.png"></Image>
