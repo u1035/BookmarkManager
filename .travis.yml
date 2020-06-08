@@ -1,0 +1,13 @@
+language: csharp
+solution: BookmarkManager.sln
+os: windows
+mono: none
+
+env:
+    global:
+        - DOTNET_CLI_TELEMETRY_OPTOUT: 1
+       
+script:
+- choco install dotnetcore-sdk
+- dotnet --version
+- dotnet restore

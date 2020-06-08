@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/u1035/BookmarkManager.svg?branch=master)](https://travis-ci.org/u1035/BookmarkManager)
+
 # BookmarkManager
 Standalone desktop application to store browser bookmarks
 
