@@ -63,7 +63,10 @@ namespace BookmarkManager.Services
 
         private static string GetStartupPath()
         {
-            return System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            if (path.EndsWith("BookmarkManager.dll"))
+                path = path.Replace("BookmarkManager.dll", "BookmarkManager.exe");
+            return path;
         }
     }
 }
