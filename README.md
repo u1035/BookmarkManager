@@ -40,7 +40,7 @@ I often making experiments with Windows, sometimes install other OS, change brow
 - [ ] Showing main window by hotkey
 - [x] Close to tray
 - [x] Fix Start Minimized bug
-- [ ] When category deleted - focus on previous (/next), if exists
+- [x] When category deleted - focus on previous (/next), if exists
 - [ ] Categories tree instead of list
 - [ ] Backup feature
 - [ ] Bookmark search
