@@ -11,13 +11,20 @@ namespace BookmarkManager.Models
     [Serializable]
     public class Configuration : NotificationObject
     {
+        private bool _showInTaskbar = true;
         private const string ConfigFileName = "config.xml";
 
         public string LastOpenedFile { get; set; } = "";
         public string TorBrowserPath { get; set; } = "";
         public ObservableCollection<string> LastOpenedFiles { get; set; } = new ObservableCollection<string>();
         public bool RunOnWidowsStart { get; set; }
-        public bool ShowInTaskbar { get; set; } = true;
+
+        public bool ShowInTaskbar
+        {
+            get => _showInTaskbar;
+            set => SetProperty(ref _showInTaskbar, value);
+        }
+
         public bool StartMinimized { get; set; } = true;
         public bool OpenLastUsedFile { get; set; }
         public bool CloseToTray { get; set; } = true;

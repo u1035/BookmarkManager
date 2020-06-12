@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -50,6 +51,21 @@ namespace BookmarkManager.Views
         {
             if (this.DataContext is MainViewModel mainVm)
                 mainVm.HasUnsavedChanges = true;
+        }
+
+        private void MainWindow_OnStateChanged(object? sender, EventArgs e)
+        {
+            if (sender is MainWindow mainWindow)
+            {
+                if (this.DataContext is MainViewModel mainVm)
+                {
+                    if (mainWindow.WindowState == WindowState.Minimized && !mainVm.Config.ShowInTaskbar)
+                    {
+                        mainWindow.WindowState = WindowState.Normal;
+                        mainWindow.Visibility = Visibility.Hidden;
+                    }
+                }
+            }
         }
     }
 }

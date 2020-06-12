@@ -16,7 +16,7 @@
         Width="{Binding Config.MainWindowWidth, Mode=TwoWay}"
         Height="{Binding Config.MainWindowHeight, Mode=TwoWay}"
         ShowInTaskbar="{Binding Config.ShowInTaskbar}"
-        Closing="MainWindow_OnClosing">
+        Closing="MainWindow_OnClosing" StateChanged="MainWindow_OnStateChanged">
     <Window.Resources>
 
         <ContextMenu x:Key="TrayMenu">
