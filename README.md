@@ -29,7 +29,7 @@ I often making experiments with Windows, sometimes install other OS, change brow
 - [x] Current filename in main window title
 - [x] Context menus on categories and bookmarks
 - [x] Save last selected category
-- [ ] Editing and deleting categories
+- [x] Editing and deleting categories
 - [ ] Editing bookmarks
 - [ ] Moving categories and bookmarks Up/Down ?
 - [ ] Page preview image or favicon
