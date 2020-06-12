@@ -45,7 +45,7 @@ namespace BookmarkManager.Models
 
         private void ClearRecentFiles()
         {
-            LastOpenedFiles?.Clear();
+            LastOpenedFiles.Clear();
         }
 
 
@@ -54,10 +54,8 @@ namespace BookmarkManager.Models
             var formatter = new XmlSerializer(typeof(Configuration));
             try
             {
-                using (var fs = new FileStream(ConfigFileName, FileMode.Create))
-                {
-                    formatter.Serialize(fs, this);
-                }
+                using var fs = new FileStream(ConfigFileName, FileMode.Create);
+                formatter.Serialize(fs, this);
             }
             catch (Exception e)
             {
@@ -72,10 +70,8 @@ namespace BookmarkManager.Models
             try
             {
                 var formatter = new XmlSerializer(typeof(Configuration));
-                using (var fs = new FileStream(ConfigFileName, FileMode.Open))
-                {
-                    return ((Configuration)formatter.Deserialize(fs));
-                }
+                using var fs = new FileStream(ConfigFileName, FileMode.Open);
+                return ((Configuration)formatter.Deserialize(fs));
             }
             catch (Exception e)
             {

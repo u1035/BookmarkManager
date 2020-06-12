@@ -41,10 +41,8 @@ namespace BookmarkManager.Models
             var formatter = new XmlSerializer(typeof(BookmarkStorage));
             try
             {
-                using (var fs = new FileStream(fileName, FileMode.Create))
-                {
-                    formatter.Serialize(fs, this);
-                }
+                using var fs = new FileStream(fileName, FileMode.Create);
+                formatter.Serialize(fs, this);
             }
             catch (Exception e)
             {
@@ -59,10 +57,8 @@ namespace BookmarkManager.Models
             try
             {
                 var formatter = new XmlSerializer(typeof(BookmarkStorage));
-                using (var fs = new FileStream(fileName, FileMode.Open))
-                {
-                    return ((BookmarkStorage)formatter.Deserialize(fs));
-                }
+                using var fs = new FileStream(fileName, FileMode.Open);
+                return ((BookmarkStorage)formatter.Deserialize(fs));
             }
             catch (Exception e)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -470,10 +471,19 @@ namespace BookmarkManager.ViewModels
             var confirm = MessageBox.Show(Properties.Resources.CategoryRemovalText, Properties.Resources.CategoryRemovalTitle, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             if (confirm != MessageBoxResult.Yes) return;
 
+            var removedIndex = CurrentBookmarkStorage.Categories.IndexOf(SelectedCategory);
+
             CurrentBookmarkStorage.Categories.Remove(SelectedCategory);
             HasUnsavedChanges = true;
 
             SaveCurrentBookmarkStorage();
+
+            if (CurrentBookmarkStorage.Categories.Count > 0)
+            {
+                SelectedCategory = removedIndex > 0 
+                    ? CurrentBookmarkStorage.Categories[removedIndex - 1] 
+                    : CurrentBookmarkStorage.Categories.Last();
+            }
         }
 
         private void EditCategory()
