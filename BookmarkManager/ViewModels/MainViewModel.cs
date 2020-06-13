@@ -446,6 +446,7 @@ namespace BookmarkManager.ViewModels
             if (!File.Exists(Config.TorBrowserPath))
             {
                 MessageBox.Show(Properties.Resources.SetPathToTorMessage, Properties.Resources.TorNotFound, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
             }
 
             try
