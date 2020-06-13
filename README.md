@@ -30,7 +30,7 @@ I often making experiments with Windows, sometimes install other OS, change brow
 - [x] Context menus on categories and bookmarks
 - [x] Save last selected category
 - [x] Editing and deleting categories
-- [ ] Editing bookmarks
+- [x] Editing bookmarks
 - [ ] Moving categories and bookmarks Up/Down ?
 - [ ] Page preview image or favicon
 - [ ] Drag'n'Drop moving bookmarks between categories
