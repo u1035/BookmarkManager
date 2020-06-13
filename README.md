@@ -4,8 +4,24 @@
 Standalone desktop application to store browser bookmarks
 
 Screenshot of current developing state:
-![Main window screenshot](screenshot.png)
+![Main window screenshot](screenshot.gif)
 
+## Features
+
+* Categorized bookmarks storing
+* Open bookmarks in default system browser or Tor Browser
+* Open all bookmarks in category at once
+* Using multiple bookmarks databases
+* Keeping list of last opened bookmark databases
+* Open last bookmark database at start
+* Start with Windows
+* Start minimized to system tray, closing to system tray
+* Adding new bookmark from clipboard using tray menu
+* Localization support (English and Russian currently supported)
+
+## Downloads
+
+Can be found on [Releases](https://github.com/u1035/BookmarkManager/releases) page
 
 ## Application goals
 I often making experiments with Windows, sometimes install other OS, change browsers (and use different kind of browsers, like TOR) and I don't like browser extensions and online services for managing bookmarks. So I want to create application for saving my bookmarks in it, and opening links from it. It should have settings and bookmarks database file in application folder and be portable. Maybe it should be able to make backups. Maybe it should (in future) be cross-platform, and work both on Windows and Linux.
@@ -36,7 +52,7 @@ I often making experiments with Windows, sometimes install other OS, change brow
 - [ ] Drag'n'Drop moving bookmarks between categories
 - [ ] Asyncronous web page details receiving - not to slow down main app thread
 - [ ] Pretty UI, maybe themes, maybe dark theme
-- [ ] Localization support
+- [x] Localization support
 - [ ] Showing main window by hotkey
 - [x] Close to tray
 - [x] Fix Start Minimized bug
@@ -50,6 +66,10 @@ I often making experiments with Windows, sometimes install other OS, change brow
 ## Project status
 
 Developing for myself in my free time
+
+## Built with
+
+* [Hardcodet NotifyIcon for WPF](https://github.com/hardcodet/wpf-notifyicon) - WPF tray icon
 
 ## Contributing
 
