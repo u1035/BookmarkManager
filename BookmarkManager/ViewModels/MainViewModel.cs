@@ -166,8 +166,8 @@ namespace BookmarkManager.ViewModels
         public Command ExitCommand { get; }
         public Command OpenAboutWindowCommand { get; }
         public Command DeleteCategoryCommand { get; }
-
         public Command EditCategoryCommand { get; }
+        public Command EditBookmarkCommand { get; }
 
         #endregion
 
@@ -192,6 +192,7 @@ namespace BookmarkManager.ViewModels
             OpenAboutWindowCommand = new Command(OpenAboutWindow);
             DeleteCategoryCommand = new Command(DeleteCategory);
             EditCategoryCommand = new Command(EditCategory);
+            EditBookmarkCommand = new Command(EditBookmark);
 
             Config = Configuration.LoadFromFile();
             if (string.IsNullOrEmpty(Config.TorBrowserPath))
@@ -428,6 +429,18 @@ namespace BookmarkManager.ViewModels
             foreach (var bookmark in SelectedCategory.Bookmarks)
             {
                 RunDefaultBrowser(bookmark.Url);
+            }
+        }
+
+        private void EditBookmark()
+        {
+            if (SelectedBookmark == null) return;
+
+            var bookmarkEditor = new BookmarkEditorView() { DataContext = SelectedBookmark };
+            var result = bookmarkEditor.ShowDialog();
+            if (result != null && result == true)
+            {
+                SaveCurrentBookmarkStorage();
             }
         }
 

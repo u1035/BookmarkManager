@@ -156,6 +156,87 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string BookmarkEditCancelButton {
+            get {
+                return ResourceManager.GetString("BookmarkEditCancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string BookmarkEditMenuItem {
+            get {
+                return ResourceManager.GetString("BookmarkEditMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string BookmarkEditSaveButton {
+            get {
+                return ResourceManager.GetString("BookmarkEditSaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmark name:.
+        /// </summary>
+        public static string BookmarkEditWindowBookmarkName {
+            get {
+                return ResourceManager.GetString("BookmarkEditWindowBookmarkName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmark notes:.
+        /// </summary>
+        public static string BookmarkEditWindowBookmarkNotes {
+            get {
+                return ResourceManager.GetString("BookmarkEditWindowBookmarkNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL:.
+        /// </summary>
+        public static string BookmarkEditWindowBookmarkUrl {
+            get {
+                return ResourceManager.GetString("BookmarkEditWindowBookmarkUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmark editing.
+        /// </summary>
+        public static string BookmarkEditWindowTitle {
+            get {
+                return ResourceManager.GetString("BookmarkEditWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmark title should not be empty!.
+        /// </summary>
+        public static string BookmarkEmptyMessageBox {
+            get {
+                return ResourceManager.GetString("BookmarkEmptyMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmark URL should not be empty!.
+        /// </summary>
+        public static string BookmarkEmptyUrlMessageBox {
+            get {
+                return ResourceManager.GetString("BookmarkEmptyUrlMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bookmark.
         /// </summary>
         public static string BookmarkMenu {
@@ -354,6 +435,15 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete bookmark.
+        /// </summary>
+        public static string DeleteBookmarkTooltip {
+            get {
+                return ResourceManager.GetString("DeleteBookmarkTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap deleterecord {
@@ -364,12 +454,30 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double-click on bookmark or open it in default browser.
+        /// </summary>
+        public static string DoubleClickBookmarkTooltip {
+            get {
+                return ResourceManager.GetString("DoubleClickBookmarkTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap edit {
             get {
                 object obj = ResourceManager.GetObject("edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit bookmark.
+        /// </summary>
+        public static string EditBookmarkTooltip {
+            get {
+                return ResourceManager.GetString("EditBookmarkTooltip", resourceCulture);
             }
         }
         
@@ -531,6 +639,15 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open all links of this category in default browser.
+        /// </summary>
+        public static string OpenAllDefaultTooltip {
+            get {
+                return ResourceManager.GetString("OpenAllDefaultTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap openbrowser {
@@ -547,6 +664,24 @@ namespace BookmarkManager.Properties {
             get {
                 object obj = ResourceManager.GetObject("opendb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in default browser.
+        /// </summary>
+        public static string OpenDefaultTooltip {
+            get {
+                return ResourceManager.GetString("OpenDefaultTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in Tor Browser.
+        /// </summary>
+        public static string OpenTorTooltip {
+            get {
+                return ResourceManager.GetString("OpenTorTooltip", resourceCulture);
             }
         }
         

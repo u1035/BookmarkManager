@@ -40,6 +40,11 @@
         </ContextMenu>
 
         <ContextMenu x:Key="BookmarksContextMenu">
+            <MenuItem Header="{x:Static res:Resources.BookmarkEditMenuItem}" Command="{Binding EditBookmarkCommand}">
+                <MenuItem.Icon>
+                    <Image Source="../Resources/edit.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem Header="{x:Static res:Resources.DeleteBookmarkMenuItem}" Command="{Binding DeleteBookmarkCommand}">
                 <MenuItem.Icon>
                     <Image Source="../Resources/deleterecord.png"></Image>
@@ -214,6 +219,11 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{x:Static res:Resources.BookmarkMenu}">
+                <MenuItem Header="{x:Static res:Resources.BookmarkEditMenuItem}" Command="{Binding EditBookmarkCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Resources/edit.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="{x:Static res:Resources.DeleteBookmarkMenuItem}" Command="{Binding DeleteBookmarkCommand}">
                     <MenuItem.Icon>
                         <Image Source="../Resources/deleterecord.png"></Image>
@@ -313,8 +323,6 @@
         </Grid>
         <!--Categories area end-->
 
-        <!--<GridSplitter Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center" ></GridSplitter>
-        <Label Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Content="⁞" Foreground="DimGray"  VerticalAlignment="Center" FontSize="18" IsHitTestVisible="False"/>-->
         <GridSplitter Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Style="{StaticResource VerticalGridSplitter}"></GridSplitter>
 
         <!--Bookmarks area begin-->
@@ -332,19 +340,22 @@
 
             <ToolBarTray Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Background="Transparent">
                 <ToolBar ToolBarTray.IsLocked="True" Background="Transparent" Loaded="Toolbar_OnLoaded">
+                    <Button Command="{Binding EditBookmarkCommand}" Height="32">
+                        <Image Source="../Resources/edit.png" ToolTip="{x:Static res:Resources.EditBookmarkTooltip}"/>
+                    </Button>
                     <Button Command="{Binding DeleteBookmarkCommand}">
-                        <Image Source="../Resources/deleterecord.png" Height="32" ToolTip="Delete bookmark"/>
+                        <Image Source="../Resources/deleterecord.png" Height="32" ToolTip="{x:Static res:Resources.DeleteBookmarkTooltip}"/>
                     </Button>
                     <Separator />
                     <Button Command="{Binding OpenInDefaultBrowserCommand}">
-                        <Image Source="../Resources/openbrowser.png" Height="32" ToolTip="Open in default browser"/>
+                        <Image Source="../Resources/openbrowser.png" Height="32" ToolTip="{x:Static res:Resources.OpenDefaultTooltip}"/>
                     </Button>
                     <Button Command="{Binding OpenInTorBrowserCommand}">
-                        <Image Source="../Resources/tor.png" Height="32" ToolTip="Open in TOR browser"/>
+                        <Image Source="../Resources/tor.png" Height="32" ToolTip="{x:Static res:Resources.OpenTorTooltip}"/>
                     </Button>
                     <Separator />
                     <Button Command="{Binding OpenAllCommand}">
-                        <Image Source="../Resources/openall.png" Height="32" ToolTip="Open all links of this category in default browser"/>
+                        <Image Source="../Resources/openall.png" Height="32" ToolTip="{x:Static res:Resources.OpenAllDefaultTooltip}"/>
                     </Button>
                 </ToolBar>
             </ToolBarTray>
@@ -356,7 +367,7 @@
                      SelectedItem="{Binding SelectedBookmark}"
                      ItemTemplate="{StaticResource BookmarkItemTemplate}"
                      MouseDoubleClick="BookmarksList_OnMouseDoubleClick"
-                     ToolTip="Double-click on bookmark or open it in default browser"
+                     ToolTip="{x:Static res:Resources.DoubleClickBookmarkTooltip}"
                      ContextMenu="{StaticResource BookmarksContextMenu}" />
 
             <TextBox Grid.Row="2" Grid.Column="0" Margin="4 0 4 0" FontSize="14" Height="25" 

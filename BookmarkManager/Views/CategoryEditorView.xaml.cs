@@ -17,7 +17,7 @@ namespace BookmarkManager.Views
 
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(this.DisplayNameTextBox.Text))
+            if (string.IsNullOrWhiteSpace(DisplayNameTextBox.Text))
             {
                 MessageBox.Show(Properties.Resources.CategoryEmptyMessageBox, Properties.Resources.CategoryEditWindowTitle, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
@@ -28,17 +28,6 @@ namespace BookmarkManager.Views
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
-        }
-
-        private void DisplayNameTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (sender is TextBox textBox)
-            {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                {
-
-                }
-            }
         }
     }
 }

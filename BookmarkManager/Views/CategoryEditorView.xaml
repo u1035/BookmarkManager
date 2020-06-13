@@ -14,7 +14,7 @@
         <StackPanel Margin="4">
 
             <TextBlock Margin="4 4 0 0" Text="{x:Static res:Resources.CategoryEditWindowCategoryName}" />
-            <TextBox x:Name="DisplayNameTextBox" Margin="4" TextChanged="DisplayNameTextBox_OnTextChanged">
+            <TextBox x:Name="DisplayNameTextBox" Margin="4">
                 <TextBox.Text>
                     <Binding Path="DisplayName" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -25,7 +25,7 @@
             </TextBox>
 
             <TextBlock Margin="4 4 0 0" Text="{x:Static res:Resources.CategoryEditWindowCategoryNotes}" />
-            <TextBox Margin="4" Text="{Binding Notes, Mode=TwoWay}" AcceptsReturn="True" MinLines="3" />
+            <TextBox Margin="4" Text="{Binding Notes, Mode=TwoWay}" AcceptsReturn="True" MinLines="3"  VerticalScrollBarVisibility="Visible" />
 
             <StackPanel Margin="4" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="4" MinWidth="80" Click="SaveButton_OnClick" Content="{x:Static res:Resources.CategoryEditSaveButton}"/>

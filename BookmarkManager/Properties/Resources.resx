@@ -148,6 +148,33 @@
   <data name="appicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\appicon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BookmarkEditCancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="BookmarkEditMenuItem" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="BookmarkEditSaveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="BookmarkEditWindowBookmarkName" xml:space="preserve">
+    <value>Bookmark name:</value>
+  </data>
+  <data name="BookmarkEditWindowBookmarkNotes" xml:space="preserve">
+    <value>Bookmark notes:</value>
+  </data>
+  <data name="BookmarkEditWindowBookmarkUrl" xml:space="preserve">
+    <value>URL:</value>
+  </data>
+  <data name="BookmarkEditWindowTitle" xml:space="preserve">
+    <value>Bookmark editing</value>
+  </data>
+  <data name="BookmarkEmptyMessageBox" xml:space="preserve">
+    <value>Bookmark title should not be empty!</value>
+  </data>
+  <data name="BookmarkEmptyUrlMessageBox" xml:space="preserve">
+    <value>Bookmark URL should not be empty!</value>
+  </data>
   <data name="BookmarkMenu" xml:space="preserve">
     <value>Bookmark</value>
   </data>
@@ -214,11 +241,20 @@
   <data name="DeleteBookmarkMenuItem" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DeleteBookmarkTooltip" xml:space="preserve">
+    <value>Delete bookmark</value>
+  </data>
   <data name="deleterecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deleterecord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DoubleClickBookmarkTooltip" xml:space="preserve">
+    <value>Double-click on bookmark or open it in default browser</value>
+  </data>
   <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EditBookmarkTooltip" xml:space="preserve">
+    <value>Edit bookmark</value>
   </data>
   <data name="EmptyFieldError" xml:space="preserve">
     <value>Value should not be empty or whitespace</value>
@@ -271,11 +307,20 @@
   <data name="openall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\openall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OpenAllDefaultTooltip" xml:space="preserve">
+    <value>Open all links of this category in default browser</value>
+  </data>
   <data name="openbrowser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\openbrowser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="opendb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\opendb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenDefaultTooltip" xml:space="preserve">
+    <value>Open in default browser</value>
+  </data>
+  <data name="OpenTorTooltip" xml:space="preserve">
+    <value>Open in Tor Browser</value>
   </data>
   <data name="recentmenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\recentmenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
