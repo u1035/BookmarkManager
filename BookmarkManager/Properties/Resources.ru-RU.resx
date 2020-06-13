@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="about" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\about.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Разработчик:</value>
+  </data>
+  <data name="AboutMenuItem" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="AboutWebsite" xml:space="preserve">
+    <value>Сайт проекта:</value>
+  </data>
+  <data name="addcat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addcat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddCategoryButton" xml:space="preserve">
+    <value>Добавить категорию</value>
+  </data>
+  <data name="addlink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addlink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddLinkButton" xml:space="preserve">
+    <value>Добавить закладку</value>
+  </data>
+  <data name="appexit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\appexit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="appicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\appicon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BookmarkEditCancelButton" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="BookmarkEditMenuItem" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="BookmarkEditSaveButton" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="BookmarkEditWindowBookmarkName" xml:space="preserve">
+    <value>Название страницы:</value>
+  </data>
+  <data name="BookmarkEditWindowBookmarkNotes" xml:space="preserve">
+    <value>Заметки:</value>
+  </data>
+  <data name="BookmarkEditWindowBookmarkUrl" xml:space="preserve">
+    <value>URL:</value>
+  </data>
+  <data name="BookmarkEditWindowTitle" xml:space="preserve">
+    <value>Редактирование закладки</value>
+  </data>
+  <data name="BookmarkEmptyMessageBox" xml:space="preserve">
+    <value>Название закладки не должно быть пустым!</value>
+  </data>
+  <data name="BookmarkEmptyUrlMessageBox" xml:space="preserve">
+    <value>URL закладки не должен быть пустым!</value>
+  </data>
+  <data name="BookmarkMenu" xml:space="preserve">
+    <value>Закладки</value>
+  </data>
+  <data name="BookmarkOpenAllMenuItem" xml:space="preserve">
+    <value>Открыть все в браузере</value>
+  </data>
+  <data name="BookmarkOpenMenuItem" xml:space="preserve">
+    <value>Открыть в браузере</value>
+  </data>
+  <data name="BookmarkOpenTorMenuItem" xml:space="preserve">
+    <value>Открыть в Tor Browser</value>
+  </data>
+  <data name="BookmarksLabel" xml:space="preserve">
+    <value>Закладки:</value>
+  </data>
+  <data name="CategoriesLabel" xml:space="preserve">
+    <value>Категории:</value>
+  </data>
+  <data name="CategoryDeleteMenuItem" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="CategoryEditCancelButton" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="CategoryEditMenuItem" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="CategoryEditSaveButton" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="CategoryEditWindowCategoryName" xml:space="preserve">
+    <value>Название категории:</value>
+  </data>
+  <data name="CategoryEditWindowCategoryNotes" xml:space="preserve">
+    <value>Заметки:</value>
+  </data>
+  <data name="CategoryEditWindowTitle" xml:space="preserve">
+    <value>Редактирование категории</value>
+  </data>
+  <data name="CategoryEmptyMessageBox" xml:space="preserve">
+    <value>Название категории не должно быть пустым!</value>
+  </data>
+  <data name="CategoryMenu" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="CategoryRemovalText" xml:space="preserve">
+    <value>Удаление категории приведет к удалению всех содержащихся в ней закладок. Вы уверены что хотите удалить категорию?</value>
+  </data>
+  <data name="CategoryRemovalTitle" xml:space="preserve">
+    <value>Удаление категории</value>
+  </data>
+  <data name="ConfigLoadingError" xml:space="preserve">
+    <value>Ошибка загрузки настроек</value>
+  </data>
+  <data name="ConfigSavingError" xml:space="preserve">
+    <value>Ошибка сохранения настроек</value>
+  </data>
+  <data name="ContextCategoryDelete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="CurrentFileStatusBar" xml:space="preserve">
+    <value>Текущий файл:</value>
+  </data>
+  <data name="DeleteBookmarkMenuItem" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeleteBookmarkTooltip" xml:space="preserve">
+    <value>Удалить закладку</value>
+  </data>
+  <data name="deleterecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deleterecord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DoubleClickBookmarkTooltip" xml:space="preserve">
+    <value>Двойной клик откроет закладку в браузере</value>
+  </data>
+  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EditBookmarkTooltip" xml:space="preserve">
+    <value>Редактировать закладку</value>
+  </data>
+  <data name="EmptyFieldError" xml:space="preserve">
+    <value>Значение не должно быть пустым</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="ErrorOpeningInTor" xml:space="preserve">
+    <value>Ошибка открытия ссылки в Tor Browser</value>
+  </data>
+  <data name="FileExitMenuItem" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="FileLoadingError" xml:space="preserve">
+    <value>Ошибка загрузки файла</value>
+  </data>
+  <data name="FileMenuItem" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="FileNewMenuItem" xml:space="preserve">
+    <value>Новый</value>
+  </data>
+  <data name="FileOpenMenuItem" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="FileRecentMenuItem" xml:space="preserve">
+    <value>Недавние файлы</value>
+  </data>
+  <data name="FileSaveMenuItem" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="FileSavingError" xml:space="preserve">
+    <value>Ошибка сохранения файла</value>
+  </data>
+  <data name="FileSettingsMenuItem" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newdb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newdb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NewDbFilenameSelection" xml:space="preserve">
+    <value>Выберите файл новой базы закладок</value>
+  </data>
+  <data name="newrecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newrecord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="openall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\openall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenAllDefaultTooltip" xml:space="preserve">
+    <value>Открыть все ссылки в браузере</value>
+  </data>
+  <data name="openbrowser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\openbrowser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="opendb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\opendb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenDefaultTooltip" xml:space="preserve">
+    <value>Открыть в браузере</value>
+  </data>
+  <data name="OpenTorTooltip" xml:space="preserve">
+    <value>Открыть в Tor Browser</value>
+  </data>
+  <data name="recentmenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\recentmenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="savedb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\savedb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SetPathToTorMessage" xml:space="preserve">
+    <value>Пожалуйста, укажите путь к Tor Browser в окне Файл -&gt; Настройки</value>
+  </data>
+  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingsCancelButton" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="SettingsClearRecentList" xml:space="preserve">
+    <value>Очистить список последних файлов</value>
+  </data>
+  <data name="SettingsCloseToTray" xml:space="preserve">
+    <value>Сворачивать в трей при закрытии</value>
+  </data>
+  <data name="SettingsOpenLastFile" xml:space="preserve">
+    <value>Открывать последний файл при запуске</value>
+  </data>
+  <data name="SettingsSaveButton" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="SettingsShowInTaskbar" xml:space="preserve">
+    <value>Показывать окно программы в панели задач</value>
+  </data>
+  <data name="SettingsStartMinimized" xml:space="preserve">
+    <value>Запускать свернутым</value>
+  </data>
+  <data name="SettingsStartWithWindows" xml:space="preserve">
+    <value>Запускать вместе с Windows</value>
+  </data>
+  <data name="SettingsWindowTitle" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SettingTorPath" xml:space="preserve">
+    <value>Расположение Tor Browser:</value>
+  </data>
+  <data name="tor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TorNotFound" xml:space="preserve">
+    <value>Tor Browser не найден</value>
+  </data>
+  <data name="TotalBookmarksStatusBar" xml:space="preserve">
+    <value>Всего закладок:</value>
+  </data>
+  <data name="TotalCategoriesStatusBar" xml:space="preserve">
+    <value>Всего категорий:</value>
+  </data>
+  <data name="TrayMenuBookmarkFromClipboard" xml:space="preserve">
+    <value>Добавить адрес из буфера обмена</value>
+  </data>
+  <data name="TrayMenuExit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="TrayMenuOpenMainWindow" xml:space="preserve">
+    <value>Показать окно программы</value>
+  </data>
+</root>

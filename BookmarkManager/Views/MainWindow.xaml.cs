@@ -14,6 +14,7 @@ namespace BookmarkManager.Views
     {
         public MainWindow()
         {
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
             InitializeComponent();
         }
 

@@ -288,6 +288,7 @@ namespace BookmarkManager.ViewModels
             HasUnsavedChanges = true;
 
             SaveCurrentBookmarkStorage(Properties.Resources.NewDbFilenameSelection);
+            TotalBookmarksCount = 0;
         }
 
         private void OpenDb()
@@ -378,6 +379,8 @@ namespace BookmarkManager.ViewModels
             SelectedCategory.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, ""));
             HasUnsavedChanges = true;
             SaveCurrentBookmarkStorage();
+
+            TotalBookmarksCount = CurrentBookmarkStorage.GetTotalBookmarksCount();
 
             UrlText = "";
         }
