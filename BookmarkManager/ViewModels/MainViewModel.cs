@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using BookmarkManager.Models;
@@ -137,8 +138,8 @@ namespace BookmarkManager.ViewModels
             set
             {
                 SetProperty(ref _currentFileName, value);
-                MainWindowTitle = (!string.IsNullOrEmpty(_currentFileName)) ? 
-                                WindowTitleBase + " - " + _currentFileName : 
+                MainWindowTitle = (!string.IsNullOrEmpty(_currentFileName)) ?
+                                WindowTitleBase + " - " + _currentFileName :
                                 WindowTitleBase;
             }
         }
@@ -399,12 +400,34 @@ namespace BookmarkManager.ViewModels
             return Uri.TryCreate(source, UriKind.Absolute, out Uri uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
 
+        private static void RunDefaultBrowser(string url)
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Process.Start("xdg-open", url);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                Process.Start("open", url);
+            }
+        }
+
+        internal void OpenInDefaultBrowser()
+        {
+            if (SelectedBookmark == null) return;
+            RunDefaultBrowser(SelectedBookmark.Url);
+        }
+
         private void OpenAll()
         {
             if (SelectedCategory == null) return;
             foreach (var bookmark in SelectedCategory.Bookmarks)
             {
-                Process.Start(bookmark.Url);
+                RunDefaultBrowser(bookmark.Url);
             }
         }
 
@@ -415,12 +438,6 @@ namespace BookmarkManager.ViewModels
             HasUnsavedChanges = true;
 
             SaveCurrentBookmarkStorage();
-        }
-
-        internal void OpenInDefaultBrowser()
-        {
-            if (SelectedBookmark == null) return;
-            Process.Start(SelectedBookmark.Url);
         }
 
         private void OpenInTorBrowser()
@@ -480,8 +497,8 @@ namespace BookmarkManager.ViewModels
 
             if (CurrentBookmarkStorage.Categories.Count > 0)
             {
-                SelectedCategory = removedIndex > 0 
-                    ? CurrentBookmarkStorage.Categories[removedIndex - 1] 
+                SelectedCategory = removedIndex > 0
+                    ? CurrentBookmarkStorage.Categories[removedIndex - 1]
                     : CurrentBookmarkStorage.Categories.Last();
             }
         }
