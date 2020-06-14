@@ -26,9 +26,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\copy.png" />
     <None Remove="Resources\edit.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\copy.png" />
     <Resource Include="Resources\deleterecord.png" />
     <Resource Include="Resources\edit.png" />
   </ItemGroup>

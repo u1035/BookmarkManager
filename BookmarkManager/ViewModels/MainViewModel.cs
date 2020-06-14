@@ -168,6 +168,7 @@ namespace BookmarkManager.ViewModels
         public Command DeleteCategoryCommand { get; }
         public Command EditCategoryCommand { get; }
         public Command EditBookmarkCommand { get; }
+        public Command CopyBookmarkUrlCommand { get; }
 
         #endregion
 
@@ -193,6 +194,7 @@ namespace BookmarkManager.ViewModels
             DeleteCategoryCommand = new Command(DeleteCategory);
             EditCategoryCommand = new Command(EditCategory);
             EditBookmarkCommand = new Command(EditBookmark);
+            CopyBookmarkUrlCommand = new Command(CopyBookmarkUrl);
 
             Config = Configuration.LoadFromFile();
             if (string.IsNullOrEmpty(Config.TorBrowserPath))
@@ -396,6 +398,13 @@ namespace BookmarkManager.ViewModels
                     AddLink();
                 }
             }
+        }
+
+        private void CopyBookmarkUrl()
+        {
+            if (SelectedBookmark == null) return;
+
+            Clipboard.SetText(SelectedBookmark.Url);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

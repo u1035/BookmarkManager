@@ -156,6 +156,15 @@ namespace BookmarkManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy URL to clipboard.
+        /// </summary>
+        public static string BookmarkCopyUrlMenuItem {
+            get {
+                return ResourceManager.GetString("BookmarkCopyUrlMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string BookmarkEditCancelButton {
