@@ -50,7 +50,7 @@ namespace BookmarkManager.Models
             }
         }
 
-        public static BookmarkStorage LoadFromFile(string fileName)
+        public static BookmarkStorage? LoadFromFile(string fileName)
         {
             if (!File.Exists(fileName)) return null;
 
@@ -58,7 +58,7 @@ namespace BookmarkManager.Models
             {
                 var formatter = new XmlSerializer(typeof(BookmarkStorage));
                 using var fs = new FileStream(fileName, FileMode.Open);
-                return ((BookmarkStorage)formatter.Deserialize(fs));
+                return formatter.Deserialize(fs) as BookmarkStorage;
             }
             catch (Exception e)
             {

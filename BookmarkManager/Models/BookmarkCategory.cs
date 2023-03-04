@@ -8,7 +8,7 @@ namespace BookmarkManager.Models
     public class BookmarkCategory : NotificationObject
     {
         private string _displayName;
-        private string _notes;
+        private string? _notes;
         private DateTime _timeCreated;
         
         public string DisplayName
@@ -17,7 +17,7 @@ namespace BookmarkManager.Models
             set => SetProperty(ref _displayName, value);
         }
 
-        public string Notes
+        public string? Notes
         {
             get => _notes;
             set => SetProperty(ref _notes, value);
@@ -33,8 +33,11 @@ namespace BookmarkManager.Models
         public ObservableCollection<BookmarkCategory> ChildNodes { get; set; } = new ObservableCollection<BookmarkCategory>();
 
 
+        [Obsolete("Used by serializer only")]
         public BookmarkCategory()
         {
+            _displayName = null!;
+            _notes = null!;
         }
 
         public BookmarkCategory(string displayName, DateTime timeCreated)

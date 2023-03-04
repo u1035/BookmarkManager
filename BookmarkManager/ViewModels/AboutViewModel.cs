@@ -4,7 +4,7 @@ namespace BookmarkManager.ViewModels
 {
     public class AboutViewModel
     {
-        public string AppName { get; }
+        public string? AppName { get; }
         public string AppVersion { get; }
 
 

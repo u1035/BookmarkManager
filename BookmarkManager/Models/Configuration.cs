@@ -63,7 +63,7 @@ namespace BookmarkManager.Models
             }
         }
 
-        public static Configuration LoadFromFile()
+        public static Configuration TryLoadFromFile()
         {
             if (!File.Exists(ConfigFileName)) return new Configuration();
 
@@ -71,12 +71,12 @@ namespace BookmarkManager.Models
             {
                 var formatter = new XmlSerializer(typeof(Configuration));
                 using var fs = new FileStream(ConfigFileName, FileMode.Open);
-                return ((Configuration)formatter.Deserialize(fs));
+                return (formatter.Deserialize(fs) as Configuration) ?? new Configuration();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, Properties.Resources.ConfigLoadingError, MessageBoxButton.OK, MessageBoxImage.Error);
-                return null;
+                return new Configuration();
             }
         }
 

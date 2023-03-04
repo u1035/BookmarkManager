@@ -27,15 +27,18 @@ namespace BookmarkManager.Models
             set => SetProperty(ref _dateAdded, value);
         }
 
-        private string _notes;
-        public string Notes
+        private string? _notes;
+        public string? Notes
         {
             get => _notes;
             set => SetProperty(ref _notes, value);
         }
 
+        [Obsolete("Used by serializer only")]
         public Bookmark()
         {
+            _url = null!;
+            _pageTitle = null!;
         }
 
         public Bookmark(string url, string pageTitle, DateTime dateAdded, string notes)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,6 +11,7 @@ namespace BookmarkManager.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    [SupportedOSPlatform("windows")]
     public partial class MainWindow
     {
         public MainWindow()
@@ -20,22 +22,24 @@ namespace BookmarkManager.Views
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            ((MainViewModel)DataContext).SaveCurrentBookmarkStorage();
-            ((MainViewModel)DataContext).Config.SaveConfig();
-
-            if (((MainViewModel) DataContext).Config.CloseToTray && !((MainViewModel) DataContext).ExitProgram)
+            if (DataContext is MainViewModel model)
             {
-                this.Visibility = Visibility.Hidden;
-                e.Cancel = true;
+                model.SaveCurrentBookmarkStorage();
+                model.Config.SaveConfig();
+
+                if (model.Config.CloseToTray && !model.ExitProgram) {
+                    this.Visibility = Visibility.Hidden;
+                    e.Cancel = true;
+                }
             }
         }
 
         private void BookmarksList_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (sender is ListBox listbox)
-                if (listbox.SelectedItem != null)
-                    if (this.DataContext is MainViewModel mainVm)
-                        mainVm.OpenInDefaultBrowser();
+            if (sender is ListBox listbox && 
+                listbox.SelectedItem != null && 
+                DataContext is MainViewModel mainVm) 
+                mainVm.OpenInDefaultBrowser();
         }
 
         private void Toolbar_OnLoaded(object sender, RoutedEventArgs e)

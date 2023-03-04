@@ -22,7 +22,7 @@ namespace BookmarkManager.Services
                     RegexOptions.IgnoreCase).Groups["Title"].Value;
                 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return title;
             }

@@ -9,9 +9,9 @@ namespace BookmarkManager.MVVM
     public abstract class NotificationObject : INotifyPropertyChanged
     {
         // ReSharper disable once InconsistentNaming
-        private event PropertyChangedEventHandler _propertyChanged;
+        private event PropertyChangedEventHandler? _propertyChanged;
 
-        public event PropertyChangedEventHandler PropertyChanged
+        public event PropertyChangedEventHandler? PropertyChanged
         {
             add
             {
@@ -53,7 +53,7 @@ namespace BookmarkManager.MVVM
         /// <param name="value">New value</param>
         /// <param name="propertyName">Property name</param>
         /// <returns>true if previous value was different than new</returns>
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
         {
             if (Equals(storage, value))
                 return false;
@@ -66,7 +66,7 @@ namespace BookmarkManager.MVVM
         /// 
         /// </summary>
         /// <param name="propertyName"></param>
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged(string? propertyName)
         {
 
         }
@@ -75,7 +75,7 @@ namespace BookmarkManager.MVVM
         /// Raises OnPropertyChanged event
         /// </summary>
         /// <param name="propertyName"></param>
-        protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        protected void RaisePropertyChanged([CallerMemberName] string? propertyName = null)
         {
             OnPropertyChanged(propertyName);
             _propertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

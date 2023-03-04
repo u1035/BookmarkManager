@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using System.Text.RegularExpressions;
 using System.Windows;
 using BookmarkManager.Models;
@@ -14,6 +15,7 @@ using Microsoft.Win32;
 
 namespace BookmarkManager.ViewModels
 {
+    [SupportedOSPlatform("windows")]
     public class MainViewModel : NotificationObject
     {
         private const string WindowTitleBase = "BookmarkManager";
@@ -70,15 +72,15 @@ namespace BookmarkManager.ViewModels
         }
 
 
-        private string _categoryText;
-        public string CategoryText
+        private string? _categoryText;
+        public string? CategoryText
         {
             get => _categoryText;
             set => SetProperty(ref _categoryText, value);
         }
 
-        private string _urlText;
-        public string UrlText
+        private string? _urlText;
+        public string? UrlText
         {
             get => _urlText;
             set => SetProperty(ref _urlText, value);
@@ -88,11 +90,11 @@ namespace BookmarkManager.ViewModels
         public string MainWindowTitle
         {
             get => _mainWindowTitle;
-            set => SetProperty(ref _mainWindowTitle, value);
+            private set => SetProperty(ref _mainWindowTitle, value);
         }
 
-        private BookmarkCategory _selectedCategory;
-        public BookmarkCategory SelectedCategory
+        private BookmarkCategory? _selectedCategory;
+        public BookmarkCategory? SelectedCategory
         {
             get => _selectedCategory;
             set
@@ -104,18 +106,18 @@ namespace BookmarkManager.ViewModels
             }
         }
 
-        private Bookmark _selectedBookmark;
-        public Bookmark SelectedBookmark
+        private Bookmark? _selectedBookmark;
+        public Bookmark? SelectedBookmark
         {
             get => _selectedBookmark;
             set => SetProperty(ref _selectedBookmark, value);
         }
 
-        private BookmarkStorage _currentBookmarkStorage;
-        public BookmarkStorage CurrentBookmarkStorage
+        private BookmarkStorage? _currentBookmarkStorage;
+        public BookmarkStorage? CurrentBookmarkStorage
         {
             get => _currentBookmarkStorage;
-            set
+            private set
             {
                 if (SetProperty(ref _currentBookmarkStorage, value))
                 {
@@ -128,14 +130,14 @@ namespace BookmarkManager.ViewModels
         public int TotalBookmarksCount
         {
             get => _totalBookmarksCount;
-            set => SetProperty(ref _totalBookmarksCount, value);
+            private set => SetProperty(ref _totalBookmarksCount, value);
         }
 
-        private string _currentFileName;
-        public string CurrentFileName
+        private string? _currentFileName;
+        public string? CurrentFileName
         {
             get => _currentFileName;
-            set
+            private set
             {
                 SetProperty(ref _currentFileName, value);
                 MainWindowTitle = (!string.IsNullOrEmpty(_currentFileName)) ?
@@ -196,7 +198,7 @@ namespace BookmarkManager.ViewModels
             EditBookmarkCommand = new Command(EditBookmark);
             CopyBookmarkUrlCommand = new Command(CopyBookmarkUrl);
 
-            Config = Configuration.LoadFromFile();
+            Config = Configuration.TryLoadFromFile();
             if (string.IsNullOrEmpty(Config.TorBrowserPath))
                 TryFindTorBrowser();
 
@@ -260,7 +262,7 @@ namespace BookmarkManager.ViewModels
             Application.Current.Shutdown();
         }
 
-        private void OpenAboutWindow()
+        private static void OpenAboutWindow()
         {
             var aboutWindow = new AboutView();
             aboutWindow.ShowDialog();
@@ -270,7 +272,7 @@ namespace BookmarkManager.ViewModels
         {
             var settingsWindow = new SettingsView { DataContext = Config };
             var result = settingsWindow.ShowDialog();
-            if (result != null && result == true)
+            if (result == true)
             {
                 SystemStartup.SetAutorunState(Config.RunOnWidowsStart);
                 Config.SaveConfig();
@@ -306,7 +308,7 @@ namespace BookmarkManager.ViewModels
             }
         }
 
-        private void OpenRecentDb(string path)
+        private void OpenRecentDb(string? path)
         {
             if (File.Exists(path))
                 OpenBookmarkDb(path);
@@ -371,7 +373,8 @@ namespace BookmarkManager.ViewModels
 
         private void AddLink()
         {
-            if (string.IsNullOrWhiteSpace(UrlText)) return;
+            if (string.IsNullOrWhiteSpace(UrlText) || SelectedCategory == null || CurrentBookmarkStorage == null) 
+                return;
 
             var rawTitle = WebPageParser.GetPageTitle(UrlText);
 
@@ -410,7 +413,8 @@ namespace BookmarkManager.ViewModels
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static bool CheckUrlValid(string source)
         {
-            return Uri.TryCreate(source, UriKind.Absolute, out Uri uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+            return Uri.TryCreate(source, UriKind.Absolute, out var uriResult) &&
+                   (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
 
         private static void RunDefaultBrowser(string url)
@@ -458,7 +462,8 @@ namespace BookmarkManager.ViewModels
 
         private void DeleteBookmark()
         {
-            if (SelectedBookmark == null) return;
+            if (SelectedBookmark == null || SelectedCategory == null) 
+                return;
             SelectedCategory.Bookmarks.Remove(SelectedBookmark);
             HasUnsavedChanges = true;
 
@@ -498,7 +503,8 @@ namespace BookmarkManager.ViewModels
 
         private void AddCategory()
         {
-            if (string.IsNullOrWhiteSpace(CategoryText)) return;
+            if (string.IsNullOrWhiteSpace(CategoryText) || CurrentBookmarkStorage == null)
+                return;
 
             CurrentBookmarkStorage.Categories.Add(new BookmarkCategory(CategoryText, DateTime.Now));
             HasUnsavedChanges = true;
@@ -509,7 +515,8 @@ namespace BookmarkManager.ViewModels
 
         private void DeleteCategory()
         {
-            if (SelectedCategory == null) return;
+            if (SelectedCategory == null || CurrentBookmarkStorage == null) 
+                return;
 
             var confirm = MessageBox.Show(Properties.Resources.CategoryRemovalText, Properties.Resources.CategoryRemovalTitle, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             if (confirm != MessageBoxResult.Yes) return;

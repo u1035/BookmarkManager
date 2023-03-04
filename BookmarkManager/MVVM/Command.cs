@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -11,9 +10,9 @@ namespace BookmarkManager.MVVM
     public class Command : CommandBase
     {
         private readonly Action _executeMethod;
-        private readonly Func<bool> _canExecuteMethod;
+        private readonly Func<bool>? _canExecuteMethod;
 
-        public Command(Action executeMethod, Func<bool> canExecuteMethod = null, bool forcedUpdateCanExecute = true)
+        public Command(Action executeMethod, Func<bool>? canExecuteMethod = null, bool forcedUpdateCanExecute = true)
         {
             _executeMethod = executeMethod;
             _canExecuteMethod = canExecuteMethod;
@@ -37,7 +36,7 @@ namespace BookmarkManager.MVVM
             return IsCanExecute;
         }
 
-        public sealed override bool CanExecute(object parameter)
+        public sealed override bool CanExecute(object? parameter)
         {
             return CanExecute();
         }
@@ -47,10 +46,10 @@ namespace BookmarkManager.MVVM
             if (!CanExecute())
                 return;
 
-            _executeMethod?.Invoke();
+            _executeMethod.Invoke();
         }
 
-        public sealed override void Execute(object parameter)
+        public sealed override void Execute(object? parameter)
         {
             this.Execute();
         }
@@ -59,56 +58,45 @@ namespace BookmarkManager.MVVM
 
     public class Command<T> : CommandBase
     {
-        private readonly Action<T> _executeMethod;
-        private readonly Func<T, bool> _canExecuteMethod;
-        private readonly Func<bool> _canExecuteMethod2;
+        private readonly Action<T?> _executeMethod;
+        private readonly Func<T?, bool>? _canExecuteMethod;
 
-        public Command(Action<T> executeMethod, Func<T, bool> canExecuteMethod = null)
+        public Command(Action<T?> executeMethod, Func<T?, bool>? canExecuteMethod = null)
         {
             _executeMethod = executeMethod;
             _canExecuteMethod = canExecuteMethod;
         }
 
-        public Command(Action<T> executeMethod, Func<bool> canExecuteMethod)
-        {
-            _executeMethod = executeMethod;
-            _canExecuteMethod2 = canExecuteMethod;
-        }
-
-        public bool CanExecute(T parameter)
+        public bool CanExecute(T? parameter)
         {
             return _canExecuteMethod == null || _canExecuteMethod(parameter);
         }
 
-        public sealed override bool CanExecute(object parameter)
+        public sealed override bool CanExecute(object? parameter)
         {
             if (_canExecuteMethod == null)
-            {
-                if (_canExecuteMethod2 == null)
-                    return true;
-                return (_canExecuteMethod2());
-            }
+                return true;
 
             if (parameter is T t)
                 return CanExecute(t);
 
             if (parameter == null)
-                return CanExecute(default);
+                return CanExecute(null);
 
             return false;
         }
 
-        public void Execute(T parameter)
+        public void Execute(T? parameter)
         {
             if (!CanExecute(parameter))
                 return;
 
-            _executeMethod?.Invoke(parameter);
+            _executeMethod.Invoke(parameter);
         }
 
-        public sealed override void Execute(object parameter)
+        public sealed override void Execute(object? parameter)
         {
-            Execute((T)parameter);
+            Execute((T?)parameter);
         }
     }
 
@@ -120,9 +108,9 @@ namespace BookmarkManager.MVVM
             Dispatcher = Dispatcher.CurrentDispatcher;
         }
 
-        public abstract bool CanExecute(object parameter);
+        public abstract bool CanExecute(object? parameter);
 
-        public abstract void Execute(object parameter);
+        public abstract void Execute(object? parameter);
 
         public void RaiseCanExecuteChanged()
         {
@@ -143,54 +131,6 @@ namespace BookmarkManager.MVVM
 
         public bool UseDispatcherForCanExecuteChanged { get; set; } = true;
 
-        public event EventHandler CanExecuteChanged;
-    }
-
-
-    public class AsyncCommand : CommandBase
-    {
-        private readonly Func<Task> _executeMethod;
-        private readonly Func<bool> _canExecuteMethod;
-        private Task _currentTask;
-        
-        public AsyncCommand(Func<Task> executeMethod, Func<bool> canExecuteMethod = null)
-        {
-            _executeMethod = executeMethod;
-            _canExecuteMethod = canExecuteMethod;
-        }
-        
-        public bool IsMultipleExecutionsAllowed { get; set; }
-
-        
-        public bool IsCanExecute
-        {
-            get => _isCanExecute;
-            set => SetProperty(ref _isCanExecute, value);
-        }
-        private bool _isCanExecute;
-
-        public override bool CanExecute(object parameter)
-        {
-            if (!IsMultipleExecutionsAllowed && _currentTask != null && !_currentTask.Wait(0))
-                IsCanExecute = false;
-            else
-                IsCanExecute = _canExecuteMethod == null || _canExecuteMethod();
-            return IsCanExecute;
-        }
-
-        public override void Execute(object parameter)
-        {
-            if (!CanExecute(parameter))
-                return;
-
-            _currentTask = _executeMethod?.Invoke();
-            if (!IsMultipleExecutionsAllowed)
-            {
-                RaiseCanExecuteChanged();
-                var dispatcher = Dispatcher.CurrentDispatcher;
-                _currentTask?.ContinueWith(delegate { dispatcher.InvokeAsync(RaiseCanExecuteChanged); });
-            }
-        }
-
+        public event EventHandler? CanExecuteChanged;
     }
 }

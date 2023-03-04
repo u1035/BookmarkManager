@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime.Versioning;
 using Microsoft.Win32;
 
 namespace BookmarkManager.Services
 {
+    [SupportedOSPlatform("windows")]
     public static class SystemStartup
     {
         private const string AppRegistryName = "BookmarkManager";
