@@ -6,6 +6,7 @@ namespace BookmarkManager.Services
 {
     public static class WebPageParser
     {
+        //todo: replace with HttpClient, because WebRequest is deprecated in NET
         public static string GetPageTitle(string url)
         {
             var title = "";

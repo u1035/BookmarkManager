@@ -37,8 +37,8 @@ namespace BookmarkManager.Views
             };
             if (ofd.ShowDialog() == true)
             {
-                this.TorPathTextBox.Text = ofd.FileName;
-                this.TorPathTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                TorPathTextBox.Text = ofd.FileName;
+                TorPathTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
             }
         }
     }

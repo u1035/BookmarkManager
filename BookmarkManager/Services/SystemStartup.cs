@@ -8,24 +8,21 @@ namespace BookmarkManager.Services
     public static class SystemStartup
     {
         private const string AppRegistryName = "BookmarkManager";
+        private const string RegistryPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
 
         public static void SetAutorunState(bool state)
         {
             if (state)
-            {
                 AddRegKey();
-            }
             else
-            {
                 DeleteRegKey();
-            }
         }
 
         private static void AddRegKey()
         {
             try
             {
-                var rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                var rkApp = Registry.CurrentUser.OpenSubKey(RegistryPath, true);
                 rkApp?.SetValue(AppRegistryName, GetStartupPath());
             }
             catch (Exception)
@@ -38,7 +35,7 @@ namespace BookmarkManager.Services
         {
             try
             {
-                var rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                var rkApp = Registry.CurrentUser.OpenSubKey(RegistryPath, true);
                 rkApp?.DeleteValue(AppRegistryName);
             }
             catch (Exception)
@@ -49,7 +46,7 @@ namespace BookmarkManager.Services
 
         public static bool GetStartupState()
         {
-            var rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            var rkApp = Registry.CurrentUser.OpenSubKey(RegistryPath, true);
             if (rkApp != null)
             {
                 var value = rkApp.GetValue(AppRegistryName);

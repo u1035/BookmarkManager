@@ -16,7 +16,6 @@ namespace BookmarkManager.Views
     {
         public MainWindow()
         {
-            //System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
             InitializeComponent();
         }
 
@@ -28,7 +27,7 @@ namespace BookmarkManager.Views
                 model.Config.SaveConfig();
 
                 if (model.Config.CloseToTray && !model.ExitProgram) {
-                    this.Visibility = Visibility.Hidden;
+                    Visibility = Visibility.Hidden;
                     e.Cancel = true;
                 }
             }
@@ -54,22 +53,18 @@ namespace BookmarkManager.Views
 
         private void AnyItemTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (this.DataContext is MainViewModel mainVm)
+            if (DataContext is MainViewModel mainVm)
                 mainVm.HasUnsavedChanges = true;
         }
 
         private void MainWindow_OnStateChanged(object? sender, EventArgs e)
         {
-            if (sender is MainWindow mainWindow)
+            if (sender is MainWindow mainWindow &&
+                DataContext is MainViewModel mainVm &&
+                mainWindow.WindowState == WindowState.Minimized && !mainVm.Config.ShowInTaskbar)
             {
-                if (this.DataContext is MainViewModel mainVm)
-                {
-                    if (mainWindow.WindowState == WindowState.Minimized && !mainVm.Config.ShowInTaskbar)
-                    {
-                        mainWindow.WindowState = WindowState.Normal;
-                        mainWindow.Visibility = Visibility.Hidden;
-                    }
-                }
+                mainWindow.WindowState = WindowState.Normal;
+                mainWindow.Visibility = Visibility.Hidden;
             }
         }
     }

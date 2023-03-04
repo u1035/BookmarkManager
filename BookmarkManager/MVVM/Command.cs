@@ -19,7 +19,7 @@ namespace BookmarkManager.MVVM
 
             //Additional handler to emulate one eternal client which asks about current CanExecute on each state
             if (forcedUpdateCanExecute)
-                this.CanExecuteChanged += delegate { CanExecute(); };
+                CanExecuteChanged += delegate { CanExecute(); };
         }
 
         public bool IsCanExecute
@@ -51,7 +51,7 @@ namespace BookmarkManager.MVVM
 
         public sealed override void Execute(object? parameter)
         {
-            this.Execute();
+            Execute();
         }
     }
 

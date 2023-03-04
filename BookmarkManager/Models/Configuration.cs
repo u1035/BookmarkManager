@@ -11,19 +11,27 @@ namespace BookmarkManager.Models
     [Serializable]
     public class Configuration : NotificationObject
     {
-        private bool _showInTaskbar = true;
         private const string ConfigFileName = "config.xml";
 
         public string LastOpenedFile { get; set; } = "";
         public string TorBrowserPath { get; set; } = "";
-        public ObservableCollection<string> LastOpenedFiles { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> LastOpenedFiles { get; set; } = new();
         public bool RunOnWidowsStart { get; set; }
 
+        #region ShowInTaskbar property
+
+        /// <summary>
+        /// ShowInTaskbar property
+        /// </summary>
         public bool ShowInTaskbar
         {
             get => _showInTaskbar;
             set => SetProperty(ref _showInTaskbar, value);
         }
+
+        private bool _showInTaskbar = true;
+
+        #endregion
 
         public bool StartMinimized { get; set; } = true;
         public bool OpenLastUsedFile { get; set; }
@@ -38,16 +46,15 @@ namespace BookmarkManager.Models
         [XmlIgnore]
         public Command ClearRecentFilesCommand { get; }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="Configuration"/>
+        /// </summary>
         public Configuration()
         {
             ClearRecentFilesCommand = new Command(ClearRecentFiles);
         }
 
-        private void ClearRecentFiles()
-        {
-            LastOpenedFiles.Clear();
-        }
-
+        private void ClearRecentFiles() => LastOpenedFiles.Clear();
 
         public void SaveConfig()
         {
@@ -71,7 +78,7 @@ namespace BookmarkManager.Models
             {
                 var formatter = new XmlSerializer(typeof(Configuration));
                 using var fs = new FileStream(ConfigFileName, FileMode.Open);
-                return (formatter.Deserialize(fs) as Configuration) ?? new Configuration();
+                return formatter.Deserialize(fs) as Configuration ?? new Configuration();
             }
             catch (Exception e)
             {

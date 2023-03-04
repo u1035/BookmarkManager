@@ -22,25 +22,44 @@ namespace BookmarkManager.ViewModels
 
         #region Public properties
 
-        private Visibility _mainWindowVisibility = Visibility.Visible;
+        #region MainWindowVisibility property
+
+        /// <summary>
+        /// MainWindowVisibility property
+        /// </summary>
         public Visibility MainWindowVisibility
         {
             get => _mainWindowVisibility;
             set => SetProperty(ref _mainWindowVisibility, value);
         }
 
-        private bool _exitProgram;
+        private Visibility _mainWindowVisibility = Visibility.Visible;
 
+        #endregion
+
+        #region ExitProgram property
+
+        /// <summary>
+        /// ExitProgram property
+        /// </summary>
         public bool ExitProgram
         {
             get => _exitProgram;
             private set => SetProperty(ref _exitProgram, value);
         }
 
-        private bool _hasUnsavedChanges;
+        private bool _exitProgram;
+
+        #endregion
+
+        #region HasUnsavedChanges property
+
+        /// <summary>
+        /// HasUnsavedChanges property
+        /// </summary>
         public bool HasUnsavedChanges
         {
-            get => _hasUnsavedChanges;
+            get => _hasUnsavedChanges; //todo: investigate why it's set, but not used anywhere
             set
             {
                 SetProperty(ref _hasUnsavedChanges, value);
@@ -57,96 +76,175 @@ namespace BookmarkManager.ViewModels
             }
         }
 
-        private bool _bookmarkStorageLoaded;
+        private bool _hasUnsavedChanges;
+
+        #endregion
+
+        #region BookmarkStorageLoaded property
+
+        /// <summary>
+        /// BookmarkStorageLoaded property
+        /// </summary>
         public bool BookmarkStorageLoaded
         {
             get => _bookmarkStorageLoaded;
             set => SetProperty(ref _bookmarkStorageLoaded, value);
         }
 
-        private bool _categorySelected;
+        private bool _bookmarkStorageLoaded;
+
+        #endregion
+
+        #region CategorySelected property
+
+        /// <summary>
+        /// CategorySelected property
+        /// </summary>
         public bool CategorySelected
         {
             get => _categorySelected;
             set => SetProperty(ref _categorySelected, value);
         }
 
+        private bool _categorySelected;
 
-        private string? _categoryText;
+        #endregion
+
+        #region CategoryText property
+
+        /// <summary>
+        /// CategoryText property
+        /// </summary>
         public string? CategoryText
         {
             get => _categoryText;
             set => SetProperty(ref _categoryText, value);
         }
 
-        private string? _urlText;
+        private string? _categoryText;
+
+        #endregion
+
+        #region UrlText property
+
+        /// <summary>
+        /// UrlText property
+        /// </summary>
         public string? UrlText
         {
             get => _urlText;
             set => SetProperty(ref _urlText, value);
         }
 
-        private string _mainWindowTitle = "BookmarkManager";
+        private string? _urlText;
+
+        #endregion
+
+        #region MainWindowTitle property
+
+        /// <summary>
+        /// MainWindowTitle property
+        /// </summary>
         public string MainWindowTitle
         {
             get => _mainWindowTitle;
             private set => SetProperty(ref _mainWindowTitle, value);
         }
 
-        private BookmarkCategory? _selectedCategory;
+        private string _mainWindowTitle = "BookmarkManager";
+
+        #endregion
+
+        #region SelectedCategory property
+
+        /// <summary>
+        /// SelectedCategory property
+        /// </summary>
         public BookmarkCategory? SelectedCategory
         {
             get => _selectedCategory;
             set
             {
-                if (SetProperty(ref _selectedCategory, value))
-                {
-                    CategorySelected = (_selectedCategory != null);
-                }
+                if (SetProperty(ref _selectedCategory, value)) 
+                    CategorySelected = _selectedCategory != null;
             }
         }
 
-        private Bookmark? _selectedBookmark;
+        private BookmarkCategory? _selectedCategory;
+
+        #endregion
+
+        #region SelectedBookmark property
+
+        /// <summary>
+        /// SelectedBookmark property
+        /// </summary>
         public Bookmark? SelectedBookmark
         {
             get => _selectedBookmark;
             set => SetProperty(ref _selectedBookmark, value);
         }
 
-        private BookmarkStorage? _currentBookmarkStorage;
+        private Bookmark? _selectedBookmark;
+
+        #endregion
+
+        #region CurrentBookmarkStorage property
+
+        /// <summary>
+        /// CurrentBookmarkStorage property
+        /// </summary>
         public BookmarkStorage? CurrentBookmarkStorage
         {
             get => _currentBookmarkStorage;
             private set
             {
                 if (SetProperty(ref _currentBookmarkStorage, value))
-                {
-                    BookmarkStorageLoaded = (_currentBookmarkStorage != null);
-                }
+                    BookmarkStorageLoaded = _currentBookmarkStorage != null;
             }
         }
 
-        private int _totalBookmarksCount;
+        private BookmarkStorage? _currentBookmarkStorage;
+
+        #endregion
+
+        #region TotalBookmarksCount property
+
+        /// <summary>
+        /// TotalBookmarksCount property
+        /// </summary>
         public int TotalBookmarksCount
         {
             get => _totalBookmarksCount;
             private set => SetProperty(ref _totalBookmarksCount, value);
         }
 
-        private string? _currentFileName;
+        private int _totalBookmarksCount;
+
+        #endregion
+
+        #region CurrentFileName property
+
+        /// <summary>
+        /// CurrentFileName property
+        /// </summary>
         public string? CurrentFileName
         {
             get => _currentFileName;
             private set
             {
                 SetProperty(ref _currentFileName, value);
-                MainWindowTitle = (!string.IsNullOrEmpty(_currentFileName)) ?
-                                WindowTitleBase + " - " + _currentFileName :
-                                WindowTitleBase;
+                MainWindowTitle = !string.IsNullOrEmpty(_currentFileName) ?
+                    WindowTitleBase + " - " + _currentFileName :
+                    WindowTitleBase;
             }
         }
 
-        public Configuration Config { get; set; }
+        private string? _currentFileName;
+
+        #endregion
+        
+        public Configuration Config { get; }
 
         #endregion
 
@@ -176,6 +274,9 @@ namespace BookmarkManager.ViewModels
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MainViewModel"/>
+        /// </summary>
         public MainViewModel()
         {
             AddCategoryCommand = new Command(AddCategory);
@@ -207,9 +308,8 @@ namespace BookmarkManager.ViewModels
                 MainWindowVisibility = Visibility.Hidden;
             }
 
-            if (Config.OpenLastUsedFile)
-                if (File.Exists(Config.LastOpenedFile))
-                    OpenBookmarkDb(Config.LastOpenedFile);
+            if (Config.OpenLastUsedFile && File.Exists(Config.LastOpenedFile))
+                OpenBookmarkDb(Config.LastOpenedFile);
 
             CheckCommandLineArgs();
         }
@@ -223,10 +323,8 @@ namespace BookmarkManager.ViewModels
             var args = Environment.GetCommandLineArgs();
             if (args.Length <= 1) return;
 
-            if (File.Exists(args[1]))
-            {
+            if (File.Exists(args[1])) 
                 OpenBookmarkDb(args[1]);
-            }
         }
 
         private void TryFindTorBrowser()
@@ -342,8 +440,6 @@ namespace BookmarkManager.ViewModels
 
         public void SaveCurrentBookmarkStorage(string header = "")
         {
-            //if (!HasUnsavedChanges) return;
-
             if (string.IsNullOrEmpty(CurrentFileName))
             {
                 var saveFileDialog = new SaveFileDialog
@@ -373,13 +469,13 @@ namespace BookmarkManager.ViewModels
 
         private void AddLink()
         {
-            if (string.IsNullOrWhiteSpace(UrlText) || SelectedCategory == null || CurrentBookmarkStorage == null) 
+            if (string.IsNullOrWhiteSpace(UrlText) || SelectedCategory == null || CurrentBookmarkStorage == null)
                 return;
 
             var rawTitle = WebPageParser.GetPageTitle(UrlText);
 
             //Temporary behavior if we couldn't get website title - using it's url
-            var title = (rawTitle == "") ? UrlText : Regex.Replace(rawTitle, @"\r\n?|\n", "");
+            var title = rawTitle == "" ? UrlText : Regex.Replace(rawTitle, @"\r\n?|\n", "");
 
             SelectedCategory.Bookmarks.Add(new Bookmark(UrlText, title, DateTime.Now, ""));
             HasUnsavedChanges = true;
@@ -462,7 +558,7 @@ namespace BookmarkManager.ViewModels
 
         private void DeleteBookmark()
         {
-            if (SelectedBookmark == null || SelectedCategory == null) 
+            if (SelectedBookmark == null || SelectedCategory == null)
                 return;
             SelectedCategory.Bookmarks.Remove(SelectedBookmark);
             HasUnsavedChanges = true;
@@ -515,7 +611,7 @@ namespace BookmarkManager.ViewModels
 
         private void DeleteCategory()
         {
-            if (SelectedCategory == null || CurrentBookmarkStorage == null) 
+            if (SelectedCategory == null || CurrentBookmarkStorage == null)
                 return;
 
             var confirm = MessageBox.Show(Properties.Resources.CategoryRemovalText, Properties.Resources.CategoryRemovalTitle, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);

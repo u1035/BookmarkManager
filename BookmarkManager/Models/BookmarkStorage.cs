@@ -11,15 +11,11 @@ namespace BookmarkManager.Models
     [Serializable]
     public class BookmarkStorage : NotificationObject
     {
-        public ObservableCollection<BookmarkCategory> Categories { get; set; } = new ObservableCollection<BookmarkCategory>();
+        public ObservableCollection<BookmarkCategory> Categories { get; } = new();
 
         public int SelectedCategoryIndex { get; set; }
 
-
-        public int GetTotalBookmarksCount()
-        {
-            return GetNodeRecordsCount(Categories);
-        }
+        public int GetTotalBookmarksCount() => GetNodeRecordsCount(Categories);
 
         private int GetNodeRecordsCount(IEnumerable<BookmarkCategory> categories)
         {
@@ -68,7 +64,5 @@ namespace BookmarkManager.Models
         }
 
         #endregion
-
-
     }
 }

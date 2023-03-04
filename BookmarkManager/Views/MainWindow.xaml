@@ -15,7 +15,7 @@
         Left="{Binding Config.MainWindowLeft, Mode=TwoWay}"
         Width="{Binding Config.MainWindowWidth, Mode=TwoWay}"
         Height="{Binding Config.MainWindowHeight, Mode=TwoWay}"
-        ShowInTaskbar="{Binding Config.ShowInTaskbar}"
+        ShowInTaskbar="{Binding Config.ShowInTaskbar, Mode=OneWay}"
         Closing="MainWindow_OnClosing" StateChanged="MainWindow_OnStateChanged">
     <Window.Resources>
 

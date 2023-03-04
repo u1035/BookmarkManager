@@ -6,33 +6,52 @@ namespace BookmarkManager.Models
     [Serializable]
     public class Bookmark : NotificationObject
     {
-        private string _url;
+        #region Url property
+
+        /// <summary>
+        /// Url property
+        /// </summary>
         public string Url
         {
             get => _url;
             set => SetProperty(ref _url, value);
         }
 
-        private string _pageTitle;
+        private string _url;
+
+        #endregion
+
+        #region PageTitle property
+
+        /// <summary>
+        /// PageTitle property
+        /// </summary>
         public string PageTitle
         {
             get => _pageTitle;
             set => SetProperty(ref _pageTitle, value);
         }
 
-        private DateTime _dateAdded;
-        public DateTime DateAdded
-        {
-            get => _dateAdded;
-            set => SetProperty(ref _dateAdded, value);
-        }
+        private string _pageTitle;
 
-        private string? _notes;
+        #endregion
+
+        #region Notes property
+
+        /// <summary>
+        /// Notes property
+        /// </summary>
         public string? Notes
         {
             get => _notes;
             set => SetProperty(ref _notes, value);
         }
+
+        private string? _notes;
+
+        #endregion
+
+        #region Constructors
 
         [Obsolete("Used by serializer only")]
         public Bookmark()
@@ -41,12 +60,20 @@ namespace BookmarkManager.Models
             _pageTitle = null!;
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="Bookmark"/>
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="pageTitle"></param>
+        /// <param name="dateAdded"></param>
+        /// <param name="notes"></param>
         public Bookmark(string url, string pageTitle, DateTime dateAdded, string notes)
         {
             _url = url;
             _pageTitle = pageTitle;
-            _dateAdded = dateAdded;
             _notes = notes;
         }
+
+        #endregion
     }
 }

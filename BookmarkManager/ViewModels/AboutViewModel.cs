@@ -8,7 +8,9 @@ namespace BookmarkManager.ViewModels
         public string AppVersion { get; }
 
 
-
+        /// <summary>
+        /// Initializes a new instance of <see cref="AboutViewModel"/>
+        /// </summary>
         public AboutViewModel()
         {
             AppName = Assembly.GetExecutingAssembly().GetName().Name;
